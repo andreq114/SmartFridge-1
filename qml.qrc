@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>CategorysPage.qml</file>
+        <file>ProductsPage.qml</file>
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>icons/adjust.png</file>
+        <file>icons/dairy-products.png</file>
+        <file>icons/fish.png</file>
+        <file>icons/frozen-goods.png</file>
+        <file>icons/glass.png</file>
+        <file>icons/healthy-food.png</file>
+        <file>icons/meat.png</file>
+        <file>icons/plastic.png</file>
+        <file>icons/sauces.png</file>
+        <file>icons/soft-drink.png</file>
+        <file>icons/sweets.png</file>
+    </qresource>
+</RCC>
