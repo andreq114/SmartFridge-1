@@ -1,5 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "datatransfer.h"
+
+
 
 int main(int argc, char *argv[])
 {
@@ -16,5 +19,6 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    DataTransfer data;
     return app.exec();
 }
