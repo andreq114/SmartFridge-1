@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.2
+import Qt.labs.qmlmodels 1.0
 
 Page {
     width: 600
@@ -9,258 +10,393 @@ Page {
     ScrollView {
         anchors.fill: parent
         Column {
+            anchors.fill: parent
+            //columnSpacing: 1
+            //rowSpacing: 1
+            //property var columnWidths: [100, 50, 80, 150]
             spacing: 10
 
+
             //Button
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
-                    anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/glass.png"
-                }
+            Image {
+                id: fish_icon
+                width: 75
+                height: 75
 
-                Rectangle {
+                source: "qrc:/icons/icons/fish.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+
+                    onClicked: {
+                        fish_animation.start()
+                        //.dupa(txtText)
+                    }
+
+                    SequentialAnimation {
+                        id: fish_animation
+
+                        PropertyAnimation {
+                            target: fish_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: fish_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: dairy_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/dairy-products.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/fish.png"
-                }
+                    onClicked: {
+                        animation_dairy.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: animation_dairy
+
+                        PropertyAnimation {
+                            target: dairy_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: dairy_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: ikona
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/frozen-goods.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/dairy-products.png"
-                }
+                    onClicked: {
+                        animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: animation
+
+                        PropertyAnimation {
+                            target: ikona
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: ikona
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: healthy_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/healthy-food.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/frozen-goods.png"
-                }
+                    onClicked: {
+                        healthy_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: healthy_animation
+
+                        PropertyAnimation {
+                            target: healthy_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: healthy_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: meat_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/meat.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/healthy-food.png"
-                }
+                    onClicked: {
+                        meat_animation.start()
+                       // mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: meat_animation
+
+                        PropertyAnimation {
+                            target: meat_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: meat_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: plastic_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
+                source: "qrc:/icons/icons/plastic.png"
 
-                background: Rectangle {
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/meat.png"
-                }
+                    onClicked: {
+                        plastic_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: plastic_animation
+
+                        PropertyAnimation {
+                            target: plastic_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: plastic_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: sauces_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/sauces.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/plastic.png"
-                }
+                    onClicked: {
+                        sauces_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: sauces_animation
+
+                        PropertyAnimation {
+                            target: sauces_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: sauces_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: drink_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/soft-drink.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/sauces.png"
-                }
+                    onClicked: {
+                        drink_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: drink_animation
+
+                        PropertyAnimation {
+                            target: drink_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: drink_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: sweets_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                background: Rectangle {
+                source: "qrc:/icons/icons/sweets.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/soft-drink.png"
-                }
+                    onClicked: {
+                        sweets_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: sweets_animation
+
+                        PropertyAnimation {
+                            target: sweets_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: sweets_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
+            Image {
+                id: glass_icon
+                width: 75
+                height: 75
 
-            RoundButton{
-                height: 100
-                width: 100
-                radius: 15
-                visible: false
-                background: Rectangle {
+                source: "qrc:/icons/icons/glass.png"
+
+                MouseArea {
                     anchors.fill: parent
-                    radius: 15
-                    color: "white"  // I update background color by this
-                }
 
-                Image {
-                    height: 75
-                    width: 75
-                    anchors.centerIn: parent
-                    source: "qrc:/icons/icons/sweets.png"
-                }
+                    onClicked: {
+                        glass_animation.start()
+                        //mymem.dupa(txtText)
+                    }
 
-                Rectangle {
-                    anchors.fill: parent
-                    radius: parent.radius
-                    color: "red"
-                    opacity: parent.pressed ? 0.5 : 0
+                    SequentialAnimation {
+                        id: glass_animation
+
+                        PropertyAnimation {
+                            target: glass_icon
+                            property: "opacity"
+
+                            from: 1
+                            to: 0.5
+                            duration: 250
+                        }
+
+                        PropertyAnimation {
+                            target: glass_icon
+                            property: "opacity"
+
+                            from: 0.5
+                            to: 1
+                            duration: 250
+                        }
+                    }
                 }
             }
         }
