@@ -4,6 +4,11 @@
         <file>CategorysPage.qml</file>
         <file>ProductsPage.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>drinks_page.qml</file>
+        <file>meat_page.qml</file>
+        <file>fish_page.qml</file>
+        <file>sweets_page.qml</file>
+        <file>sauces_page.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>

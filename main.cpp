@@ -1,14 +1,17 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "datatransfer.h"
-
-
+#include <QAbstractTableModel>
+#include "iconstable.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<IconsTable>("TableModel", 0, 1, "TableModel");
+
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

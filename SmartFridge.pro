@@ -8,6 +8,7 @@ CONFIG += c++11
 
 SOURCES += \
         datatransfer.cpp \
+        iconstable.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -24,4 +25,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    datatransfer.h
+    datatransfer.h \
+    iconstable.h

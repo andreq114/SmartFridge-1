@@ -6,20 +6,7 @@ ApplicationWindow {
     height: 480
     visible: true
     title: qsTr("Tabs")
-
-    SwipeView {
-        id: swipeView
-        anchors.fill: parent
-        currentIndex: tabBar.currentIndex
-
-        CategorysPage {
-        }
-
-        ProductsPage {
-        }
-    }
-
-    header: TabBar {
+    header : TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
 
@@ -30,4 +17,28 @@ ApplicationWindow {
             text: qsTr("Products")
         }
     }
+    SwipeView {
+        id: swipeView
+
+        currentIndex: tabBar.currentIndex
+
+        CategorysPage {
+        }
+
+        ProductsPage {
+        }
+    }
+
+    StackView {
+        id: stackView
+        initialItem: swipeView
+        anchors.fill: parent
+    }
+
+
+
+
+
+
+
 }

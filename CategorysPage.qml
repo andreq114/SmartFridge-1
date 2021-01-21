@@ -31,7 +31,10 @@ Page {
 
                     onClicked: {
                         fish_animation.start()
-                        //.dupa(txtText)
+                        delay(500,function(){
+                            tabBar.visible = false
+                            stackView.push("fish_page.qml");
+                        })
                     }
 
                     SequentialAnimation {
@@ -183,6 +186,10 @@ Page {
 
                     onClicked: {
                         meat_animation.start()
+                        delay(500,function(){
+                            tabBar.visible = false
+                            stackView.push("meat_page.qml");
+                        })
                        // mymem.dupa(txtText)
                     }
 
@@ -221,6 +228,7 @@ Page {
 
                     onClicked: {
                         plastic_animation.start()
+
                         //mymem.dupa(txtText)
                     }
 
@@ -259,6 +267,10 @@ Page {
 
                     onClicked: {
                         sauces_animation.start()
+                        delay(500,function(){
+                            tabBar.visible = false
+                            stackView.push("sauces_page.qml");
+                        })
                         //mymem.dupa(txtText)
                     }
 
@@ -297,6 +309,10 @@ Page {
 
                     onClicked: {
                         drink_animation.start()
+                       delay(500,function(){
+                            tabBar.visible = false
+                            stackView.push("fish_page.qml");
+                        })
                         //mymem.dupa(txtText)
                     }
 
@@ -335,6 +351,10 @@ Page {
 
                     onClicked: {
                         sweets_animation.start()
+                        delay(500,function(){
+                            tabBar.visible = false
+                            stackView.push("sweets_page.qml");
+                        })
                         //mymem.dupa(txtText)
                     }
 
@@ -373,7 +393,7 @@ Page {
 
                     onClicked: {
                         glass_animation.start()
-                        //mymem.dupa(txtText)
+
                     }
 
                     SequentialAnimation {
@@ -402,6 +422,16 @@ Page {
         }
 
 
+    }
+    Timer {
+        id: timer
+    }
+
+    function delay(delayTime, cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
     }
 
 }
