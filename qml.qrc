@@ -22,5 +22,6 @@
         <file>icons/sauces.png</file>
         <file>icons/soft-drink.png</file>
         <file>icons/sweets.png</file>
+        <file>icons/glass_kopia.png</file>
     </qresource>
 </RCC>

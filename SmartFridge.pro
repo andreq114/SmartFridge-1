@@ -13,6 +13,11 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
+
+include(QtMobileNotification/QtMobileNotification.pri)
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 

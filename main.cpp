@@ -3,6 +3,7 @@
 #include "datatransfer.h"
 #include <QAbstractTableModel>
 #include "iconstable.h"
+#include "QtNotification.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
+    QtNotification::declareQML();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

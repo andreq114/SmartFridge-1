@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 ApplicationWindow {
+    id: okno
     width: 640
     height: 480
     visible: true
@@ -26,6 +27,7 @@ ApplicationWindow {
         }
 
         ProductsPage {
+            id: productPage
         }
     }
 

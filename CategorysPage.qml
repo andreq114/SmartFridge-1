@@ -3,18 +3,30 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.2
 import Qt.labs.qmlmodels 1.0
 
+import QtNotification 1.0
 Page {
     width: 600
     height: 400
     title: qsTr("Categorys of products")
+
+    Notification {
+        id: notification
+    }
     ScrollView {
         anchors.fill: parent
         Column {
             anchors.fill: parent
+            width: 400
+            height: 400
+
+
+            //add: Transition {
+            //        NumberAnimation { properties: "x,y"; from: 100; duration: 1000 }
+            //    }
             //columnSpacing: 1
             //rowSpacing: 1
             //property var columnWidths: [100, 50, 80, 150]
-            spacing: 10
+
 
 
             //Button
@@ -32,8 +44,15 @@ Page {
                     onClicked: {
                         fish_animation.start()
                         delay(500,function(){
-                            tabBar.visible = false
-                            stackView.push("fish_page.qml");
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=0
+                            notification.show({
+                                              caption: "hello",
+                                              title  : "notification",
+                                              id     : Math.random()
+                                          });
                         })
                     }
 
@@ -72,7 +91,12 @@ Page {
 
                     onClicked: {
                         animation_dairy.start()
-                        //mymem.dupa(txtText)
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=1
+                        })
                     }
 
                     SequentialAnimation {
@@ -110,7 +134,12 @@ Page {
 
                     onClicked: {
                         animation.start()
-                        //mymem.dupa(txtText)
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=2
+                        })
                     }
 
                     SequentialAnimation {
