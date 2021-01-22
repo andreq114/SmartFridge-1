@@ -48,11 +48,16 @@ Page {
                             swipeView.setCurrentIndex(1)
                             //productPage.listek.move(2)
                             productPage.listek.currentIndex=0
-                            notification.show({
-                                              caption: "hello",
-                                              title  : "notification",
-                                              id     : Math.random()
-                                          });
+
+                            /*delay(5000,function(){
+                                notification.show({
+                                caption: "hello",
+                                title  : "notification",
+                                id     : Math.random()
+                                });
+                            }
+                            )*/
+
                         })
                     }
 
@@ -177,7 +182,12 @@ Page {
 
                     onClicked: {
                         healthy_animation.start()
-                        //mymem.dupa(txtText)
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=3
+                        })
                     }
 
                     SequentialAnimation {
@@ -216,10 +226,11 @@ Page {
                     onClicked: {
                         meat_animation.start()
                         delay(500,function(){
-                            tabBar.visible = false
-                            stackView.push("meat_page.qml");
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=4
                         })
-                       // mymem.dupa(txtText)
                     }
 
                     SequentialAnimation {
@@ -257,8 +268,12 @@ Page {
 
                     onClicked: {
                         plastic_animation.start()
-
-                        //mymem.dupa(txtText)
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=5
+                        })
                     }
 
                     SequentialAnimation {
@@ -297,10 +312,11 @@ Page {
                     onClicked: {
                         sauces_animation.start()
                         delay(500,function(){
-                            tabBar.visible = false
-                            stackView.push("sauces_page.qml");
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=6
                         })
-                        //mymem.dupa(txtText)
                     }
 
                     SequentialAnimation {
@@ -338,11 +354,12 @@ Page {
 
                     onClicked: {
                         drink_animation.start()
-                       delay(500,function(){
-                            tabBar.visible = false
-                            stackView.push("fish_page.qml");
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=7
                         })
-                        //mymem.dupa(txtText)
                     }
 
                     SequentialAnimation {
@@ -381,10 +398,11 @@ Page {
                     onClicked: {
                         sweets_animation.start()
                         delay(500,function(){
-                            tabBar.visible = false
-                            stackView.push("sweets_page.qml");
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=8
                         })
-                        //mymem.dupa(txtText)
                     }
 
                     SequentialAnimation {
@@ -422,7 +440,12 @@ Page {
 
                     onClicked: {
                         glass_animation.start()
-
+                        delay(500,function(){
+                            //tabBar.visible = false
+                            swipeView.setCurrentIndex(1)
+                            //productPage.listek.move(2)
+                            productPage.listek.currentIndex=9
+                        })
                     }
 
                     SequentialAnimation {
@@ -462,6 +485,8 @@ Page {
         timer.triggered.connect(cb);
         timer.start();
     }
+
+
 
 }
 

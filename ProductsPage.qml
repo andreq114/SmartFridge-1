@@ -26,13 +26,34 @@ Page {
             id: listModel
 
             ListElement {
-                text: "1"
+                text: "Rybka"
             }
             ListElement {
-                text: "2"
+                text: "Nabiał"
             }
             ListElement {
-                text: "3"
+                text: "Mrożonki"
+            }
+            ListElement {
+                text: "Owoce i warzywa"
+            }
+            ListElement {
+                text: "Mięsa"
+            }
+            ListElement {
+                text: "Woda"
+            }
+            ListElement {
+                text: "Sosy"
+            }
+            ListElement {
+                text: "Napoje"
+            }
+            ListElement {
+                text: "Ciasta"
+            }
+            ListElement {
+                text: "Alkohol"
             }
         }
 

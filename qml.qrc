@@ -5,10 +5,8 @@
         <file>ProductsPage.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>drinks_page.qml</file>
-        <file>meat_page.qml</file>
-        <file>fish_page.qml</file>
-        <file>sweets_page.qml</file>
-        <file>sauces_page.qml</file>
+        <file>settings.qml</file>
+        <file>AboutUs.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>
@@ -23,5 +21,8 @@
         <file>icons/soft-drink.png</file>
         <file>icons/sweets.png</file>
         <file>icons/glass_kopia.png</file>
+    </qresource>
+    <qresource prefix="/menu_icons">
+        <file>icons/adjust.png</file>
     </qresource>
 </RCC>
