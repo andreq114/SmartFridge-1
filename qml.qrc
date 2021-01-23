@@ -7,6 +7,7 @@
         <file>drinks_page.qml</file>
         <file>settings.qml</file>
         <file>AboutUs.qml</file>
+        <file>CategoryBtn.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>

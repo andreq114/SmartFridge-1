@@ -4,6 +4,7 @@
 #include <QAbstractTableModel>
 #include "iconstable.h"
 #include "QtNotification.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
