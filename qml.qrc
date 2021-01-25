@@ -8,6 +8,7 @@
         <file>settings.qml</file>
         <file>AboutUs.qml</file>
         <file>CategoryBtn.qml</file>
+        <file>OneCategoryProducts.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>

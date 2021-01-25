@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import TableModel 0.1
+//import TableModel 0.1
 import QtQuick.Controls 2.5
 //import QtQml 2.15
 
@@ -26,45 +26,52 @@ Page {
             id: listModel
 
             ListElement {
-                text: "Rybka"
+                iconSourc: "qrc:/icons/icons/fish.png"
+                tekst: "Fish"
             }
             ListElement {
-                text: "Nabiał"
+                iconSourc: "qrc:/icons/icons/dairy-products.png"
+                tekst: "Dairy"
             }
             ListElement {
-                text: "Mrożonki"
+                iconSourc: "qrc:/icons/icons/frozen-goods.png"
+                tekst: "Frozen"
             }
             ListElement {
-                text: "Owoce i warzywa"
+                iconSourc: "qrc:/icons/icons/healthy-food.png"
+                tekst: "Fruits and vegetables"
             }
             ListElement {
-                text: "Mięsa"
+                iconSourc: "qrc:/icons/icons/meat.png"
+                tekst: "Meats"
             }
             ListElement {
-                text: "Woda"
+                iconSourc: "qrc:/icons/icons/plastic.png"
+                tekst: "Water"
             }
             ListElement {
-                text: "Sosy"
+                iconSourc: "qrc:/icons/icons/sauces.png"
+                tekst: "Sauces"
             }
             ListElement {
-                text: "Napoje"
+                iconSourc: "qrc:/icons/icons/soft-drink.png"
+                tekst: "Drinks"
             }
             ListElement {
-                text: "Ciasta"
+                iconSourc: "qrc:/icons/icons/sweets.png"
+                tekst: "Sweets"
             }
             ListElement {
-                text: "Alkohol"
+                iconSourc: "qrc:/icons/icons/glass.png"
+                tekst: "Alcohol"
             }
         }
 
-        delegate: Page {
+        delegate: OneCategoryProducts {
+            icon_source: iconSourc
+            icon_tekst: tekst
             width:  ListView.view.width
             height: ListView.view.height
-
-            Text {
-                anchors.centerIn: parent
-                text: model.text
-            }
         }
 
     }
@@ -122,6 +129,7 @@ Page {
         }
         }*/
     }
+
 
 
 

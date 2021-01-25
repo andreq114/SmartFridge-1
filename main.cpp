@@ -5,15 +5,15 @@
 #include "iconstable.h"
 #include "QtNotification.h"
 #include <QQmlContext>
-
+#include "productstablemodel.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<IconsTable>("TableModel", 0, 1, "TableModel");
-
+    //qmlRegisterType<IconsTable>("TableModel", 0, 1, "TableModel");
+    qmlRegisterType<ProductsTableModel>("com.ProductsTable",0,1,"ProductsTable");
 
     QQmlApplicationEngine engine;
     QtNotification::declareQML();
