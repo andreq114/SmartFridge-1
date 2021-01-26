@@ -2,27 +2,34 @@
 #define GROUPPRODUCTS_H
 
 #include <QObject>
+#include <QQmlListProperty>
 #include "datatransfer.h"
 #include "product.h"
 
 class GroupProducts : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ getName NOTIFY nameChanged)
     Q_PROPERTY(Product::Category category READ getCategory NOTIFY categoryChanged)
+    Q_PROPERTY(QQmlListProperty<Product> products READ Products NOTIFY productsChanged)
 public:
-    explicit GroupProducts(QObject *parent = nullptr);
+    explicit GroupProducts(Product::Category cat, QObject *parent = nullptr);
+    GroupProducts(QObject *parent = nullptr);
 
-    QString getName() const {return name;}
+    static int count_products(QQmlListProperty<Product> *list);
+    static Product* at_group(QQmlListProperty<Product> *list, int index);
 
+
+    //QString getName() const {return name;}
     Product::Category getCategory() const {return category;}
-
+    void addProduct(Product *);
+    QQmlListProperty<Product> Products();
+    QList<Product *> getProducts();
 signals:
-    void nameChanged();
+    void productsChanged();
+    //void nameChanged();
     void categoryChanged();
 private:
     Product::Category                   category;
-    QString                             name;
     QList<Product *>                    products;
 };
 

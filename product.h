@@ -32,6 +32,7 @@ public:
     QString getTerm() const {return term.toString();}
 //  QDate getTerm() const {return term;}
     QString getName() const {return name;}
+    Category getCat() const {return category;}
 signals:
     void nameChanged();
     void termChanged();

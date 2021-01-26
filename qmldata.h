@@ -8,16 +8,20 @@
 class QMLdata : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<GroupProducts> products READ getProducts NOTIFY productsChanged)
+    Q_PROPERTY(QQmlListProperty<GroupProducts> groupProducts READ getProducts NOTIFY groupProductsChanged)
 public:
     explicit QMLdata(QObject *parent = nullptr);
-    QList<GroupProducts *> products;
+    explicit QMLdata(QVector<Product *> *products, QObject *parent = nullptr);
+    QList<GroupProducts *> groupProducts;
 
     QQmlListProperty<GroupProducts> getProducts();
     static int count_group(QQmlListProperty<GroupProducts> *list);
     static GroupProducts* at_group(QQmlListProperty<GroupProducts> *list, int index);
 signals:
-    void productsChanged();
+    void groupProductsChanged();
+
+private:
+    void makeGroups(QVector<Product *> *products);
 };
 
 #endif // QMLDATA_H

@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;
-    QMLdata products;
+    QMLdata products(dataTransfer.getProducts());
 
     QtNotification::declareQML();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -30,9 +30,6 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     engine.rootContext()->setContextProperty("products", &products);
-
-
-
 
     engine.load(url);
 

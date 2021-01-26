@@ -31,7 +31,7 @@ ApplicationWindow {
 
 
                 id: titleLabel
-                text: swipeView.currentIndex == 0 ? products.products[0].category : "Products"
+                text: swipeView.currentIndex == 0 ? "Categories" : "Products"
 
 
 

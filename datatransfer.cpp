@@ -14,9 +14,9 @@ DataTransfer::DataTransfer()
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
 
     //reply = restclient->get(request);
-    QString field2 ("Mydlo$Pomidorki$"),
-            field3 ("21.11.2022$02.05.2021$"),
-            field4 ("1$2$");
+    QString field2 ("Smietana niebita$Keczup$Ogórki kiszione$"),
+            field3 ("21.11.2022$02.05.2021$02.05.2021$"),
+            field4 ("0$3$8$");
     parseReply(field2, field3, field4);
 }
 
@@ -54,11 +54,12 @@ void DataTransfer::parseReply(QString &field2, QString &field3, QString &field4)
 
     for(int i = 0; i < names.size(); i++)
     {
-        products.append(new Product(names.at(i)
+        products[i] = new Product(names.at(i)
                                     , QDate::fromString(terms.at(i), "dd.MM.yyyy")
                                     , static_cast<Product::Category>(category.at(i).toInt())
-                                    , nullptr));
+                                    , nullptr);
     }
+
 }
 
 
