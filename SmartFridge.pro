@@ -10,7 +10,8 @@ SOURCES += \
         datatransfer.cpp \
         iconstable.cpp \
         main.cpp \
-        productstablemodel.cpp
+        productstablemodel.cpp \
+        productstables.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,4 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     datatransfer.h \
     iconstable.h \
-    productstablemodel.h
+    productstablemodel.h \
+    productstables.h

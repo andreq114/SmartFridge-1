@@ -13,7 +13,7 @@ Page {
         snapMode: ListView.SnapOneItem
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightMoveDuration : 1000
-
+        clip: true
         //currentIndex: indeksik
         anchors {
             top: parent.top
@@ -26,43 +26,63 @@ Page {
             id: listModel
 
             ListElement {
+                indeks: 0
                 iconSourc: "qrc:/icons/icons/fish.png"
+                visib: true
                 tekst: "Fish"
             }
             ListElement {
+                indeks: 1
                 iconSourc: "qrc:/icons/icons/dairy-products.png"
+                visib: true
                 tekst: "Dairy"
             }
             ListElement {
+                indeks: 2
                 iconSourc: "qrc:/icons/icons/frozen-goods.png"
+                visib: true
                 tekst: "Frozen"
             }
             ListElement {
+                indeks: 3
                 iconSourc: "qrc:/icons/icons/healthy-food.png"
+                visib: true
                 tekst: "Fruits and vegetables"
             }
             ListElement {
+                indeks: 4
                 iconSourc: "qrc:/icons/icons/meat.png"
+                visib: true
                 tekst: "Meats"
             }
             ListElement {
+                indeks: 5
                 iconSourc: "qrc:/icons/icons/plastic.png"
+                visib: true
                 tekst: "Water"
             }
             ListElement {
+                indeks: 6
                 iconSourc: "qrc:/icons/icons/sauces.png"
+                visib: true
                 tekst: "Sauces"
             }
             ListElement {
+                indeks: 7
                 iconSourc: "qrc:/icons/icons/soft-drink.png"
+                visib: false
                 tekst: "Drinks"
             }
             ListElement {
+                indeks: 8
                 iconSourc: "qrc:/icons/icons/sweets.png"
+                visib: false
                 tekst: "Sweets"
             }
             ListElement {
+                indeks: 9
                 iconSourc: "qrc:/icons/icons/glass.png"
+                visib: true
                 tekst: "Alcohol"
             }
         }
@@ -70,8 +90,10 @@ Page {
         delegate: OneCategoryProducts {
             icon_source: iconSourc
             icon_tekst: tekst
+            visible: visib
             width:  ListView.view.width
-            height: ListView.view.height
+            height: visible === false ? 0 : ListView.view.height
+            //fullList_Model.model: modelik
         }
 
     }
