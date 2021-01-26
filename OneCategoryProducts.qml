@@ -69,7 +69,7 @@ Page{
                 id: fullListModel
                 anchors.fill: parent
                 //model:  listek.currentIndex === 0 ? fishModel : dairyModel
-                model: listek.currentIndex === 0 ? fishModel : listek.currentIndex === 1 ? dairyModel : listek.currentIndex === 2 ? frozenModel : fruitsModel
+                //model: listek.currentIndex === 0 ? fishModel : listek.currentIndex === 1 ? dairyModel : listek.currentIndex === 2 ? frozenModel : fruitsModel
 
                 delegate: contactDelegate
                 //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }

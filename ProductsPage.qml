@@ -93,6 +93,7 @@ Page {
             visible: visib
             width:  ListView.view.width
             height: visible === false ? 0 : ListView.view.height
+            fullList_Model.model: indeks === 0 ? fishModel : indeks === 1 ? dairyModel : indeks === 2 ? frozenModel : fruitsModel
             //fullList_Model.model: modelik
         }
 
