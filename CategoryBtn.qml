@@ -3,7 +3,8 @@ import QtQuick 2.12
 Item {
     id: root
     property string figure
-    signal clicked()
+    property int btnid
+    signal clicked(int btnid)
     Image {
         id: image
         width: 75
@@ -24,7 +25,7 @@ Item {
             onClicked: {
                 animation.start()
                 delay(500,function(){
-                    root.clicked()
+                    root.clicked(root.btnid)
                     //tabBar.visible = false
                     //swipeView.setCurrentIndex(1)
                     //productPage.listek.move(2)

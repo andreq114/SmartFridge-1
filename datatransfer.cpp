@@ -3,6 +3,7 @@
 DataTransfer::DataTransfer()
 {
     restclient = new QNetworkAccessManager();
+    QUrl myurl;
     myurl.setScheme("http");
     myurl.setHost("api.thingspeak.com");
     myurl.setPath("/channels/1242116/feed.json");
@@ -16,7 +17,7 @@ DataTransfer::DataTransfer()
     QString field2 ("Mydlo$Pomidorki$"),
             field3 ("21.11.2022$02.05.2021$"),
             field4 ("1$2$");
-    products = parseReply(field2, field3, field4);
+    parseReply(field2, field3, field4);
 }
 
 void DataTransfer::replyFinished(QNetworkReply * reply){
@@ -34,11 +35,11 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
         field4 = jsob["field4"].toString();
     }
     reply->deleteLater();
-    products = parseReply(field2, field3, field4);
+    parseReply(field2, field3, field4);
 
 }
 
-QVector<Product> DataTransfer::parseReply(QString &field2, QString &field3, QString &field4){
+void DataTransfer::parseReply(QString &field2, QString &field3, QString &field4){
 
     auto names = field2.split("$");
     auto terms = field3.split("$");
@@ -48,21 +49,22 @@ QVector<Product> DataTransfer::parseReply(QString &field2, QString &field3, QStr
     terms.removeAt(terms.length() - 1);
     category.removeAt(category.length() - 1);
 
-    QVector<Product> Products(names.size());
+    products.clear();
+    products.resize(names.size());
 
     for(int i = 0; i < names.size(); i++)
     {
-        Product product;
-        product.name        = names.at(i);
-        product.category    = static_cast<Category>(category.at(i).toInt());
-        product.term        = QDate::fromString(terms.at(i), "dd.MM.yyyy");
-        Products.insert(i, product);
+        products.append(new Product(names.at(i)
+                                    , QDate::fromString(terms.at(i), "dd.MM.yyyy")
+                                    , static_cast<Product::Category>(category.at(i).toInt())
+                                    , nullptr));
     }
-    return Products;
 }
 
 
-
+QVector<Product *> * DataTransfer::getProducts(){
+    return &products;
+}
 
 
 

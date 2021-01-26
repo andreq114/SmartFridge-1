@@ -2,9 +2,10 @@
 #include <QQmlApplicationEngine>
 #include "datatransfer.h"
 #include <QAbstractTableModel>
-#include "iconstable.h"
 #include "QtNotification.h"
 #include <QQmlContext>
+#include "groupproducts.h"
+#include "qmldata.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,10 +13,14 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<IconsTable>("TableModel", 0, 1, "TableModel");
-
+    qmlRegisterType<GroupProducts>("com.mycompany.groupproducts", 1, 0, "Groupproducts");
+    qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
+    qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
 
     QQmlApplicationEngine engine;
+    DataTransfer dataTransfer;
+    QMLdata products;
+
     QtNotification::declareQML();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -23,8 +28,14 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+    engine.rootContext()->setContextProperty("products", &products);
+
+
+
+
     engine.load(url);
 
-    DataTransfer data;
+
     return app.exec();
 }
