@@ -12,9 +12,10 @@ SOURCES += \
         iconstable.cpp \
         main.cpp \
         product.cpp \
-        qmldata.cpp
         productstablemodel.cpp \
-        productstables.cpp
+        productstables.cpp \
+        qmldata.cpp
+
 RESOURCES += qml.qrc
 
 
@@ -38,6 +39,7 @@ HEADERS += \
     groupproducts.h \
     iconstable.h \
     product.h \
-    qmldata.h
     productstablemodel.h \
-    productstables.h
+    productstables.h \
+    qmldata.h
+
