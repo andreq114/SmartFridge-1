@@ -5,9 +5,22 @@ import QtQuick.Controls 2.5
 
 Page {
 
-    property alias listek: listek
+    property alias listekk: listek
+    //property alias listModelek: listModel
     //property int indeksik: 1
-
+    property var categorys_visibilities: [true,false,true,false,false,false,false,false,false,false]
+    property var model_items:[
+        {indeks: 0,  iconSourc: "qrc:/icons/icons/fish.png",                 visib: categorys_visibilities[0], tekst: "Fish"},
+        {indeks: 1,  iconSourc: "qrc:/icons/icons/dairy-products.png",       visib: categorys_visibilities[1], tekst: "Dairy"},
+        {indeks: 2,  iconSourc: "qrc:/icons/icons/frozen-goods.png"     , visib: categorys_visibilities[2], tekst: "Frozen"},
+        {indeks: 3,  iconSourc: "qrc:/icons/icons/healthy-food.png"   , visib: categorys_visibilities[3], tekst: "Fruits and vegetables"},
+        {indeks: 4,  iconSourc: "qrc:/icons/icons/meat.png"    , visib: categorys_visibilities[4], tekst: "Meats"},
+        {indeks: 5,  iconSourc: "qrc:/icons/icons/plastic.png"    , visib: categorys_visibilities[5], tekst: "Water"},
+        {indeks: 6,  iconSourc: "qrc:/icons/icons/sauces.png"    , visib: categorys_visibilities[6], tekst: "Sauces"},
+        {indeks: 7,  iconSourc: "qrc:/icons/icons/soft-drink.png"    , visib: categorys_visibilities[7], tekst: "Drinks"},
+        {indeks: 8,  iconSourc:  "qrc:/icons/icons/sweets.png"   , visib: categorys_visibilities[8], tekst: "Sweets"},
+        {indeks: 9,  iconSourc: "qrc:/icons/icons/glass.png"    , visib: categorys_visibilities[9], tekst: "Alcohol"},
+    ]
     ListView {
         id: listek
         snapMode: ListView.SnapOneItem
@@ -22,8 +35,11 @@ Page {
             right: parent.right
         }
 
+        model: myModel
+/*
         model: ListModel {
             id: listModel
+
 
             ListElement {
                 indeks: 0
@@ -85,21 +101,41 @@ Page {
                 visib: true
                 tekst: "Alcohol"
             }
-        }
+        }*/
 
-        delegate: OneCategoryProducts {
+        delegate:
+            OneCategoryProducts {
             icon_source: iconSourc
             icon_tekst: tekst
+            //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             visible: visib
             width:  ListView.view.width
-            height: visible === false ? 0 : ListView.view.height
+            //height: visible === false ? 0 : ListView.view.height
+            height: ListView.view.height
             fullList_Model.model: indeks === 0 ? fishModel : indeks === 1 ? dairyModel : indeks === 2 ? frozenModel : fruitsModel
             //fullList_Model.model: modelik
         }
 
+        // focus: true
+
+
+    }
+    function createModel(){
+        myModel.clear()
+        for(var i=0;i<model_items.length; i++)
+            if(model_items[i].visib)
+                myModel.append(model_items[i])
     }
 
-/*
+    ListModel {
+        id: myModel
+    }
+
+    Component.onCompleted: {
+        createModel()
+    }
+
+    /*
     TableView {
         anchors.fill: parent
         columnSpacing: 5
