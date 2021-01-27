@@ -17,8 +17,6 @@ public:
     QQmlListProperty<GroupProducts> getProducts();
     static int count_group(QQmlListProperty<GroupProducts> *list);
     static GroupProducts* at_group(QQmlListProperty<GroupProducts> *list, int index);
-public slots:
-    void setProducts();
 signals:
     void groupProductsChanged();
 
