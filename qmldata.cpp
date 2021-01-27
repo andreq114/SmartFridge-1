@@ -49,4 +49,5 @@ void QMLdata::makeGroups(QVector<Product *> *products)
             }
 
     }
+    emit groupProductsChanged();
 }

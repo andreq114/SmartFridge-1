@@ -30,6 +30,8 @@ Page {
 
             function loadButton() {
                 console.log("Found: " + products.groupProducts.length + " categories");
+                size = 0;
+                grid.children = ""
                 for(var i=0 ; i<products.groupProducts.length ; i++){
                     switch(products.groupProducts[i].category) {
                     case Product.Dairy :
@@ -67,7 +69,7 @@ Page {
 
             function buttonClicked(btnid) {
                 swipeView.setCurrentIndex(1)
-                productPage.listek.currentIndex =  btnid
+                productPage.listek.currentIndex = btnid
             }
 
             function createBtnCategory(path) {
@@ -84,7 +86,10 @@ Page {
             }
 
             Component.onCompleted: loadButton()
-
+            Connections {
+                            target: products
+                            onGroupProductsChanged: loadButton();
+                        }
         }
     }
 }
