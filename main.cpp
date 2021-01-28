@@ -18,9 +18,8 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<GroupProducts>("com.mycompany.groupproducts", 1, 0, "Groupproducts");
     qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
-    //qmlRegisterType<IconsTable>("TableModel", 0, 1, "TableModel");
-    //qmlRegisterType<ProductsTableModel>("com.ProductsTable",0,1,"ProductsTable");
     qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
+    qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
 
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;

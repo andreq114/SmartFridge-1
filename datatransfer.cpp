@@ -14,9 +14,9 @@ DataTransfer::DataTransfer()
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
 
     //reply = restclient->get(request);
-    QString field2 ("Smietana niebita$Keczup$Ogórki kiszione$"),
-            field3 ("21.11.2022$02.05.2021$02.05.2021$"),
-            field4 ("0$3$8$");
+    QString field2 ("Smietana niebita$Keczup$Ogórki kiszione$Hehe- piotr zyla$"),
+            field3 ("21.11.2022$02.05.2021$02.05.2021$11.11.2023$"),
+            field4 ("0$3$6$4$");
     parseReply(field2, field3, field4);
 }
 

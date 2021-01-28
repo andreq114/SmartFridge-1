@@ -24,7 +24,7 @@ class ProductsTableModel : public QAbstractTableModel
 
 public:
     ProductsTableModel(QObject *parent = nullptr);
-    void addProduct(QString descr,QString date);
+    Q_INVOKABLE void addProduct(QString descr,QString date);
 protected:
     Q_INVOKABLE  int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Q_INVOKABLE  int columnCount(const QModelIndex &parent = QModelIndex()) const override;
