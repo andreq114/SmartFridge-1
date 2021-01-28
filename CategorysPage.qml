@@ -22,18 +22,19 @@ Page {
             id: grid
             width: 300; height: 200
             columns: 3
-            spacing: 30
+            spacing: 50
             anchors.centerIn: parent
-            padding: 40
+            leftPadding: 30
+            topPadding: 60
 
             property var size: 0
 
             function loadButton() {
-                console.log("Found: " + products.groupProducts.length + " categories");
+                console.log("Found: " + ThingspeakData.groupProducts.length + " categories");
                 size = 0;
                 grid.children = ""
-                for(var i=0 ; i<products.groupProducts.length ; i++){
-                    switch(products.groupProducts[i].category) {
+                for(var i=0 ; i<ThingspeakData.groupProducts.length ; i++){
+                    switch(ThingspeakData.groupProducts[i].category) {
                     case Product.Dairy :
                         createBtnCategory("qrc:/icons/icons/dairy-products.png");
                         break;
@@ -87,7 +88,7 @@ Page {
 
             Component.onCompleted: loadButton()
             Connections {
-                            target: products
+                            target: ThingspeakData
                             onGroupProductsChanged: loadButton();
                         }
         }

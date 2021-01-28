@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    engine.rootContext()->setContextProperty("products", &products);
+    engine.rootContext()->setContextProperty("ThingspeakData", &products);
     engine.rootContext()->setContextProperty("dairyModel",all_tables->dairyModel);
     engine.rootContext()->setContextProperty("fishModel",all_tables->fishModel);
     engine.rootContext()->setContextProperty("frozenModel",all_tables->frozenModel);
