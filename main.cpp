@@ -7,7 +7,6 @@
 #include "groupproducts.h"
 #include "qmldata.h"
 #include "productstablemodel.h"
-#include "productstables.h"
 
 
 int main(int argc, char *argv[])
@@ -16,7 +15,6 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<GroupProducts>("com.mycompany.groupproducts", 1, 0, "Groupproducts");
     qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
     qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
     qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
@@ -24,8 +22,6 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;
     QMLdata products(dataTransfer.getProducts());
-
-    ProductsTables *all_tables = new ProductsTables;
 
     //engine.rootContext()->setContextProperty("productsTablet",all_tables->modelek);
     QtNotification::declareQML();
@@ -37,10 +33,6 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     engine.rootContext()->setContextProperty("ThingspeakData", &products);
-    engine.rootContext()->setContextProperty("dairyModel",all_tables->dairyModel);
-    engine.rootContext()->setContextProperty("fishModel",all_tables->fishModel);
-    engine.rootContext()->setContextProperty("frozenModel",all_tables->frozenModel);
-    engine.rootContext()->setContextProperty("fruitsModel",all_tables->fruitsModel);
     engine.load(url);
 
 

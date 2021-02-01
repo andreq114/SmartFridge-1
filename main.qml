@@ -2,7 +2,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import com.mycompany.product 1.0
 import com.mycompany.qmldata 1.0
-import com.mycompany.groupproducts 1.0
 import com.mycompany.productsTableModel 1.0
 
 ApplicationWindow {
@@ -159,84 +158,69 @@ ApplicationWindow {
     property var amountCategories : 0;
 
     function refreshPages() {
-        console.log("Found: " + ThingspeakData.groupProducts.length + " categories");
+        console.log("Found: " + ThingspeakData.amountCategories + " categories");
         amountCategories = 0;
         categoryPage.grid.children = "";
         productPage.listModel.clear();
-        for(var i=0 ; i<ThingspeakData.groupProducts.length ; i++){
-            switch(ThingspeakData.groupProducts[i].category) {
+        for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
+            console.log(ThingspeakData.groupModels[i].category);
+            var category = ThingspeakData.groupModels[i].category;
+            switch(category) {
             case Product.Dairy :
                 createBtnCategory("qrc:/icons/icons/dairy-products.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/dairy-products.png" , name: names[0]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/dairy-products.png" , name: names[0], category: category});
                 amountCategories++;
                 break;
             case Product.Drinks :
                 createBtnCategory("qrc:/icons/icons/soft-drink.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/soft-drink.png" , name: names[1]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/soft-drink.png" , name: names[1], category: category});
                 amountCategories++;
                 break;
             case Product.Alcohols :
                 createBtnCategory("qrc:/icons/icons/glass.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/glass.png" , name: names[2]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/glass.png" , name: names[2], category: category});
                 amountCategories++;
                 break;
             case Product.Sauces :
                 createBtnCategory("qrc:/icons/icons/sauces.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sauces.png" , name: names[3]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sauces.png" , name: names[3], category: category});
                 amountCategories++;
                 break;
             case Product.Sweets :
                 createBtnCategory("qrc:/icons/icons/sweets.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sweets.png" , name: names[4]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sweets.png" , name: names[4], category: category});
                 amountCategories++;
                 break;
             case Product.Fishes :
                 createBtnCategory("qrc:/icons/icons/fish.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/fish.png" , name: names[5]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/fish.png" , name: names[5], category: category});
                 amountCategories++;
                 break;
             case Product.Meat :
                 createBtnCategory("qrc:/icons/icons/meat.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/meat.png" , name: names[6]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/meat.png" , name: names[6], category: category});
                 amountCategories++;
                 break;
             case Product.Frozen :
                 createBtnCategory("qrc:/icons/icons/frozen-goods.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/frozen-goods.png" , name: names[7]});
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/frozen-goods.png" , name: names[7], category: category});
                 amountCategories++;
                 break;
             case Product.Plants :
                 createBtnCategory("qrc:/icons/icons/healthy-food.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/healthy-food.png" , name: names[8]});
-                //productPage.list.delegate(createProductTable(indeks));
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/healthy-food.png" , name: names[8], category: category});
                 amountCategories++;
                 break;
             default :
                 console.log("Unknown a category");
             }
         }
-        //createTableProducts(productPage.list);
-    }
-
-    function createTableProducts(list) {
-
-        var component = Qt.createQmlObject("import QtQuick 2.12
-                                            import com.mycompany.productsTableModel 1.0
-                                            ProductsTableModel {}", list, "DD");
-        console.log(component);
-        //if (component.status === Component.Ready) {
-        var button = component.createObject(list,
-                                            {});
-            list.delegate = button;
-            //table.addProduct("d","j");
-            console.log("DD");
-            return table;
-        //}
     }
 
     function buttonClicked(btnid) {
         swipeView.setCurrentIndex(1)
         productPage.list.currentIndex = btnid
+        //ThingspeakData.test();
     }
 
     function createBtnCategory(path) {

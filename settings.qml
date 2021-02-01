@@ -5,6 +5,6 @@ Page{
     anchors.fill: parent
     Text {
         anchors.centerIn: parent
-        text: "Ustawionka"
+        text: " Ustawienia"
     }
 }

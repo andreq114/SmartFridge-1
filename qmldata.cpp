@@ -1,4 +1,5 @@
 #include "qmldata.h"
+#include "product.h"
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
@@ -9,45 +10,61 @@ QMLdata::QMLdata(QVector<Product *> *products, QObject *parent) : QObject(parent
     makeGroups(products);
 }
 
-QQmlListProperty<GroupProducts> QMLdata::getProducts()
+QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
 {
-    return QQmlListProperty<GroupProducts>(this, nullptr, &QMLdata::count_group, &QMLdata::at_group);
+    return QQmlListProperty<ProductsTableModel>(this, nullptr, &QMLdata::count_group, &QMLdata::at_group);
 }
 
-int QMLdata::count_group(QQmlListProperty<GroupProducts> *list)
+int QMLdata::count_group(QQmlListProperty<ProductsTableModel> *list)
 {
     QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
-    return msgBoard->groupProducts.size();
+    return msgBoard->groupModels.size();
 }
 
-GroupProducts* QMLdata::at_group(QQmlListProperty<GroupProducts> *list, int index)
+ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list, int index)
 {
     QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
-    return msgBoard->groupProducts[index];
+    return msgBoard->groupModels[index];
 }
 
 void QMLdata::makeGroups(QVector<Product *> *products)
 {
-    groupProducts.clear();
+    groupModels.clear();
+    categories = 0;
     for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
     {
         Product * product = *it;
-            auto itr = std::find_if(groupProducts.begin()
-                                    , groupProducts.end()
-                                    , [product](GroupProducts* var)
+            auto itr = std::find_if(groupModels.begin()
+                                    , groupModels.end()
+                                    , [product](ProductsTableModel* var)
                                     { return var->getCategory() == product->getCat(); }
                                     );
-            if(itr != groupProducts.end())
+            if(itr != groupModels.end())
             {
-                (*itr)->addProduct(product);
+                (*itr)->addProduct(product->getName(), product->getTerm());
             }
             else
             {
-                GroupProducts * group = new GroupProducts(product->getCat());
-                group->addProduct(product);
-                groupProducts.append(group);
+                ProductsTableModel * model = new ProductsTableModel();
+                model->addProduct(product->getName(), product->getTerm());
+                model->setCategory(product->getCat());
+                groupModels.append(model);
+                categories++;
             }
 
     }
     emit groupProductsChanged();
+}
+
+int QMLdata::amountCategories()
+{
+    return categories;
+}
+
+void QMLdata::test() {
+    QVector<Product *> a;
+    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
+    a.append(new Product("FFFF", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
+    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Dairy));
+    makeGroups(&a);
 }

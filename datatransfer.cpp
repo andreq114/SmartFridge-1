@@ -66,12 +66,3 @@ void DataTransfer::parseReply(QString &field2, QString &field3, QString &field4)
 QVector<Product *> * DataTransfer::getProducts(){
     return &products;
 }
-
-
-
-
-
-
-
-
-

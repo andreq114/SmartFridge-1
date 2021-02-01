@@ -9,7 +9,6 @@ Page {
     property var numberProducts: 0
     width: 600
     height: 400
-    title: qsTr("Categorys of products")
 
     Notification {
         id: notification
