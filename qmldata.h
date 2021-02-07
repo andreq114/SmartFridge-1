@@ -18,7 +18,7 @@ public:
 
     QQmlListProperty<ProductsTableModel> getTableModels();
     int amountCategories();
-    Q_INVOKABLE void test();
+    //Q_INVOKABLE void test();
 
     static int count_group(QQmlListProperty<ProductsTableModel> *list);
     static ProductsTableModel* at_group(QQmlListProperty<ProductsTableModel> *list, int index);

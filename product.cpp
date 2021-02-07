@@ -1,10 +1,13 @@
 #include "product.h"
 
 Product::Product(QString     name,
+                 QString     company,
+                 QString     desc,
+                 QString     mass,
                  QDate       term,
                  Category    category,
                  QObject *parent)
-                : QObject(parent), name(name), term(term), category(category)
+                : QObject(parent), name(name), company(company), desc(desc), mass(mass), term(term), category(category)
 {
 
 }

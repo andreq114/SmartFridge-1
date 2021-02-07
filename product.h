@@ -8,7 +8,7 @@ class Product : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString term READ getTerm NOTIFY termChanged)
-    Q_PROPERTY(QString name READ getName NOTIFY nameChanged)
+    Q_PROPERTY(QString name READ getFullName NOTIFY nameChanged)
 public:
     enum Category{
         Dairy,
@@ -24,6 +24,9 @@ public:
     Q_FLAG(Category)
     explicit Product(QObject *parent = nullptr);
     explicit Product(QString     name,
+                     QString     company,
+                     QString     desc,
+                     QString     mass,
                     QDate       term,
                     Category    category,
                     QObject *parent = nullptr);
@@ -31,7 +34,7 @@ public:
 
     QString getTerm() const {return term.toString();}
 //  QDate getTerm() const {return term;}
-    QString getName() const {return name;}
+    QString getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
     Category getCat() const {return category;}
 signals:
     void nameChanged();
@@ -39,6 +42,9 @@ signals:
 
 private:
     QString     name;
+    QString     company;
+    QString     desc;
+    QString     mass;
     QDate       term;
     Category    category;
 

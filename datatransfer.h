@@ -22,7 +22,7 @@ private:
     QNetworkAccessManager           *restclient;
     QVector<Product *>              products;
 
-    void parseReply(QString &field2, QString &field3, QString &field4);
+    void parseReply(QString &field1, QString &field2, QString &field3, QString &field4, QString &field5, QString &field6, QString &field7);
 private slots:
     void replyFinished(QNetworkReply * reply);
 };

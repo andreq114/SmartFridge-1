@@ -41,12 +41,12 @@ void QMLdata::makeGroups(QVector<Product *> *products)
                                     );
             if(itr != groupModels.end())
             {
-                (*itr)->addProduct(product->getName(), product->getTerm());
+                (*itr)->addProduct(product->getFullName(), product->getTerm());
             }
             else
             {
                 ProductsTableModel * model = new ProductsTableModel();
-                model->addProduct(product->getName(), product->getTerm());
+                model->addProduct(product->getFullName(), product->getTerm());
                 model->setCategory(product->getCat());
                 groupModels.append(model);
                 categories++;
@@ -61,10 +61,10 @@ int QMLdata::amountCategories()
     return categories;
 }
 
-void QMLdata::test() {
-    QVector<Product *> a;
-    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
-    a.append(new Product("FFFF", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
-    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Dairy));
-    makeGroups(&a);
-}
+//void QMLdata::test() {
+//    QVector<Product *> a;
+//    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
+//    a.append(new Product("FFFF", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
+//    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Dairy));
+//    makeGroups(&a);
+//}
