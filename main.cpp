@@ -15,13 +15,15 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
     qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
     qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
+    qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
 
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;
-    QMLdata products(dataTransfer.getProducts());
+    QMLdata products(dataTransfer.getProducts(), dataTransfer.getShopList());
+
+    QObject::connect(&dataTransfer, SIGNAL(dataReceived(QVector<Product *> *)), &products, SLOT(shopListSignal(QVector<Product *> *)));
 
     //engine.rootContext()->setContextProperty("productsTablet",all_tables->modelek);
     QtNotification::declareQML();

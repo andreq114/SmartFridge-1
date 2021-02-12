@@ -13,14 +13,14 @@ DataTransfer::DataTransfer()
 
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
 
-    reply = restclient->get(request);
+    //reply = restclient->get(request);
     QString field1 ("Chocolate$Mineral water$"),
             field2 ("Wedel$Oaza$"),
             field3 ("Strawberry$$"),
             field4 ("100 g$1.5l$"),
             field5 ("05.09.2021$22.12.2022$"),
             field6 ("4$1$"),
-            field7 ("maslo$");
+            field7 ("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
     parseReply(field1, field2, field3, field4, field5, field6, field7);
 }
 
@@ -45,6 +45,7 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
     reply->deleteLater();
     parseReply(field1, field2, field3, field4, field5, field6, field7);
 
+    emit dataReceived(&products);
 }
 
 void DataTransfer::parseReply(QString &field1, QString &field2, QString &field3, QString &field4, QString &field5, QString &field6, QString &field7)
@@ -79,9 +80,17 @@ void DataTransfer::parseReply(QString &field1, QString &field2, QString &field3,
                                   nullptr);
     }
 
+    for(int i = 0; i < shoplist.size(); i++)
+    {
+        this->shoplist.append(*new QString(shoplist.at(i)));
+    }
 }
 
 
 QVector<Product *> * DataTransfer::getProducts(){
     return &products;
+}
+
+QStringList * DataTransfer::getShopList(){
+    return &shoplist;
 }

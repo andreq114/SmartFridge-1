@@ -37,7 +37,6 @@ Page {
                 {
                     if(category === ThingspeakData.groupModels[i].category)
                     {
-                        console.log("FF");
                         return ThingspeakData.groupModels[i];
                     }
                 }

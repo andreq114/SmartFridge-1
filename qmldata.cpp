@@ -5,9 +5,10 @@ QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
 }
 
-QMLdata::QMLdata(QVector<Product *> *products, QObject *parent) : QObject(parent)
+QMLdata::QMLdata(QVector<Product *> *products, QStringList * shoplist, QObject *parent) : QObject(parent)
 {
     makeGroups(products);
+    this->shoplist = shoplist;
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -53,7 +54,8 @@ void QMLdata::makeGroups(QVector<Product *> *products)
             }
 
     }
-    emit groupProductsChanged();
+    emit shoplistChanged();
+    emit shoplistSizeChanged();
 }
 
 int QMLdata::amountCategories()
@@ -61,6 +63,15 @@ int QMLdata::amountCategories()
     return categories;
 }
 
+QStringList QMLdata::getShopList()
+{
+    return *shoplist;
+}
+
+int QMLdata::getShopListSize()
+{
+    return shoplist->size();
+}
 //void QMLdata::test() {
 //    QVector<Product *> a;
 //    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));

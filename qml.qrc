@@ -9,6 +9,7 @@
         <file>AboutUs.qml</file>
         <file>CategoryBtn.qml</file>
         <file>OneCategoryProducts.qml</file>
+        <file>ShopList.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>
@@ -26,5 +27,6 @@
     </qresource>
     <qresource prefix="/menu_icons">
         <file>icons/adjust.png</file>
+        <file>icons/shopping-cart.png</file>
     </qresource>
 </RCC>

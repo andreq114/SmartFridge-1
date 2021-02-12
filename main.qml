@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.12
 import com.mycompany.product 1.0
 import com.mycompany.qmldata 1.0
 import com.mycompany.productsTableModel 1.0
@@ -15,28 +16,32 @@ ApplicationWindow {
 
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
+        contentWidth: parent.width
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                id: toolButton
+                text: stackView.depth > 1 ? "\u25C0" : "\u2630"
 
-        ToolButton {
-            id: toolButton
-            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
-
-            font.pixelSize: Qt.application.font.pixelSize * 1.6
-            onClicked: {
-                if (stackView.depth > 1) {
-                    stackView.pop()
-                } else {
-                    drawer.open()
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
+                onClicked: {
+                    if (stackView.depth > 1) {
+                        stackView.pop()
+                        titleLabel.text = swipeView.currentIndex == 0 ? "Categories" : "Products"
+                    } else {
+                        drawer.open()
+                    }
                 }
             }
-        }
 
-        Label {
+            Label {
                 id: titleLabel
                 text: swipeView.currentIndex == 0 ? "Categories" : "Products"
-            anchors.centerIn: parent
+                elide: Label.ElideRight
+                anchors.centerIn: parent
+            }
         }
     }
-
     Drawer {
         id: drawer
         width: window.width * 0.5
@@ -71,6 +76,7 @@ ApplicationWindow {
                 }
                 onClicked: {
                     stackView.push("settings.qml")
+                    titleLabel.text = "Settings"
                     drawer.close()
                 }
             }
@@ -103,12 +109,41 @@ ApplicationWindow {
                 }
                 onClicked: {
                     stackView.push("AboutUs.qml")
-
+                    titleLabel.text = "About Us"
                     drawer.close()
                 }
             }
 
-
+            ItemDelegate {
+                width: parent.width
+                height: 50
+                Row {
+                    height: parent.height
+                    ToolSeparator {
+                        width: 10
+                    }
+                    Image {
+                        id: shoplist
+                        anchors.verticalCenter: parent.verticalCenter
+                        //anchors.left: parent
+                        source: "qrc:/menu_icons/icons/shopping-cart.png"
+                    }
+                    ToolSeparator {
+                        width: 20
+                    }
+                    Text {
+                        //anchors.centerIn: parent
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 15
+                        text: qsTr("<b>Shopping List</b>")
+                    }
+                }
+                onClicked: {
+                    stackView.push("ShopList.qml")
+                    titleLabel.text = "Shopping List"
+                    drawer.close()
+                }
+            }
 
 
         }
@@ -146,14 +181,14 @@ ApplicationWindow {
         anchors.fill: parent
     }
     property var names : ["Dairy",
-                "Drinks",
-                "Alcohols",
-                "Sauces",
-                "Sweets",
-                "Fishes",
-                "Meat",
-                "Frozen",
-                "Fruits & Vegetables"];
+        "Drinks",
+        "Alcohols",
+        "Sauces",
+        "Sweets",
+        "Fishes",
+        "Meat",
+        "Frozen",
+        "Fruits & Vegetables"];
 
     property var amountCategories : 0;
 
@@ -163,7 +198,6 @@ ApplicationWindow {
         categoryPage.grid.children = "";
         productPage.listModel.clear();
         for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
-            console.log(ThingspeakData.groupModels[i].category);
             var category = ThingspeakData.groupModels[i].category;
             switch(category) {
             case Product.Dairy :
@@ -238,8 +272,8 @@ ApplicationWindow {
     Component.onCompleted: refreshPages()
 
     Connections {
-                    target: ThingspeakData
-                    onGroupProductsChanged: refreshPages();
-                }
+        target: ThingspeakData
+        onGroupProductsChanged: refreshPages();
+    }
 
 }

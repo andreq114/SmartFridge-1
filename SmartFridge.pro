@@ -39,3 +39,5 @@ HEADERS += \
     productstablemodel.h \
     qmldata.h
 
+DISTFILES +=
+
