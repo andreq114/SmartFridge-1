@@ -21,9 +21,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;
-    QMLdata products(dataTransfer.getProducts(), dataTransfer.getShopList());
+    QMLdata products(&dataTransfer);
 
-    QObject::connect(&dataTransfer, SIGNAL(dataReceived(QVector<Product *> *)), &products, SLOT(shopListSignal(QVector<Product *> *)));
 
     //engine.rootContext()->setContextProperty("productsTablet",all_tables->modelek);
     QtNotification::declareQML();

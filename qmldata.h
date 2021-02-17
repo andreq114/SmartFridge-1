@@ -14,7 +14,7 @@ class QMLdata : public QObject
     Q_PROPERTY(QStringList shoplist READ getShopList NOTIFY shoplistChanged)
 public:
     explicit QMLdata(QObject *parent = nullptr);
-    explicit QMLdata(QVector<Product *> *products, QStringList * shoplist,  QObject *parent = nullptr);
+    explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
     QList<ProductsTableModel *> groupModels;
     QStringList * shoplist;
 
@@ -22,6 +22,8 @@ public:
     QStringList getShopList();
     int getShopListSize();
     int amountCategories();
+
+    Q_INVOKABLE void refreshData();
 
     //Q_INVOKABLE void test();
 
@@ -35,11 +37,11 @@ signals:
     void shoplistSizeChanged();
 
 public slots:
-    void shopListSignal(QVector<Product *> *products){makeGroups(products);}
+    void makeGroups(QVector<Product *> *products);
 
 private:
-    void makeGroups(QVector<Product *> *products);
     int categories;
+    DataTransfer *data;
 };
 
 #endif // QMLDATA_H

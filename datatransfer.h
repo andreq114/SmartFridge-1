@@ -17,6 +17,7 @@ public:
 
     QVector<Product *>              *getProducts();
     QStringList                     *getShopList();
+    void                            refreshData();
 signals:
     void dataReceived(QVector<Product *> *);
 private:

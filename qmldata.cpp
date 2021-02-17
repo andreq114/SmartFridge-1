@@ -1,14 +1,17 @@
 #include "qmldata.h"
 #include "product.h"
+#include "datatransfer.h"
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
 }
 
-QMLdata::QMLdata(QVector<Product *> *products, QStringList * shoplist, QObject *parent) : QObject(parent)
+QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
 {
-    makeGroups(products);
-    this->shoplist = shoplist;
+    QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *)), this, SLOT(makeGroups(QVector<Product *> *)));
+    makeGroups(data->getProducts());
+    this->shoplist = data->getShopList();
+    this->data = data;
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -52,8 +55,9 @@ void QMLdata::makeGroups(QVector<Product *> *products)
                 groupModels.append(model);
                 categories++;
             }
-
     }
+    emit groupProductsChanged();
+    emit amountCategoriesChanged();
     emit shoplistChanged();
     emit shoplistSizeChanged();
 }
@@ -71,6 +75,11 @@ QStringList QMLdata::getShopList()
 int QMLdata::getShopListSize()
 {
     return shoplist->size();
+}
+
+void QMLdata::refreshData()
+{
+    data->refreshData();
 }
 //void QMLdata::test() {
 //    QVector<Product *> a;
