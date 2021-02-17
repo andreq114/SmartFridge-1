@@ -68,6 +68,7 @@ void DataTransfer::parseReply(QString &field1, QString &field2, QString &field3,
 
     products.clear();
     products.resize(names.size());
+    shoplist.clear();
 
     for(int i = 0; i < names.size(); i++)
     {
