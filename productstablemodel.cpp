@@ -1,4 +1,5 @@
 #include "productstablemodel.h"
+#include <QDebug>
 
 ProductsTableModel::ProductsTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
@@ -39,7 +40,8 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
     case 1:
         variant = itemki.at(row).exp_date;
         break;
-
+    case 2:
+        variant = itemki.at(row).aVisible;
     }
     return variant;
 
@@ -47,21 +49,22 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
 
 }
 
+bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, int role) {
+    itemki[i.row()].aVisible = value.toBool();
+    emit dataChanged(index(i.row(),2), index(i.row(),2));
+    return true;
+}
 
 QHash<int,QByteArray> ProductsTableModel::roleNames() const
 {
     QHash<int,QByteArray> roles;
     roles.insert(0,"description");
     roles.insert(1,"exp_date");
-
+    roles.insert(2,"aVisible");
     return roles;
 }
 
 
-
-
-
-
-void ProductsTableModel::addProduct(QString descr,QString date) {
-    itemki.append({descr,date});
+void ProductsTableModel::addProduct(QString descr, QString date) {
+    itemki.append({descr,date, false});
 }

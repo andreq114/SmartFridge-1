@@ -10,13 +10,10 @@
 #include <qqml.h>
 #include "product.h"
 
-const int COLS= 3;
-const int ROWS= 2;
-
 struct oneProduct{
     QString description;
     QString exp_date;
-
+    bool aVisible;
 };
 
 class ProductsTableModel : public QAbstractTableModel
@@ -25,19 +22,21 @@ class ProductsTableModel : public QAbstractTableModel
     Q_PROPERTY(Product::Category category READ getCategory NOTIFY categoryChanged)
 public:
     ProductsTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void addProduct(QString descr,QString date);
+    Q_INVOKABLE void addProduct(QString descr, QString date);
     Product::Category getCategory() const {return category;}
     void setCategory(Product::Category cat) {category = cat;}
+
+
+signals :
+    void categoryChanged();
+
 protected:
     Q_INVOKABLE  int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Q_INVOKABLE  int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     Q_INVOKABLE  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Q_INVOKABLE QHash<int,QByteArray> roleNames() const override;
-    //Q_INVOKABLE bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
-    //Qt::ItemFlags flags(const QModelIndex &index) const override;
+    Q_INVOKABLE bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
-signals :
-    void categoryChanged();
 
 private:
     QList<oneProduct> itemki;

@@ -12,8 +12,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("Lodóweczka")
 
-
-
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
         contentWidth: parent.width
@@ -21,8 +19,8 @@ ApplicationWindow {
             anchors.fill: parent
             ToolButton {
                 id: toolButton
-                text: stackView.depth > 1 ? "\u25C0" : "\u2630"
-
+                //text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+                icon.source: "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
                     if (stackView.depth > 1) {

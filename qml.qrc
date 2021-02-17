@@ -28,5 +28,7 @@
     <qresource prefix="/menu_icons">
         <file>icons/adjust.png</file>
         <file>icons/shopping-cart.png</file>
+        <file>icons/menu.png</file>
+        <file>icons/refreshing.png</file>
     </qresource>
 </RCC>
