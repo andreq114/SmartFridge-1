@@ -12,11 +12,11 @@ Page{
     property alias fullList_Model: fullListModel
     //ScrollView{
     Rectangle{
+        id: root
         anchors.fill: parent
         gradient: Gradient{
             GradientStop { position: 0.0; color: "#FF9933" }
-            GradientStop { position: 0.33; color: "#FF8000" }
-            GradientStop { position: 1.0; color: "#FF3C26" }
+            GradientStop { position: 1.0; color: "#FF8000" }
         }
 
 
@@ -45,11 +45,12 @@ Page{
 
         Rectangle {
             width: parent.width; height: parent.height-30-myIcon.height
+            gradient: root.gradient
             Rectangle {
                 id: grandparent
                 width: parent.width-50; height: parent.height-30-myIcon.height
                 anchors.centerIn: parent
-
+                color: "transparent"
                 Component {
                     id: sectionHeader
 
@@ -57,8 +58,7 @@ Page{
                         id: sectionHeaderRect
                         width: grandparent.width
                         height: 60
-                        color: "white"
-
+                        color: "transparent"
                         property bool isExpanded: false
                         property string currentExpandedSection: ListView.view.expandedSection
 
@@ -82,7 +82,7 @@ Page{
                                 }
                             }
                             else{
-                                color = "white";
+                                color = "transparent";
                                 for(i=0; i<fullListModel.model.rowCount(); i++){
                                     product = fullListModel.model.data(fullListModel.model.index(i,2));
                                     if(section === product)
@@ -125,7 +125,7 @@ Page{
                 Component {
                     id: contactDelegate
                     Rectangle {
-                        color: fullListModel.isCurrentItem ? "lightblue" : "white"
+                        color: ListView.isCurrentItem ? "lightblue" : "transparent"
                         visible: aVisible
                         width: grandparent.width
                         onVisibleChanged: {

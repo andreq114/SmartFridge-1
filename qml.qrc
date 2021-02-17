@@ -36,4 +36,7 @@
         <file>icons/logo_KI.png</file>
         <file>icons/smart_fridge_napis.png</file>
     </qresource>
+    <qresource prefix="/background">
+        <file>icons/background.jpg</file>
+    </qresource>
 </RCC>
