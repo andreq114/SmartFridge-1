@@ -11,6 +11,15 @@ Page{
     property alias icon_tekst: nazwa.text
     property alias fullList_Model: fullListModel
     //ScrollView{
+    Rectangle{
+        anchors.fill: parent
+        gradient: Gradient{
+            GradientStop { position: 0.0; color: "#FF9933" }
+            GradientStop { position: 0.33; color: "#FF8000" }
+            GradientStop { position: 1.0; color: "#FF3C26" }
+        }
+
+
     Column{
         anchors.fill: parent
         Row {
@@ -154,4 +163,4 @@ Page{
     }
 
 }
-
+}

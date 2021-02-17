@@ -10,6 +10,8 @@
         <file>CategoryBtn.qml</file>
         <file>OneCategoryProducts.qml</file>
         <file>ShopList.qml</file>
+        <file>MainPage.qml</file>
+        <file>IntroPage.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/adjust.png</file>
@@ -30,5 +32,8 @@
         <file>icons/shopping-cart.png</file>
         <file>icons/menu.png</file>
         <file>icons/refreshing.png</file>
+        <file>icons/ikona_smart_fridge.png</file>
+        <file>icons/logo_KI.png</file>
+        <file>icons/smart_fridge_napis.png</file>
     </qresource>
 </RCC>
