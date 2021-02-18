@@ -12,6 +12,7 @@ class QMLdata : public QObject
     Q_PROPERTY(QQmlListProperty<ProductsTableModel> groupModels READ getTableModels NOTIFY groupProductsChanged)
     Q_PROPERTY(int amountCategories READ amountCategories NOTIFY amountCategoriesChanged)
     Q_PROPERTY(QStringList shoplist READ getShopList NOTIFY shoplistChanged)
+    Q_PROPERTY(int alertRange READ getAlertRange WRITE setAlertRange NOTIFY alertRangeChanged)
 public:
     explicit QMLdata(QObject *parent = nullptr);
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
@@ -22,6 +23,8 @@ public:
     QStringList getShopList();
     int getShopListSize();
     int amountCategories();
+    int getAlertRange() { return alertRange;}
+    void setAlertRange(int range) { alertRange = range; emit alertRangeChanged();}
 
     Q_INVOKABLE void refreshData();
 
@@ -35,6 +38,7 @@ signals:
     void amountCategoriesChanged();
     void shoplistChanged();
     void shoplistSizeChanged();
+    void alertRangeChanged();
 
 public slots:
     void makeGroups(QVector<Product *> *products);
@@ -42,6 +46,7 @@ public slots:
 private:
     int categories;
     DataTransfer *data;
+    int alertRange;
 };
 
 #endif // QMLDATA_H

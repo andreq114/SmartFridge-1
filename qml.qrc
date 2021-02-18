@@ -26,6 +26,7 @@
         <file>icons/soft-drink.png</file>
         <file>icons/sweets.png</file>
         <file>icons/glass_kopia.png</file>
+        <file>icons/hourglass.png</file>
     </qresource>
     <qresource prefix="/menu_icons">
         <file>icons/adjust.png</file>

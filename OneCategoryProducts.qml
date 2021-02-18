@@ -15,7 +15,7 @@ Page{
         id: root
         anchors.fill: parent
         gradient: Gradient{
-            GradientStop { position: 0.0; color: "#FF9933" }
+            GradientStop { position: 0.0; color: "#F5CA66" }
             GradientStop { position: 1.0; color: "#FF8000" }
         }
 
@@ -37,7 +37,7 @@ Page{
                 anchors.verticalCenter:  parent.verticalCenter
                 font.family: "Helvetica"
                 font.pixelSize: 25
-                color: "white"
+                color: "black"
             }
 
 
@@ -97,6 +97,7 @@ Page{
                             id: sectionHeaderText
                             text: section
                             anchors.centerIn: parent
+                            font.pointSize: 10
                         }
 
                         MouseArea{
@@ -144,6 +145,7 @@ Page{
                             id: text
                             text: exp_date
                             anchors.centerIn: parent
+                            font.pointSize: 10
                         }
 
                         MouseArea {

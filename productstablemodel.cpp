@@ -44,9 +44,6 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
         variant = itemki.at(row).aVisible;
     }
     return variant;
-
-
-
 }
 
 bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, int role) {

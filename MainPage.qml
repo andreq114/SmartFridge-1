@@ -37,6 +37,7 @@ Page {
                 text: swipeView.currentIndex == 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
+                font.pointSize: 15
             }
         }
     }
@@ -46,6 +47,38 @@ Page {
         height: window.height
         Column {
             anchors.fill: parent
+
+            ItemDelegate {
+                width: parent.width
+                height: 50
+                Row {
+                    height: parent.height
+                    ToolSeparator {
+                        width: 10
+                    }
+                    Image {
+                        id: shoplist
+                        anchors.verticalCenter: parent.verticalCenter
+                        //anchors.left: parent
+                        source: "qrc:/menu_icons/icons/shopping-cart.png"
+                    }
+                    ToolSeparator {
+                        width: 20
+                    }
+                    Text {
+                        //anchors.centerIn: parent
+                        anchors.verticalCenter: parent.verticalCenter
+                        font.pointSize: 15
+                        text: qsTr("<b>Shopping List</b>")
+                    }
+                }
+                onClicked: {
+                    stackView.push("ShopList.qml")
+                    titleLabel.text = "Shopping List"
+                    drawer.close()
+                }
+            }
+
             ItemDelegate {
                 width: parent.width
                 height: 50
@@ -111,39 +144,6 @@ Page {
                     drawer.close()
                 }
             }
-
-            ItemDelegate {
-                width: parent.width
-                height: 50
-                Row {
-                    height: parent.height
-                    ToolSeparator {
-                        width: 10
-                    }
-                    Image {
-                        id: shoplist
-                        anchors.verticalCenter: parent.verticalCenter
-                        //anchors.left: parent
-                        source: "qrc:/menu_icons/icons/shopping-cart.png"
-                    }
-                    ToolSeparator {
-                        width: 20
-                    }
-                    Text {
-                        //anchors.centerIn: parent
-                        anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: 15
-                        text: qsTr("<b>Shopping List</b>")
-                    }
-                }
-                onClicked: {
-                    stackView.push("ShopList.qml")
-                    titleLabel.text = "Shopping List"
-                    drawer.close()
-                }
-            }
-
-
         }
     }
 
@@ -186,7 +186,8 @@ Page {
         "Fishes",
         "Meat",
         "Frozen",
-        "Fruits & Vegetables"];
+        "Fruits & Vegetables",
+        "End of Expiry"];
 
     property var amountCategories : 0;
 
@@ -241,6 +242,11 @@ Page {
             case Product.Plants :
                 createBtnCategory("qrc:/icons/icons/healthy-food.png");
                 productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/healthy-food.png" , name: names[8], category: category});
+                amountCategories++;
+                break;
+            case Product.EndOfExpiry :
+                createBtnCategory("qrc:/icons/icons/hourglass.png");
+                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/hourglass.png" , name: names[9], category: category});
                 amountCategories++;
                 break;
             default :

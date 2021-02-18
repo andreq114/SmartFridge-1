@@ -16,7 +16,7 @@ Page {
         anchors.fill: parent
         //color: "red"
         gradient: Gradient{
-            GradientStop { position: 0.0; color: "#FF9933" }
+            GradientStop { position: 0.0; color: "#F5CA66" }
             GradientStop { position: 0.33; color: "#FF8000" }
             GradientStop { position: 1.0; color: "#FF3C26" }
         }

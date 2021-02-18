@@ -25,7 +25,7 @@ ApplicationWindow {
         anchors.fill: parent
 
 
-}
+    }
 
 
 

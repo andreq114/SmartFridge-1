@@ -19,8 +19,6 @@ Page {
         id: input
         source: "qrc:/background/icons/background.jpg"
         anchors.fill: parent
-        width: parent
-        height: parent
 
         OpacityMask {
             source: mask

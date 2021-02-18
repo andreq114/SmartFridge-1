@@ -19,7 +19,8 @@ public:
         Fishes,
         Meat,
         Frozen,
-        Plants
+        Plants,
+        EndOfExpiry
     };
     Q_FLAG(Category)
     explicit Product(QObject *parent = nullptr);
@@ -33,7 +34,7 @@ public:
 
 
     QString getTerm() const {return term.toString();}
-//  QDate getTerm() const {return term;}
+    QDate getDate() const {return term;}
     QString getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
     Category getCat() const {return category;}
 signals:
