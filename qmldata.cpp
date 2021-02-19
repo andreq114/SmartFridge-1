@@ -50,23 +50,24 @@ void QMLdata::makeGroups(QVector<Product *> *products)
                                 , [product](ProductsTableModel* var)
         { return var->getCategory() == product->getCat(); }
                 );
+        if(QDate(product->getDate()) <= shiftedDate)
+        {
+            product->setExp(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm(), product->getExp());
+            foundEndofExpiry = true;
+        }
+
         if(itr != groupModels.end())
         {
-            (*itr)->addProduct(product->getFullName(), product->getTerm());
+            (*itr)->addProduct(product->getFullName(), product->getTerm(), product->getExp());
         }
         else
         {
             ProductsTableModel * model = new ProductsTableModel();
-            model->addProduct(product->getFullName(), product->getTerm());
+            model->addProduct(product->getFullName(), product->getTerm(), product->getExp());
             model->setCategory(product->getCat());
             groupModels.append(model);
             categories++;
-        }
-
-        if(QDate(product->getDate()) <= shiftedDate)
-        {
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm());
-            foundEndofExpiry = true;
         }
     }
     if(foundEndofExpiry)
@@ -111,10 +112,12 @@ void QMLdata::refreshEndExpiryModel()
     for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
     {
         Product * product = *it;
+        product->setExp(false);
 
         if(QDate(product->getDate()) <= shiftedDate)
         {
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm());
+            product->setExp(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm(), product->getExp());
             foundEndofExpiry = true;
         }
     }

@@ -14,6 +14,7 @@ struct oneProduct{
     QString description;
     QString exp_date;
     bool aVisible;
+    bool *endOfExpiry;
 };
 
 class ProductsTableModel : public QAbstractTableModel
@@ -22,7 +23,7 @@ class ProductsTableModel : public QAbstractTableModel
     Q_PROPERTY(Product::Category category READ getCategory NOTIFY categoryChanged)
 public:
     ProductsTableModel(QObject *parent = nullptr);
-    Q_INVOKABLE void addProduct(QString descr, QString date);
+    Q_INVOKABLE void addProduct(QString descr, QString date, bool *expiry);
     Product::Category getCategory() const {return category;}
     void setCategory(Product::Category cat) {category = cat;}
     void clear() {itemki.clear();}

@@ -42,6 +42,10 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
         break;
     case 2:
         variant = itemki.at(row).aVisible;
+        break;
+    case 3:
+        variant = *itemki.at(row).endOfExpiry;
+        break;
     }
     return variant;
 }
@@ -58,10 +62,11 @@ QHash<int,QByteArray> ProductsTableModel::roleNames() const
     roles.insert(0,"description");
     roles.insert(1,"exp_date");
     roles.insert(2,"aVisible");
+    roles.insert(3,"expire");
     return roles;
 }
 
 
-void ProductsTableModel::addProduct(QString descr, QString date) {
-    itemki.append({descr,date, false});
+void ProductsTableModel::addProduct(QString descr, QString date, bool *expiry) {
+    itemki.append({descr,date, false, expiry});
 }

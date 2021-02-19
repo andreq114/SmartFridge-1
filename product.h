@@ -37,6 +37,8 @@ public:
     QDate getDate() const {return term;}
     QString getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
     Category getCat() const {return category;}
+    bool *getExp() {return &expire;}
+    void setExp(bool val) {expire = val;}
 signals:
     void nameChanged();
     void termChanged();
@@ -48,10 +50,7 @@ private:
     QString     mass;
     QDate       term;
     Category    category;
-
-
-
-
+    bool        expire = false;
 };
 
 #endif // PRODUCT_H

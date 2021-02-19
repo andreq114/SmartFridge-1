@@ -126,7 +126,7 @@ Page{
                 Component {
                     id: contactDelegate
                     Rectangle {
-                        color: ListView.isCurrentItem ? "lightblue" : "transparent"
+                        color: expire ? "red" : "transparent"
                         visible: aVisible
                         width: grandparent.width
                         onVisibleChanged: {
