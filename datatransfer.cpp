@@ -18,7 +18,7 @@ DataTransfer::DataTransfer()
             field2 ("Wedel$Oaza$"),
             field3 ("Strawberry$$"),
             field4 ("100 g$1.5l$"),
-            field5 ("18.02.2021$22.12.2022$"),
+            field5 ("20.02.2021$27.02.2021$"),
             field6 ("4$4$"),
             field7 ("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
     parseReply(field1, field2, field3, field4, field5, field6, field7);

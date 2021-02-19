@@ -12,6 +12,8 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     this->shoplist = data->getShopList();
     this->data = data;
     alertRange = 7;
+    endOfExpiryDateModel  = new ProductsTableModel();
+    endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
     QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *)), this, SLOT(makeGroups(QVector<Product *> *)));
     makeGroups(data->getProducts());
 }
@@ -35,10 +37,9 @@ ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list
 
 void QMLdata::makeGroups(QVector<Product *> *products)
 {
-    ProductsTableModel * endOfExpiryDateModel  = new ProductsTableModel();
-    endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
     QDate shiftedDate = QDate::currentDate().addDays(alertRange);
     groupModels.clear();
+    endOfExpiryDateModel->clear();
     categories = 0;
     auto foundEndofExpiry = false;
     for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
@@ -64,7 +65,6 @@ void QMLdata::makeGroups(QVector<Product *> *products)
 
         if(QDate(product->getDate()) <= shiftedDate)
         {
-            qDebug() << QDate(product->getDate()).toString() << " " << shiftedDate.toString();
             endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm());
             foundEndofExpiry = true;
         }
@@ -100,10 +100,41 @@ void QMLdata::refreshData()
 {
     data->refreshData();
 }
-//void QMLdata::test() {
-//    QVector<Product *> a;
-//    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
-//    a.append(new Product("FFFF", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Fishes));
-//    a.append(new Product("HEHEHEH", QDate::fromString("22.11.2011", "dd.MM.yyyy"), Product::Dairy));
-//    makeGroups(&a);
-//}
+
+void QMLdata::refreshEndExpiryModel()
+{
+    endOfExpiryDateModel->clear();
+    QVector<Product *> *products = data->getProducts();
+    QDate shiftedDate = QDate::currentDate().addDays(alertRange);
+    auto foundEndofExpiry = false;
+
+    for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
+    {
+        Product * product = *it;
+
+        if(QDate(product->getDate()) <= shiftedDate)
+        {
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm());
+            foundEndofExpiry = true;
+        }
+    }
+    if(!foundEndofExpiry and groupModels.contains(endOfExpiryDateModel))
+    {
+        groupModels.removeLast();
+        categories--;
+    }
+    else if(!groupModels.contains(endOfExpiryDateModel))
+    {
+        groupModels.append(endOfExpiryDateModel);
+        categories++;
+    }
+
+    emit groupProductsChanged();
+    emit amountCategoriesChanged();
+}
+
+QMLdata::~QMLdata()
+{
+    delete endOfExpiryDateModel;
+
+}

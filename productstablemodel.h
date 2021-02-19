@@ -25,7 +25,7 @@ public:
     Q_INVOKABLE void addProduct(QString descr, QString date);
     Product::Category getCategory() const {return category;}
     void setCategory(Product::Category cat) {category = cat;}
-
+    void clear() {itemki.clear();}
 
 signals :
     void categoryChanged();

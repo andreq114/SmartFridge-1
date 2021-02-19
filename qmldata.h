@@ -16,6 +16,7 @@ class QMLdata : public QObject
 public:
     explicit QMLdata(QObject *parent = nullptr);
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
+    ~QMLdata() override;
     QList<ProductsTableModel *> groupModels;
     QStringList * shoplist;
 
@@ -27,8 +28,7 @@ public:
     void setAlertRange(int range) { alertRange = range; emit alertRangeChanged();}
 
     Q_INVOKABLE void refreshData();
-
-    //Q_INVOKABLE void test();
+    Q_INVOKABLE void refreshEndExpiryModel();
 
     static int count_group(QQmlListProperty<ProductsTableModel> *list);
     static ProductsTableModel* at_group(QQmlListProperty<ProductsTableModel> *list, int index);
@@ -47,6 +47,7 @@ private:
     int categories;
     DataTransfer *data;
     int alertRange;
+    ProductsTableModel * endOfExpiryDateModel;
 };
 
 #endif // QMLDATA_H
