@@ -122,19 +122,26 @@ Page {
                         anchors.fill: parent
                         columns: 3
                         spacing: 50
-                        anchors.centerIn: parent
+                        //anchors.centerIn: parent
                         leftPadding: 30
                         topPadding: 60
                     }
-
                     Text {
-                        anchors.top: parent.anchors.bottom
+                        anchors.top: parent.bottom
+                        anchors.right: parent.right
                         text: Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
                         bottomPadding: 10
                         font.pointSize: 12
                     }
+
+
                 }
+
             }
+
+
         }
+
     }
+
 }
