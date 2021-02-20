@@ -26,7 +26,7 @@ public:
     int getShopListSize();
     int amountCategories();
     int getAlertRange() { return alertRange;}
-    void setAlertRange(int range) { alertRange = range; emit alertRangeChanged();}
+    void setAlertRange(int range);
     QString getCreatingDate() { return creatingDate;}
 
     Q_INVOKABLE void refreshData();

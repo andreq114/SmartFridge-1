@@ -1,6 +1,7 @@
 #include "qmldata.h"
 #include "product.h"
 #include "datatransfer.h"
+#include <QStandardPaths>
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
@@ -9,13 +10,24 @@ QMLdata::QMLdata(QObject *parent) : QObject(parent)
 
 QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
 {
+    QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
+    if(file.open(QIODevice::ReadOnly))
+    {
+        QByteArray arr;
+        QTextStream stream(&file);
+        stream >> arr;
+        file.close();
+        QString readData(arr);
+        QStringList splited = readData.split("=");
+        alertRange = splited[1].toInt();
+    }else{
+        alertRange = 7;
+    }
     this->shoplist = data->getShopList();
     this->data = data;
-    alertRange = 7;
     endOfExpiryDateModel  = new ProductsTableModel();
     endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
     QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *, QString)), this, SLOT(makeGroups(QVector<Product *> *, QString)));
-    //makeGroups(data->getProducts(), data->);
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -143,10 +155,24 @@ void QMLdata::refreshEndExpiryModel()
     emit amountCategoriesChanged();
 }
 
-
+void QMLdata::setAlertRange(int range)
+{
+    alertRange = range;
+    emit alertRangeChanged();
+}
 
 QMLdata::~QMLdata()
 {
+    QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
+    if(file.open(QIODevice::WriteOnly))
+    {
+        QString alertAlias = "AlertRange=";
+        QByteArray arr = alertAlias.toLocal8Bit();
+        arr.append(QByteArray::number(alertRange,10));
+        QTextStream stream(&file);
+        stream << arr;
+        file.close();
+    }
     delete endOfExpiryDateModel;
 
 }
