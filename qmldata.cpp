@@ -53,18 +53,18 @@ void QMLdata::makeGroups(QVector<Product *> *products)
         if(QDate(product->getDate()) <= shiftedDate)
         {
             product->setExp(true);
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm(), product->getExp());
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getExp());
             foundEndofExpiry = true;
         }
 
         if(itr != groupModels.end())
         {
-            (*itr)->addProduct(product->getFullName(), product->getTerm(), product->getExp());
+            (*itr)->addProduct(product->getFullName(), product->getDate(), product->getExp());
         }
         else
         {
             ProductsTableModel * model = new ProductsTableModel();
-            model->addProduct(product->getFullName(), product->getTerm(), product->getExp());
+            model->addProduct(product->getFullName(), product->getDate(), product->getExp());
             model->setCategory(product->getCat());
             groupModels.append(model);
             categories++;
@@ -75,6 +75,10 @@ void QMLdata::makeGroups(QVector<Product *> *products)
         groupModels.append(endOfExpiryDateModel);
         categories++;
     }
+    for(auto var : groupModels){
+        var->sortModel();
+    }
+
 
     emit groupProductsChanged();
     emit amountCategoriesChanged();
@@ -117,7 +121,7 @@ void QMLdata::refreshEndExpiryModel()
         if(QDate(product->getDate()) <= shiftedDate)
         {
             product->setExp(true);
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getTerm(), product->getExp());
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getExp());
             foundEndofExpiry = true;
         }
     }
@@ -128,6 +132,7 @@ void QMLdata::refreshEndExpiryModel()
     }
     else if(!groupModels.contains(endOfExpiryDateModel))
     {
+        endOfExpiryDateModel->sortModel();
         groupModels.append(endOfExpiryDateModel);
         categories++;
     }
@@ -135,6 +140,8 @@ void QMLdata::refreshEndExpiryModel()
     emit groupProductsChanged();
     emit amountCategoriesChanged();
 }
+
+
 
 QMLdata::~QMLdata()
 {

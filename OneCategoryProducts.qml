@@ -98,6 +98,7 @@ Page{
                             text: section
                             anchors.centerIn: parent
                             font.pointSize: 10
+                            font.bold: true
                         }
 
                         MouseArea{
@@ -143,9 +144,9 @@ Page{
 
                         Text {
                             id: text
-                            text: exp_date
+                            text:   Qt.formatDateTime(new Date(exp_date), "dddd dd.MM.yyyy")
                             anchors.centerIn: parent
-                            font.pointSize: 10
+                            font.pointSize: 11
                         }
 
                         MouseArea {

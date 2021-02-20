@@ -67,6 +67,16 @@ QHash<int,QByteArray> ProductsTableModel::roleNames() const
 }
 
 
-void ProductsTableModel::addProduct(QString descr, QString date, bool *expiry) {
-    itemki.append({descr,date, false, expiry});
+void ProductsTableModel::addProduct(QString descr, QDate date, bool *expiry) {
+    itemki.append({descr,QDateTime(date), false, expiry});
+}
+
+void ProductsTableModel::sortModel(){
+    std::sort(itemki.begin(), itemki.end(), [](oneProduct a, oneProduct b) {
+            if (a.description < b.description) return true;
+             if (a.description > b.description) return false;
+             if (a.exp_date < b.exp_date) return true;
+             if (a.exp_date > b.exp_date) return false;
+             return false;
+        });
 }
