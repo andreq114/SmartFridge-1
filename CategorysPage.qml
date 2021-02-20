@@ -126,6 +126,13 @@ Page {
                         leftPadding: 30
                         topPadding: 60
                     }
+
+                    Text {
+                        anchors.top: parent.anchors.bottom
+                        text: Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+                        bottomPadding: 10
+                        font.pointSize: 12
+                    }
                 }
             }
         }

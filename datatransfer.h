@@ -19,15 +19,16 @@ public:
     QStringList                     *getShopList();
     void                            refreshData();
 signals:
-    void dataReceived(QVector<Product *> *);
+    void dataReceived(QVector<Product *> *, QString );
 private:
     QNetworkRequest                 request;
     QNetworkReply                   *reply;
     QNetworkAccessManager           *restclient;
     QVector<Product *>              products;
     QStringList                     shoplist;
+    QString                         creatingDate;
 
-    void parseReply(QString &field1, QString &field2, QString &field3, QString &field4, QString &field5, QString &field6, QString &field7);
+    void parseReply(QVector<QString> &fields);
 private slots:
     void replyFinished(QNetworkReply * reply);
 };

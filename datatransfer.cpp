@@ -28,35 +28,37 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
 
     QJsonDocument jsdoc;
     QJsonArray jsarr;
-    QString field2, field3, field4, field1, field5, field6, field7;
+    QVector<QString> fields(8);
     jsdoc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject jsobj = jsdoc.object();
     jsarr = jsobj["feeds"].toArray();
     foreach (const QJsonValue &value, jsarr) {
         QJsonObject jsob = value.toObject();
-        field1 = jsob["field1"].toString();
-        field2 = jsob["field2"].toString();
-        field3 = jsob["field3"].toString();
-        field4 = jsob["field4"].toString();
-        field5 = jsob["field5"].toString();
-        field6 = jsob["field6"].toString();
-        field7 = jsob["field7"].toString();
+        fields[0] = jsob["field1"].toString();
+        fields[1] = jsob["field2"].toString();
+        fields[2] = jsob["field3"].toString();
+        fields[3] = jsob["field4"].toString();
+        fields[4] = jsob["field5"].toString();
+        fields[5] = jsob["field6"].toString();
+        fields[6] = jsob["field7"].toString();
+        fields[7] = jsob["created_at"].toString();
     }
     reply->deleteLater();
-    parseReply(field1, field2, field3, field4, field5, field6, field7);
+    parseReply(fields);
 
-    emit dataReceived(&products);
+    emit dataReceived(&products, creatingDate);
 }
 
-void DataTransfer::parseReply(QString &field1, QString &field2, QString &field3, QString &field4, QString &field5, QString &field6, QString &field7)
+void DataTransfer::parseReply(QVector<QString> &fields)
 {
-    auto names = field1.split("$");
-    auto company = field2.split("$");
-    auto desc = field3.split("$");
-    auto mass = field4.split("$");
-    auto terms = field5.split("$");
-    auto category = field6.split("$");
-    auto shoplist = field7.split("$");
+    auto names = fields[0].split("$");
+    auto company = fields[1].split("$");
+    auto desc = fields[2].split("$");
+    auto mass = fields[3].split("$");
+    auto terms = fields[4].split("$");
+    auto category = fields[5].split("$");
+    auto shoplist = fields[6].split("$");
+    creatingDate = fields[7];
 
     names.removeAt(names.length() - 1);
     company.removeAt(company.length() - 1);
@@ -65,6 +67,7 @@ void DataTransfer::parseReply(QString &field1, QString &field2, QString &field3,
     terms.removeAt(terms.length() - 1);
     category.removeAt(category.length() - 1);
     shoplist.removeAt(shoplist.length() - 1);
+
 
     products.clear();
     products.resize(names.size());

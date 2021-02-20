@@ -14,8 +14,8 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     alertRange = 7;
     endOfExpiryDateModel  = new ProductsTableModel();
     endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
-    QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *)), this, SLOT(makeGroups(QVector<Product *> *)));
-    makeGroups(data->getProducts());
+    QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *, QString)), this, SLOT(makeGroups(QVector<Product *> *, QString)));
+    //makeGroups(data->getProducts(), data->);
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -35,8 +35,9 @@ ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list
     return msgBoard->groupModels[index];
 }
 
-void QMLdata::makeGroups(QVector<Product *> *products)
+void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
 {
+    this->creatingDate = creatingDate;
     QDate shiftedDate = QDate::currentDate().addDays(alertRange);
     groupModels.clear();
     endOfExpiryDateModel->clear();
@@ -84,6 +85,7 @@ void QMLdata::makeGroups(QVector<Product *> *products)
     emit amountCategoriesChanged();
     emit shoplistChanged();
     emit shoplistSizeChanged();
+    emit creatingDateChanged();
 }
 
 int QMLdata::amountCategories()
