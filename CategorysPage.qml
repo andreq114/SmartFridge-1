@@ -9,7 +9,7 @@ Page {
     property alias grid : grid
     property var numberProducts: 0
     width: 400
-    height: 400
+    height: 350
 
     Notification {
         id: notification
@@ -39,8 +39,8 @@ Page {
             Flickable {
                 id: flick
                 anchors.fill: parent
-                contentWidth: 400
-                contentHeight: 400
+                contentWidth: parent.width
+                contentHeight: parent.height
                 flickableDirection: Flickable.VerticalFlick
                 boundsBehavior: Flickable.DragAndOvershootBounds
                 property var refreshFlik;
@@ -119,20 +119,26 @@ Page {
                     anchors.fill: parent
                     Grid {
                         id: grid
-                        anchors.fill: parent
+                        width: parent.width
+                        height: parent.height-20
+                        anchors.top: parent.top
                         columns: 3
                         spacing: 50
                         //anchors.centerIn: parent
                         leftPadding: 30
-                        topPadding: 60
+                        topPadding: 40
                     }
                     Text {
-                        anchors.top: parent.bottom
+                        anchors.bottom: parent.bottom
                         anchors.right: parent.right
-                        text: Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
                         bottomPadding: 10
-                        font.pointSize: 12
+                        width: parent.width
+                        height: 20
+                        leftPadding: 10
+                        text: "Last update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+                        font.pointSize: 10
                     }
+
 
 
                 }
