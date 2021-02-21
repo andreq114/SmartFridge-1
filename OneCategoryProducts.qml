@@ -55,6 +55,9 @@ Page{
         Rectangle {
             width: parent.width; height: parent.height-30-myIcon.height
             gradient: root.gradient
+            PinchArea{
+                anchors.fill: parent
+                onPinchFinished: visib = !visib
             Rectangle {
                 id: grandparent
                 width: parent.width-50; height: parent.height-30-myIcon.height
@@ -177,7 +180,7 @@ Page{
                     }
                 }
             }
-
+        }
         }
 
 
