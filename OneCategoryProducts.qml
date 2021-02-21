@@ -171,7 +171,9 @@ Page{
                                         fullListModel.currentIndex = index;
                                     }
                                 }
+                                Component.onDestruction: aVisible = false
                             }
+
                         }
                     }
                 }

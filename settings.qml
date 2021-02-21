@@ -24,7 +24,6 @@ Page{
                 bottomPadding: 10
                 text: "Data ważności"
                 font.pointSize: 15
-
             }
 
             Row {
@@ -44,7 +43,6 @@ Page{
                     id: spinbox
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right
-                    //rightPadding: 15
                     from: 0
                     to: 14
                     value: ThingspeakData.alertRange
