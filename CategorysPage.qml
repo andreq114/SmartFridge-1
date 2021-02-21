@@ -14,6 +14,7 @@ Page {
 
     Notification {
         id: notification
+
     }
 
     Image {
@@ -59,6 +60,7 @@ Page {
                 //            }
                 onFlickStarted: {
                     refreshFlik = atYBeginning
+                    notification.show({caption: "Expiriation date of some products is lower than 10 days, check it!", title : "Expiriation", id:0});
                     //console.log("Pozycja Y start")
                     //console.log(verticalOvershoot)
                     //console.log("FLick start")
