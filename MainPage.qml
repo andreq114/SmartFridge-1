@@ -218,6 +218,7 @@ Page {
                 createBtnCategory("qrc:/icons/icons/sauces.png");
                 productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sauces.png" , name: names[3], category: category});
                 amountCategories++;
+
                 break;
             case Product.Sweets :
                 createBtnCategory("qrc:/icons/icons/sweets.png");
@@ -266,8 +267,8 @@ Page {
         if (component.status === Component.Ready) {
             var button = component.createObject(categoryPage.grid,
                                                 {figure:  path
-                                                    , width: 75
-                                                    , height: 75
+                                                    , width: (categoryPage.grid.width-2*categoryPage.grid.spacing-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding)/3
+                                                    , height: 50
                                                     , btnid: amountCategories});
             button.clicked.connect(buttonClicked)
         }

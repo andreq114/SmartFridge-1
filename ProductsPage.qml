@@ -9,11 +9,13 @@ Page {
     property alias list: list
     property alias listModel: categoryModel
 
+
     ListView {
         id: list
         snapMode: ListView.SnapOneItem
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightMoveDuration : 1000
+        highlightMoveVelocity: -1
         clip: true
         anchors {
             top: parent.top
@@ -25,12 +27,15 @@ Page {
         model: categoryModel
 
         delegate:
+
             OneCategoryProducts {
             icon_source: iconSourc
             icon_tekst: name
             width:  ListView.view.width
             height: ListView.view.height
             fullList_Model.model: createTableProducts(category)
+            onIcon_sourceChanged: exp === false ? exp = true : exp = false
+
 
             function createTableProducts(category) {
                 for(var i = 0; i < ThingspeakData.amountCategories ; i++)

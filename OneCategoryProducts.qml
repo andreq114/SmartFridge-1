@@ -10,6 +10,14 @@ Page{
     property alias icon_source: myIcon.source
     property alias icon_tekst: nazwa.text
     property alias fullList_Model: fullListModel
+    property bool visib: false
+    property bool exp: false
+    onExpChanged: {
+        //visib = false
+    }
+
+
+
     //ScrollView{
     Rectangle{
         id: root
@@ -22,6 +30,7 @@ Page{
 
     Column{
         anchors.fill: parent
+
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 20
@@ -63,14 +72,19 @@ Page{
                         property string currentExpandedSection: ListView.view.expandedSection
 
                         onCurrentExpandedSectionChanged: {
-                            if(currentExpandedSection === section)
+                            if(currentExpandedSection === section){
+                                console.log("Zmiana currentExpandedSection na true")
                                 isExpanded = true;
-                            else
+                            }else{
                                 isExpanded = false;
+                                console.log("Zmiana currentExpandedSection na false")
+                            }
                         }
 
                         onIsExpandedChanged: {
                             if(isExpanded){
+                                console.log("Zmiana isExpanded na true")
+                                visib = true;
                                 color = "lightgray";
                                 ListView.view.expandedSection = section;
                                 for(var i=0; i<fullListModel.model.rowCount(); i++){
@@ -82,6 +96,9 @@ Page{
                                 }
                             }
                             else{
+                                 console.log("Zmiana isExpanded na false")
+                                visib = false;
+                                color = "white"
                                 color = "transparent";
                                 for(i=0; i<fullListModel.model.rowCount(); i++){
                                     product = fullListModel.model.data(fullListModel.model.index(i,2));
@@ -114,32 +131,31 @@ Page{
                     id: fullListModel
                     anchors.fill: parent
                     delegate: contactDelegate
-
+                    //snapMode: ListView.snapMode
+                    boundsBehavior: Flickable.StopAtBounds
                     property string expandedSection: ""
 
                     section.property: "description"
                     section.criteria: ViewSection.FullString
                     section.delegate: sectionHeader
+
                     //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-                    //focus: true
+
                 }
 
                 Component {
                     id: contactDelegate
                     Rectangle {
+                        id: rectek
                         color: expire ? "red" : "transparent"
-                        visible: aVisible
+                        visible: visib
+                        //visible: aVisible
                         width: grandparent.width
-                        onVisibleChanged: {
-                            if(visible){
-                                height = 60;
-                            }else{
-                                height = 0;
-                            }
-                        }
+                        onVisibleChanged: visible ? height = 50 : height = 0
+
 
                         Behavior on height {
-                            NumberAnimation { duration: 1000 }
+                            NumberAnimation { duration: 500 }
                         }
 
                         Text {

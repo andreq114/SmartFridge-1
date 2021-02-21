@@ -7,8 +7,10 @@ Item {
     signal clicked(int btnid)
     Image {
         id: image
-        width: 85
-        height: 85
+        width: 75
+        height: 75
+
+        anchors.centerIn: parent
 
         source: parent.figure
 

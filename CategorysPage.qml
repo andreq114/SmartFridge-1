@@ -8,8 +8,9 @@ import QtNotification 1.0
 Page {
     property alias grid : grid
     property var numberProducts: 0
-    width: 400
-    height: 350
+
+
+
 
     Notification {
         id: notification
@@ -61,7 +62,7 @@ Page {
                     //console.log("Pozycja Y start")
                     //console.log(verticalOvershoot)
                     //console.log("FLick start")
-                    if (refreshFlik === true && verticalOvershoot < -200)
+                    if (refreshFlik === true && verticalOvershoot < -100)
                     {
                         //console.log("Refresh")
                         refreshIcon.visible = true
@@ -89,8 +90,8 @@ Page {
 
 
                 Rectangle{
-                    width: 50
-                    height: 50
+                    width: 40
+                    height: 40
                     anchors.horizontalCenter: parent.horizontalCenter
                     color: "transparent"
 
@@ -99,8 +100,8 @@ Page {
                         visible: false
                         anchors.centerIn: parent
 
-                        width: 30
-                        height: 30
+                        width: 25
+                        height: 25
                         source: "qrc:/menu_icons/icons/refreshing.png"
 
                         RotationAnimation on rotation {
@@ -120,23 +121,32 @@ Page {
                     Grid {
                         id: grid
                         width: parent.width
-                        height: parent.height-20
+                        //height: parent.height
                         anchors.top: parent.top
                         columns: 3
                         spacing: 50
                         //anchors.centerIn: parent
-                        leftPadding: 30
-                        topPadding: 40
+                        leftPadding: 20
+                        rightPadding: 20
+                        topPadding: 50
+
                     }
-                    Text {
-                        anchors.bottom: parent.bottom
-                        anchors.right: parent.right
-                        bottomPadding: 10
+                    Rectangle{
                         width: parent.width
-                        height: 20
-                        leftPadding: 10
-                        text: "Last update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
-                        font.pointSize: 10
+                        height: 30
+                        color: "transparent"
+                        anchors.bottom: parent.bottom
+                        Text {
+                            id: updateText
+                            anchors.top: parent.top
+                            //anchors.right: parent.right
+                            //bottomPadding: 50
+                            width: parent.width
+                            height: 20
+                            leftPadding: 20
+                            text: "Last update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+                            font.pointSize: 12
+                        }
                     }
 
 
