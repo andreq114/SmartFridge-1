@@ -22,7 +22,7 @@ class QtAndroidNotifications {
         NotificationManager notificationManager = getManager();
         Notification.Builder builder =
                 new Notification.Builder(context)
-                .setSmallIcon(android.R.drawable.ic_delete)
+                .setSmallIcon(android.R.drawable.stat_sys_warning)
                 .setContentTitle(title)
                 .setContentText(caption)
                 .setAutoCancel(true);
