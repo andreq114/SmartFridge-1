@@ -11,10 +11,8 @@ Page{
     property alias icon_tekst: nazwa.text
     property alias fullList_Model: fullListModel
     property bool visib: false
-    property bool exp: false
-    onExpChanged: {
-        //visib = false
-    }
+    property bool twoFingers: false
+
 
     Rectangle{
         id: root
@@ -54,7 +52,11 @@ Page{
                 gradient: root.gradient
                 PinchArea{
                     anchors.fill: parent
-                    onPinchFinished: visib = !visib
+                    onPinchFinished: {
+                        twoFingers = true
+                        visib = !visib
+                    }
+
                     Rectangle {
                         id: grandparent
                         width: parent.width-50; height: parent.height-30-myIcon.height
@@ -117,6 +119,7 @@ Page{
                                 MouseArea{
                                     anchors.fill: parent
                                     onClicked: {
+                                        twoFingers = false;
                                         sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded;
                                     }
                                 }
@@ -147,7 +150,7 @@ Page{
                                 //color: expire ? "red" : "transparent"
                                 color: "transparent"
                                 //visible: visib
-                                visible: aVisible
+                                visible: twoFingers === false ? aVisible : visib
                                 width: grandparent.width
                                 height: visible ? 50 : 0
                                 onVisibleChanged: visible ? height = 50 : height = 0
@@ -168,6 +171,7 @@ Page{
                                 MouseArea {
                                     anchors.fill: parent
                                     onClicked: {
+
                                         fullListModel.currentIndex = index;
                                     }
                                 }
@@ -184,4 +188,6 @@ Page{
         }
 
     }
+
+
 }
