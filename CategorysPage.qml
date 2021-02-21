@@ -146,7 +146,7 @@ Page {
                             width: parent.width
                             height: 20
                             leftPadding: 20
-                            text: "Last update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+                            text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
                             font.pointSize: 12
                         }
                     }
