@@ -114,7 +114,7 @@ Page{
                             id: sectionHeaderText
                             text: section
                             anchors.centerIn: parent
-                            font.pointSize: 10
+                            font.pointSize: 15
                             font.bold: true
                         }
 
@@ -133,6 +133,7 @@ Page{
                     delegate: contactDelegate
                     //snapMode: ListView.snapMode
                     boundsBehavior: Flickable.StopAtBounds
+                    clip: true
                     property string expandedSection: ""
 
                     section.property: "description"
@@ -147,7 +148,8 @@ Page{
                     id: contactDelegate
                     Rectangle {
                         id: rectek
-                        color: expire ? "red" : "transparent"
+                        //color: expire ? "red" : "transparent"
+                        color: "transparent"
                         visible: visib
                         //visible: aVisible
                         width: grandparent.width
@@ -160,9 +162,10 @@ Page{
 
                         Text {
                             id: text
+                            color: expire ? "red" : "black"
                             text:   Qt.formatDateTime(new Date(exp_date), "dddd dd.MM.yyyy")
                             anchors.centerIn: parent
-                            font.pointSize: 11
+                            font.pointSize: 12
                         }
 
                         MouseArea {
