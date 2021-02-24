@@ -125,9 +125,9 @@ Page {
                         width: parent.width
                         anchors.top: parent.top
                         columns: 3
-                        spacing: 60
-                        leftPadding: 20
-                        rightPadding: 20
+                        spacing: 80
+                        leftPadding: 40
+                        rightPadding: 40
                         topPadding: 50
 
                     }

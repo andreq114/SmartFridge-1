@@ -114,6 +114,8 @@ Page{
                                     anchors.centerIn: parent
                                     font.pointSize: 15
                                     font.bold: true
+                                    wrapMode: Text.Wrap
+                                    width: parent.width
                                 }
 
                                 MouseArea{
@@ -130,7 +132,6 @@ Page{
                             id: fullListModel
                             anchors.fill: parent
                             delegate: contactDelegate
-                            //snapMode: ListView.snapMode
                             boundsBehavior: Flickable.StopAtBounds
                             clip: true
                             property string expandedSection: ""
@@ -139,7 +140,6 @@ Page{
                             section.criteria: ViewSection.FullString
                             section.delegate: sectionHeader
 
-                            //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
 
                         }
 
@@ -147,9 +147,7 @@ Page{
                             id: contactDelegate
                             Rectangle {
                                 id: rectek
-                                //color: expire ? "red" : "transparent"
                                 color: "transparent"
-                                //visible: visib
                                 visible: twoFingers === false ? aVisible : visib
                                 width: grandparent.width
                                 height: visible ? 50 : 0
