@@ -20,7 +20,11 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
         file.close();
         QString readData(arr);
         QStringList splited = readData.split("=");
-        alertRange = splited[1].toInt();
+        auto readVar = splited[1].toInt();
+        if(readVar <= 1 and readVar >= 0)
+            alertRange = readVar;
+        else
+            alertRange = 7;
     }else{
         alertRange = 7;
     }
