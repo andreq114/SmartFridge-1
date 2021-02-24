@@ -178,7 +178,6 @@ void QMLdata::fun(Qt::ApplicationState state)
         QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
         if(file.open(QIODevice::WriteOnly))
         {
-            qDebug() << "Zapis";
             QString alertAlias = "AlertRange=";
             QByteArray arr = alertAlias.toLocal8Bit();
             arr.append(QByteArray::number(alertRange,10));

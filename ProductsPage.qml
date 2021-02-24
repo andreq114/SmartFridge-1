@@ -34,7 +34,6 @@ Page {
             width:  ListView.view.width
             height: ListView.view.height
             fullList_Model.model: createTableProducts(category)
-            onIcon_sourceChanged: exp === false ? exp = true : exp = false
 
 
             function createTableProducts(category) {

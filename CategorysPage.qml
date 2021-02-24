@@ -123,11 +123,9 @@ Page {
                     Grid {
                         id: grid
                         width: parent.width
-                        //height: parent.height
                         anchors.top: parent.top
                         columns: 3
-                        spacing: 50
-                        //anchors.centerIn: parent
+                        spacing: 60
                         leftPadding: 20
                         rightPadding: 20
                         topPadding: 50

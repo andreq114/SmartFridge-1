@@ -5,11 +5,21 @@ Item {
     property string figure
     property int btnid
     signal clicked(int btnid)
+
+    Rectangle {
+        width: 105
+        height: 105
+        color: "white"
+        anchors.centerIn: parent
+        opacity: 0.3
+    radius: width*0.3
+
+    }
     Image {
         id: image
         width: 75
         height: 75
-
+        z: 1
         anchors.centerIn: parent
 
         source: parent.figure
@@ -28,20 +38,6 @@ Item {
                 animation.start()
                 delay(500,function(){
                     root.clicked(root.btnid)
-                    //tabBar.visible = false
-                    //swipeView.setCurrentIndex(1)
-                    //productPage.listek.move(2)
-                    //productView.listek.currentIndex=index
-
-                    /*delay(5000,function(){
-                        notification.show({
-                        caption: "hello",
-                        title  : "notification",
-                        id     : Math.random()
-                        });
-                    }
-                    )*/
-
                 })
             }
 
