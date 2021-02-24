@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     DataTransfer dataTransfer;
     QMLdata products(&dataTransfer);
+    QObject::connect(&app, &QGuiApplication::applicationStateChanged,
+                     &products, &QMLdata::fun);
 
-
-    //engine.rootContext()->setContextProperty("productsTablet",all_tables->modelek);
     QtNotification::declareQML();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

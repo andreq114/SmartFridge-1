@@ -45,6 +45,7 @@ signals:
 
 public slots:
     void makeGroups(QVector<Product *> *products, QString creatingDate);
+    void fun(Qt::ApplicationState);
 
 private:
     int categories;

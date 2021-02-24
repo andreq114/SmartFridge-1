@@ -13,7 +13,6 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
     if(file.open(QIODevice::ReadOnly))
     {
-        qDebug() << "Czyta";
         QByteArray arr;
         QTextStream stream(&file);
         stream >> arr;
@@ -21,7 +20,7 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
         QString readData(arr);
         QStringList splited = readData.split("=");
         auto readVar = splited[1].toInt();
-        if(readVar <= 1 and readVar >= 0)
+        if(readVar <= 15 and readVar >= 0)
             alertRange = readVar;
         else
             alertRange = 7;
@@ -168,17 +167,24 @@ void QMLdata::setAlertRange(int range)
 
 QMLdata::~QMLdata()
 {
-    QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
-    if(file.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Zapis";
-        QString alertAlias = "AlertRange=";
-        QByteArray arr = alertAlias.toLocal8Bit();
-        arr.append(QByteArray::number(alertRange,10));
-        QTextStream stream(&file);
-        stream << arr;
-        file.close();
-    }
     delete endOfExpiryDateModel;
 
+}
+
+void QMLdata::fun(Qt::ApplicationState state)
+{
+    if (state != Qt::ApplicationActive)
+    {
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
+        if(file.open(QIODevice::WriteOnly))
+        {
+            qDebug() << "Zapis";
+            QString alertAlias = "AlertRange=";
+            QByteArray arr = alertAlias.toLocal8Bit();
+            arr.append(QByteArray::number(alertRange,10));
+            QTextStream stream(&file);
+            stream << arr;
+            file.close();
+        }
+    }
 }
