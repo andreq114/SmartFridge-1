@@ -17,14 +17,16 @@ Page{
             delegate:
                 Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: root.width
+                width: root.width - 50
                 height: 60
                 color: "transparent"
                 Text {
                     anchors.centerIn: parent
-                    font.family: "Helvetica"
-                    font.pixelSize: 14
+                    font.pointSize: 15
+                    font.bold: true
                     text: modelData
+                    wrapMode: Text.Wrap
+                    width: parent.width
                 }
                 MouseArea {
                     anchors.fill: parent
