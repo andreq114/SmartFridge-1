@@ -15,22 +15,19 @@ public:
     explicit GroupProducts(Product::Category cat, QObject *parent = nullptr);
     GroupProducts(QObject *parent = nullptr);
 
-    static int count_products(QQmlListProperty<Product> *list);
-    static Product* at_group(QQmlListProperty<Product> *list, int index);
+    static int                      count_products(QQmlListProperty<Product> *list);
+    static Product*                 at_group(QQmlListProperty<Product> *list, int index);
 
-
-    //QString getName() const {return name;}
-    Product::Category getCategory() const {return category;}
-    void addProduct(Product *);
-    QQmlListProperty<Product> Products();
-    QList<Product *> getProducts();
+    Product::Category               getCategory() const {return category;}
+    void                            addProduct(Product *);
+    QQmlListProperty<Product>       Products();
+    QList<Product *>                getProducts();
 signals:
-    void productsChanged();
-    //void nameChanged();
-    void categoryChanged();
+    void                            productsChanged();
+    void                            categoryChanged();
 private:
-    Product::Category                   category;
-    QList<Product *>                    products;
+    Product::Category               category;
+    QList<Product *>                products;
 };
 
 #endif // GROUPPRODUCTS_H

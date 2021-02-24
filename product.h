@@ -33,15 +33,15 @@ public:
                     QObject *parent = nullptr);
 
 
-    QString getTerm() const {return term.toString();}
-    QDate getDate() const {return term;}
-    QString getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
-    Category getCat() const {return category;}
-    bool *getExp() {return &expire;}
-    void setExp(bool val) {expire = val;}
+    QString     getTerm() const {return term.toString();}
+    QDate       getDate() const {return term;}
+    QString     getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
+    Category    getCat() const {return category;}
+    bool*       getExp() {return &expire;}
+    void        setExp(bool val) {expire = val;}
 signals:
-    void nameChanged();
-    void termChanged();
+    void        nameChanged();
+    void        termChanged();
 
 private:
     QString     name;

@@ -13,6 +13,8 @@ Product::Product(QString     name,
 }
 
 
-Product::Product(QObject *parent) : QObject(parent) {
+Product::Product(QObject *parent)
+    : QObject(parent), name("Unkown"), company(""), desc(""), mass(""), term(QDate()), category(Category::EndOfExpiry)
+{
 
 }

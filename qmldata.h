@@ -18,41 +18,41 @@ public:
     explicit QMLdata(QObject *parent = nullptr);
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
     ~QMLdata() override;
-    QList<ProductsTableModel *> groupModels;
+    QList<ProductsTableModel *>             groupModels;
     QStringList * shoplist;
 
-    QQmlListProperty<ProductsTableModel> getTableModels();
-    QStringList getShopList();
-    int getShopListSize();
-    int amountCategories();
-    int getAlertRange() { return alertRange;}
-    void setAlertRange(int range);
-    QString getCreatingDate() { return creatingDate;}
+    QQmlListProperty<ProductsTableModel>    getTableModels();
+    QStringList                             getShopList();
+    int                                     getShopListSize();
+    int                                     amountCategories();
+    int                                     getAlertRange() { return alertRange;}
+    void                                    setAlertRange(int range);
+    QString                                 getCreatingDate() { return creatingDate;}
 
-    Q_INVOKABLE void refreshData();
-    Q_INVOKABLE void refreshEndExpiryModel();
+    Q_INVOKABLE void                        refreshData();
+    Q_INVOKABLE void                        refreshEndExpiryModel();
 
-    static int count_group(QQmlListProperty<ProductsTableModel> *list);
-    static ProductsTableModel* at_group(QQmlListProperty<ProductsTableModel> *list, int index);
+    static int                              count_group(QQmlListProperty<ProductsTableModel> *list);
+    static ProductsTableModel*              at_group(QQmlListProperty<ProductsTableModel> *list, int index);
 
 signals:
-    void groupProductsChanged();
-    void amountCategoriesChanged();
-    void shoplistChanged();
-    void shoplistSizeChanged();
-    void alertRangeChanged();
-    void creatingDateChanged();
+    void                                    groupProductsChanged();
+    void                                    amountCategoriesChanged();
+    void                                    shoplistChanged();
+    void                                    shoplistSizeChanged();
+    void                                    alertRangeChanged();
+    void                                    creatingDateChanged();
 
 public slots:
-    void makeGroups(QVector<Product *> *products, QString creatingDate);
-    void fun(Qt::ApplicationState);
+    void                                    makeGroups(QVector<Product *> *products, QString creatingDate);
+    void                                    fun(Qt::ApplicationState);
 
 private:
-    int categories;
-    DataTransfer *data;
-    int alertRange;
-    QString creatingDate;
-    ProductsTableModel * endOfExpiryDateModel;
+    int                 categories;
+    DataTransfer*       data;
+    int                 alertRange;
+    QString             creatingDate;
+    ProductsTableModel* endOfExpiryDateModel;
 };
 
 #endif // QMLDATA_H

@@ -3,19 +3,12 @@
 
 ProductsTableModel::ProductsTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
-    /*itemki.append({"Chocolate Wedel Strawberry 150 g","25.06.2021",});
-    itemki.append({"Milka Mleczna Dolina 3.2 1L","25.03.2021",});
-    itemki.append({"Beer Warka 6 percent 500 ml","30.12.2021"});
-    itemki.append({"Beer Żywiec 6 percent 500 ml","31.12.2021"});
-    itemki.append({"Beer Tyskie 6 percent 500 ml","25.12.2021"});
-    itemki.append({"Beer Żubr 6 percent 500 ml","30.11.2021"});
-    itemki.append({"Beer Zatecky 6 percent 500 ml","30.12.2022"});*/
 }
 
 int ProductsTableModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
-    return itemki.size();
+    return items.size();
 
 }
 
@@ -35,23 +28,23 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
     const int col = role;
     switch (col){
     case 0:
-        variant = itemki.at(row).description;
+        variant = items.at(row).description;
         break;
     case 1:
-        variant = itemki.at(row).exp_date;
+        variant = items.at(row).exp_date;
         break;
     case 2:
-        variant = itemki.at(row).aVisible;
+        variant = items.at(row).aVisible;
         break;
     case 3:
-        variant = *itemki.at(row).endOfExpiry;
+        variant = *items.at(row).endOfExpiry;
         break;
     }
     return variant;
 }
 
 bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, int role) {
-    itemki[i.row()].aVisible = value.toBool();
+    items[i.row()].aVisible = value.toBool();
     emit dataChanged(index(i.row(),2), index(i.row(),2));
     return true;
 }
@@ -68,11 +61,11 @@ QHash<int,QByteArray> ProductsTableModel::roleNames() const
 
 
 void ProductsTableModel::addProduct(QString descr, QDate date, bool *expiry) {
-    itemki.append({descr,QDateTime(date), false, expiry});
+    items.append({descr,QDateTime(date), false, expiry});
 }
 
 void ProductsTableModel::sortModel(){
-    std::sort(itemki.begin(), itemki.end(), [](oneProduct a, oneProduct b) {
+    std::sort(items.begin(), items.end(), [](oneProduct a, oneProduct b) {
             if (a.description < b.description) return true;
              if (a.description > b.description) return false;
              if (a.exp_date < b.exp_date) return true;
