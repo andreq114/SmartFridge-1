@@ -121,11 +121,12 @@ Page {
                     width: categorysMainRect.width
                     anchors.top: parent.top
                     columns: 3
-                    spacing: 60
+                    spacing: categorysMainRect.width/20
                     //flow: Grid.TopToBottom
-                    leftPadding: 40
-                    rightPadding: 40
-                    topPadding: 50
+                    leftPadding: categorysMainRect.width/20
+                    rightPadding: categorysMainRect.width/20
+                    topPadding: categorysMainRect.width/10
+                    bottomPadding: categorysMainRect.width/20
 
 
                 }

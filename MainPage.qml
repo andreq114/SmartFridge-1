@@ -264,10 +264,12 @@ Page {
     function createBtnCategory(path) {
         var component = Qt.createComponent("CategoryBtn.qml");
         if (component.status === Component.Ready) {
+            console.log(categoryPage.grid.width)
+            console.log((categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3)
             var button = component.createObject(categoryPage.grid,
                                                 {figure:  path
-                                                    , width: (categoryPage.grid.width-2*categoryPage.grid.spacing-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding)/3
-                                                    , height: 100
+                                                    , width: (categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3
+                                                    , height: (categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3
                                                     , btnid: amountCategories});
             button.clicked.connect(buttonClicked)
         }
