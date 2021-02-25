@@ -267,7 +267,7 @@ Page {
             var button = component.createObject(categoryPage.grid,
                                                 {figure:  path
                                                     , width: (categoryPage.grid.width-2*categoryPage.grid.spacing-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding)/3
-                                                    , height: 50
+                                                    , height: 100
                                                     , btnid: amountCategories});
             button.clicked.connect(buttonClicked)
         }

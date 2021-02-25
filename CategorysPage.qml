@@ -36,15 +36,22 @@ Page {
             }
         }
         Rectangle{
-            anchors.fill: parent
+            id: categorysMainRect
+            width: parent.width
+            height: parent.height-50
+
             color: "transparent"
+
             Flickable {
                 id: flick
                 anchors.fill: parent
-                contentWidth: parent.width
-                contentHeight: parent.height
+                contentWidth: grid.width
+                contentHeight: grid.height
+                clip: true
                 flickableDirection: Flickable.VerticalFlick
                 boundsBehavior: Flickable.DragAndOvershootBounds
+                //boundsBehavior: Flickable.OvershootBounds
+
                 property var refreshFlik;
                 property  var startYPosition;
 
@@ -61,34 +68,24 @@ Page {
                 onFlickStarted: {
                     refreshFlik = atYBeginning
                     notification.show({caption: "Expiriation date of some products is lower than 10 days, check it!", title : "Expiriation", id:0});
-                    //console.log("Pozycja Y start")
-                    //console.log(verticalOvershoot)
-                    //console.log("FLick start")
+
                     if (refreshFlik === true && verticalOvershoot < -100)
                     {
-                        //console.log("Refresh")
                         refreshIcon.visible = true
                         refreshIconAnimation.start()
                         ThingspeakData.refreshData();
                     }
+                    console.log("Szerokosc categorysMainRect: ")
+                    console.log(categorysMainRect.width)
+
+                    console.log("Szerokosc flick ")
+                    console.log(flick.width)
+
+                    console.log("Szerokosc grid: ")
+                    console.log(grid.width)
                 }
 
-                //
-                //  Slot called when the flick has finished
-                //
-                onFlickEnded: {
-                    // console.log("Flick stop")
-                    //            console.log(verticalOvershoot)
-                    //            if (refreshFlik === true)
-                    //            {
-                    //                console.log("Refresh")
-                    //                refreshIcon.visible = true
-                    //                refreshIconAnimation.start()
-                    //            }
-                    //            console.log("Pozycja Y stop")
-                    //            console.log(verticalOvershoot)
 
-                }
 
 
                 Rectangle{
@@ -118,46 +115,43 @@ Page {
                     }
                 }
 
-                ScrollView {
-                    anchors.fill: parent
-                    Grid {
-                        id: grid
-                        width: parent.width
-                        anchors.top: parent.top
-                        columns: 3
-                        spacing: 80
-                        leftPadding: 40
-                        rightPadding: 40
-                        topPadding: 50
 
-                    }
-                    Rectangle{
-                        width: parent.width
-                        height: 30
-                        color: "transparent"
-                        anchors.bottom: parent.bottom
-                        Text {
-                            id: updateText
-                            anchors.top: parent.top
-                            //anchors.right: parent.right
-                            //bottomPadding: 50
-                            width: parent.width
-                            height: 20
-                            leftPadding: 20
-                            text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
-                            font.pointSize: 12
-                        }
-                    }
-
+                Grid {
+                    id: grid
+                    width: categorysMainRect.width
+                    anchors.top: parent.top
+                    columns: 3
+                    spacing: 60
+                    //flow: Grid.TopToBottom
+                    leftPadding: 40
+                    rightPadding: 40
+                    topPadding: 50
 
 
                 }
-
+                //                    topPadding: 90
+                //                    leftPadding: 40
+                //                    rightPadding: 40
             }
 
-
         }
-
+    }
+    Rectangle{
+        width: parent.width
+        height: 30
+        color: "transparent"
+        anchors.bottom: parent.bottom
+        Text {
+            id: updateText
+            anchors.top: parent.top
+            height: 30
+            //anchors.right: parent.right
+            //bottomPadding: 50
+            width: parent.width
+            leftPadding: 20
+            text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+            font.pointSize: 12
+        }
     }
 
 }

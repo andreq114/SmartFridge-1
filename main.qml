@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 ApplicationWindow {
     id: window
     width: 450
-    height: 680
+    height: 1000
     visible: true
     title: qsTr("Lodóweczka")
 
