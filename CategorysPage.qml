@@ -67,7 +67,6 @@ Page {
                 //            }
                 onFlickStarted: {
                     refreshFlik = atYBeginning
-                    notification.show({caption: "Expiriation date of some products is lower than 10 days, check it!", title : "Expiriation", id:0});
 
                     if (refreshFlik === true && verticalOvershoot < -100)
                     {
@@ -75,13 +74,10 @@ Page {
                         refreshIconAnimation.start()
                         ThingspeakData.refreshData();
                     }
-                    console.log("Szerokosc categorysMainRect: ")
                     console.log(categorysMainRect.width)
 
-                    console.log("Szerokosc flick ")
                     console.log(flick.width)
 
-                    console.log("Szerokosc grid: ")
                     console.log(grid.width)
                 }
 

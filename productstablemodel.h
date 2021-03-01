@@ -19,6 +19,7 @@ class ProductsTableModel : public QAbstractTableModel
 public:
     ProductsTableModel(QObject *parent = nullptr);
     Q_INVOKABLE void       addProduct(QString descr, QDate date, bool *expiry);
+    Q_INVOKABLE  int        rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Product::Category      getCategory() const {return category;}
     void                   setCategory(Product::Category cat) {category = cat;}
     void                   clear() {items.clear();}
@@ -35,7 +36,7 @@ signals :
     void                    categoryChanged();
 
 protected:
-    Q_INVOKABLE  int        rowCount(const QModelIndex &parent = QModelIndex()) const override;
+
     Q_INVOKABLE  int        columnCount(const QModelIndex &parent = QModelIndex()) const override;
     Q_INVOKABLE  QVariant   data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Q_INVOKABLE QHash<int,QByteArray> roleNames() const override;

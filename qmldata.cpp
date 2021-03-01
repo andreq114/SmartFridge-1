@@ -2,6 +2,7 @@
 #include "product.h"
 #include "datatransfer.h"
 #include <QStandardPaths>
+#include "QtNotification.h"
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
@@ -96,6 +97,16 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
         var->sortModel();
     }
 
+
+    QtNotification notify;
+    QMap<QString, QVariant> map;
+    QString var(QString::number(endOfExpiryDateModel->rowCount()));
+    QString str("Ending products: " + var + ", check it!");
+    qDebug() << str;
+    map.insert("caption", QVariant(str));
+    map.insert("title", QVariant("Expiriation"));
+    map.insert("id", QVariant(0));
+    notify.show(map);
 
     emit groupProductsChanged();
     emit amountCategoriesChanged();

@@ -1,5 +1,5 @@
 QT += quick
-#QT += androidextras
+QT += androidextras
 
 CONFIG += c++11
 

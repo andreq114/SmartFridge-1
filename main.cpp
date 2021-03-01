@@ -7,7 +7,7 @@
 #include "groupproducts.h"
 #include "qmldata.h"
 #include "productstablemodel.h"
-//#include <QtAndroid>
+#include <QtAndroid>
 
 
 int main(int argc, char *argv[])
@@ -16,12 +16,12 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-//    auto  result = QtAndroid::checkPermission(QString("android.permission.WRITE_EXTERNAL_STORAGE"));
-//        if(result == QtAndroid::PermissionResult::Denied){
-//            QtAndroid::PermissionResultMap resultHash = QtAndroid::requestPermissionsSync(QStringList({"android.permission.WRITE_EXTERNAL_STORAGE"}));
-//            if(resultHash["android.permission.WRITE_EXTERNAL_STORAGE"] == QtAndroid::PermissionResult::Denied)
-//                return 0;
-//   }
+    auto  result = QtAndroid::checkPermission(QString("android.permission.WRITE_EXTERNAL_STORAGE"));
+        if(result == QtAndroid::PermissionResult::Denied){
+            QtAndroid::PermissionResultMap resultHash = QtAndroid::requestPermissionsSync(QStringList({"android.permission.WRITE_EXTERNAL_STORAGE"}));
+            if(resultHash["android.permission.WRITE_EXTERNAL_STORAGE"] == QtAndroid::PermissionResult::Denied)
+                return 0;
+   }
 
     qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
     qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
