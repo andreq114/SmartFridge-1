@@ -14,6 +14,8 @@ class QMLdata : public QObject
     Q_PROPERTY(QStringList shoplist READ getShopList NOTIFY shoplistChanged)
     Q_PROPERTY(int alertRange READ getAlertRange WRITE setAlertRange NOTIFY alertRangeChanged)
     Q_PROPERTY(QString creatingDate READ getCreatingDate NOTIFY creatingDateChanged)
+    Q_PROPERTY(QString refreshDate READ getRefreshDate NOTIFY refreshDateChanged)
+
 public:
     explicit QMLdata(QObject *parent = nullptr);
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
@@ -28,6 +30,7 @@ public:
     int                                     getAlertRange() { return alertRange;}
     void                                    setAlertRange(int range);
     QString                                 getCreatingDate() { return creatingDate;}
+    QString                                 getRefreshDate() { return refreshDate;}
 
     Q_INVOKABLE void                        refreshData();
     Q_INVOKABLE void                        refreshEndExpiryModel();
@@ -42,6 +45,7 @@ signals:
     void                                    shoplistSizeChanged();
     void                                    alertRangeChanged();
     void                                    creatingDateChanged();
+    void                                    refreshDateChanged();
 
 public slots:
     void                                    makeGroups(QVector<Product *> *products, QString creatingDate);
@@ -52,6 +56,7 @@ private:
     DataTransfer*       data;
     int                 alertRange;
     QString             creatingDate;
+    QString             refreshDate;
     ProductsTableModel* endOfExpiryDateModel;
 };
 

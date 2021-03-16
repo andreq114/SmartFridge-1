@@ -55,7 +55,12 @@ ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list
 void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
 {
     this->creatingDate = creatingDate;
-    QDate shiftedDate = QDate::currentDate().addDays(alertRange);
+    QDate currentDate = QDate::currentDate();
+    QDateTime date = QDateTime::currentDateTime();
+    auto a = date.toString("dd.MM.yyyy hh:mm");
+    this->refreshDate = a;
+    qDebug() << this->refreshDate;
+    QDate shiftedDate = currentDate.addDays(alertRange);
     groupModels.clear();
     endOfExpiryDateModel->clear();
     categories = 0;
@@ -97,22 +102,24 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
         var->sortModel();
     }
 
-
-    QtNotification notify;
-    QMap<QString, QVariant> map;
-    QString var(QString::number(endOfExpiryDateModel->rowCount()));
-    QString str("Ending products: " + var + ", check it!");
-    qDebug() << str;
-    map.insert("caption", QVariant(str));
-    map.insert("title", QVariant("Expiriation"));
-    map.insert("id", QVariant(0));
-    notify.show(map);
+    if(endOfExpiryDateModel->rowCount() > 0)
+    {
+        QtNotification notify;
+        QMap<QString, QVariant> map;
+        QString var(QString::number(endOfExpiryDateModel->rowCount()));
+        QString str("Ending products: " + var + ", check it!");
+        map.insert("caption", QVariant(str));
+        map.insert("title", QVariant("Expiriation"));
+        map.insert("id", QVariant(0));
+        notify.show(map);
+    }
 
     emit groupProductsChanged();
     emit amountCategoriesChanged();
     emit shoplistChanged();
     emit shoplistSizeChanged();
     emit creatingDateChanged();
+    emit refreshDateChanged();
 }
 
 int QMLdata::amountCategories()

@@ -4,18 +4,9 @@ import QtQuick.Controls.Styles 1.2
 import Qt.labs.qmlmodels 1.0
 import QtGraphicalEffects 1.0
 
-import QtNotification 1.0
 Page {
     property alias grid : grid
     property var numberProducts: 0
-
-
-
-
-    Notification {
-        id: notification
-
-    }
 
     Image {
         id: input
@@ -74,11 +65,6 @@ Page {
                         refreshIconAnimation.start()
                         ThingspeakData.refreshData();
                     }
-                    console.log(categorysMainRect.width)
-
-                    console.log(flick.width)
-
-                    console.log(grid.width)
                 }
 
 
@@ -135,18 +121,29 @@ Page {
     }
     Rectangle{
         width: parent.width
-        height: 30
+        height: 40
         color: "transparent"
         anchors.bottom: parent.bottom
         Text {
             id: updateText
             anchors.top: parent.top
-            height: 30
+            height: 20
             //anchors.right: parent.right
             //bottomPadding: 50
             width: parent.width
             leftPadding: 20
             text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
+            font.pointSize: 12
+        }
+        Text {
+            id: refreshText
+            anchors.bottom: parent.bottom
+            height: 20
+            //anchors.right: parent.right
+            //bottomPadding: 50
+            width: parent.width
+            leftPadding: 20
+            text: "Last refresh: " + ThingspeakData.refreshDate
             font.pointSize: 12
         }
     }
