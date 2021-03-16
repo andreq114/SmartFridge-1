@@ -41,7 +41,6 @@ Item {
                     })
                 }
 
-
                 Timer {
                     id: timer
                 }

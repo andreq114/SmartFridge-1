@@ -28,6 +28,8 @@ Page {
                     } else {
                         drawer.open()
                     }
+                    //if(stackView.currentItem === settings)
+
                 }
             }
 
@@ -264,8 +266,6 @@ Page {
     function createBtnCategory(path) {
         var component = Qt.createComponent("CategoryBtn.qml");
         if (component.status === Component.Ready) {
-            console.log(categoryPage.grid.width)
-            console.log((categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3)
             var button = component.createObject(categoryPage.grid,
                                                 {figure:  path
                                                     , width: (categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3

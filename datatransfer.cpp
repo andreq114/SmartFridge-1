@@ -101,14 +101,16 @@ QStringList * DataTransfer::getShopList(){
 
 void  DataTransfer::refreshData()
 {
-    reply = restclient->get(request);
-//    QString field1 ("Cukierasy$Pepsi$"),
-//            field2 ("Wedel$Kola$"),
-//            field3 ("Rozne$$"),
-//            field4 ("100 g$1.5l$"),
-//            field5 ("05.02.2021$22.12.2022$"),
-//            field6 ("4$3$"),
-//            field7 ("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
-//    parseReply(field1, field2, field3, field4, field5, field6, field7);
-//    emit dataReceived(&products);
+    //reply = restclient->get(request);
+    QVector<QString> fields(8);
+    fields[0] = QString("Cukierasy$Pepsi$");
+            fields[1] = QString("Wedel$Kola$");
+            fields[2] = QString("Rozne$$");
+            fields[3] = QString("100 g$1.5l$");
+            fields[4] = QString("22.03.2021$22.12.2022$");
+            fields[5] = QString("4$3$");
+            fields[6] = QString("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
+            fields[7] = QString("16.03.2021 00:00");
+    parseReply(fields);
+    emit dataReceived(&products, creatingDate);
 }

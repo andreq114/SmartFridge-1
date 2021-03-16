@@ -161,7 +161,14 @@ Page{
 
                                 Text {
                                     id: text
-                                    color: expire ? "red" : "green"
+                                    color: {
+                                        if(redTerm)
+                                            return "red"
+                                        else if(yellowTerm)
+                                            return "yellow"
+                                        else
+                                            return "green"
+                                    }
                                     text:   Qt.formatDateTime(new Date(exp_date), "dddd dd.MM.yyyy")
                                     anchors.centerIn: parent
                                     font.pointSize: 12

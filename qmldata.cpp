@@ -59,7 +59,6 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
     QDateTime date = QDateTime::currentDateTime();
     auto a = date.toString("dd.MM.yyyy hh:mm");
     this->refreshDate = a;
-    qDebug() << this->refreshDate;
     QDate shiftedDate = currentDate.addDays(alertRange);
     groupModels.clear();
     endOfExpiryDateModel->clear();
@@ -73,21 +72,28 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
                                 , [product](ProductsTableModel* var)
         { return var->getCategory() == product->getCat(); }
                 );
-        if(QDate(product->getDate()) <= shiftedDate)
+
+        if(QDate(product->getDate()) < currentDate)
         {
-            product->setExp(true);
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getExp());
+            product->setRedTerm(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
+            foundEndofExpiry = true;
+        }
+        else if(QDate(product->getDate()) <= shiftedDate)
+        {
+            product->setYellowTerm(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             foundEndofExpiry = true;
         }
 
         if(itr != groupModels.end())
         {
-            (*itr)->addProduct(product->getFullName(), product->getDate(), product->getExp());
+            (*itr)->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
         }
         else
         {
             ProductsTableModel * model = new ProductsTableModel();
-            model->addProduct(product->getFullName(), product->getDate(), product->getExp());
+            model->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             model->setCategory(product->getCat());
             groupModels.append(model);
             categories++;
@@ -146,18 +152,26 @@ void QMLdata::refreshEndExpiryModel()
 {
     endOfExpiryDateModel->clear();
     QVector<Product *> *products = data->getProducts();
-    QDate shiftedDate = QDate::currentDate().addDays(alertRange);
+    QDate currentDate = QDate::currentDate();
+    QDate shiftedDate = currentDate.addDays(alertRange);
     auto foundEndofExpiry = false;
 
     for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
     {
         Product * product = *it;
-        product->setExp(false);
+        product->setYellowTerm(false);
+        product->setRedTerm(false);
 
-        if(QDate(product->getDate()) <= shiftedDate)
+        if(QDate(product->getDate()) < currentDate)
         {
-            product->setExp(true);
-            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getExp());
+            product->setRedTerm(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
+            foundEndofExpiry = true;
+        }
+        else if(QDate(product->getDate()) <= shiftedDate)
+        {
+            product->setYellowTerm(true);
+            endOfExpiryDateModel->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             foundEndofExpiry = true;
         }
     }

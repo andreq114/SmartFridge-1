@@ -37,7 +37,10 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
         variant = items.at(row).aVisible;
         break;
     case 3:
-        variant = *items.at(row).endOfExpiry;
+        variant = *items.at(row).redTerm;
+        break;
+    case 4:
+        variant = *items.at(row).yellowTerm;
         break;
     }
     return variant;
@@ -55,13 +58,14 @@ QHash<int,QByteArray> ProductsTableModel::roleNames() const
     roles.insert(0,"description");
     roles.insert(1,"exp_date");
     roles.insert(2,"aVisible");
-    roles.insert(3,"expire");
+    roles.insert(3,"redTerm");
+    roles.insert(4,"yellowTerm");
     return roles;
 }
 
 
-void ProductsTableModel::addProduct(QString descr, QDate date, bool *expiry) {
-    items.append({descr,QDateTime(date), false, expiry});
+void ProductsTableModel::addProduct(QString descr, QDate date, bool *redTerm, bool *yellowTerm) {
+    items.append({descr,QDateTime(date), false, redTerm, yellowTerm});
 }
 
 void ProductsTableModel::sortModel(){
