@@ -120,8 +120,8 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
         notify.show(map);
     }
 
-    emit groupProductsChanged();
     emit amountCategoriesChanged();
+    emit groupProductsChanged();
     emit shoplistChanged();
     emit shoplistSizeChanged();
     emit creatingDateChanged();
@@ -180,15 +180,16 @@ void QMLdata::refreshEndExpiryModel()
         groupModels.removeLast();
         categories--;
     }
-    else if(!groupModels.contains(endOfExpiryDateModel))
+    else if(!groupModels.contains(endOfExpiryDateModel) and foundEndofExpiry)
     {
         endOfExpiryDateModel->sortModel();
         groupModels.append(endOfExpiryDateModel);
         categories++;
     }
 
-    emit groupProductsChanged();
     emit amountCategoriesChanged();
+    emit groupProductsChanged();
+
 }
 
 void QMLdata::setAlertRange(int range)

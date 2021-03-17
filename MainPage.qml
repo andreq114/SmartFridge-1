@@ -10,6 +10,8 @@ import com.mycompany.productsTableModel 1.0
 Page {
     anchors.fill: parent
     id: window
+    property var set
+
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
         contentWidth: parent.width
@@ -22,13 +24,15 @@ Page {
                 text: stackView.depth > 1 ? "\u25C0" : "\u2630"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
+                    if(stackView.currentItem === set)
+                        ThingspeakData.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
                         stackView.pop()
                         titleLabel.text = swipeView.currentIndex == 0 ? "Categories" : "Products"
                     } else {
                         drawer.open()
                     }
-                    //if(stackView.currentItem === settings)
+
 
                 }
             }
@@ -108,6 +112,7 @@ Page {
                 }
                 onClicked: {
                     stackView.push("settings.qml")
+                    set = stackView.get(1)
                     titleLabel.text = "Settings"
                     drawer.close()
                 }
