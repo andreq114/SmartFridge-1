@@ -50,6 +50,7 @@ Page {
         id: drawer
         width: window.width * 0.5
         height: window.height
+        Material.theme: Material.Background
         Column {
             anchors.fill: parent
 
