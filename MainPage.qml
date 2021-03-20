@@ -21,7 +21,8 @@ Page {
             ToolButton {
                 id: toolButton
 
-                text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+                icon.color: "transparent"
+                icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
                     if(stackView.currentItem === set)
