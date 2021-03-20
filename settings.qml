@@ -23,7 +23,7 @@ Page{
                 anchors.horizontalCenter: parent.horizontalCenter
                 bottomPadding: 10
                 text: "Data ważności"
-                font.pointSize: 15
+                font.pointSize: 16
             }
 
             Row {
@@ -37,7 +37,7 @@ Page{
                     anchors.left: parent.left
                     leftPadding: 15
                     text: "Dni do końca:"
-                    font.pointSize: 12
+                    font.pointSize: 15
                 }
                 SpinBox {
                     id: spinbox
