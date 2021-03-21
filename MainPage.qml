@@ -173,6 +173,8 @@ Page {
         "Fruits & Vegetables",
         "End of Expiry"];
 
+    property var amountCategories : 0
+
     function refreshPages() {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
         amountCategories = 0;
