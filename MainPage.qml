@@ -182,6 +182,7 @@ Page {
         productPage.listModel.clear();
         for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
             var category = ThingspeakData.groupModels[i].category;
+            console.log(category);
             switch(category) {
             case Product.Dairy :
                 createBtnCategory("qrc:/icons/icons/dairy-products.png");

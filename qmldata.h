@@ -10,7 +10,7 @@ class QMLdata : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<ProductsTableModel> groupModels READ getTableModels NOTIFY groupProductsChanged)
-    Q_PROPERTY(int amountCategories READ amountCategories NOTIFY amountCategoriesChanged)
+    Q_PROPERTY(int amountCategories READ getAmountCategories NOTIFY amountCategoriesChanged)
     Q_PROPERTY(QStringList shoplist READ getShopList NOTIFY shoplistChanged)
     Q_PROPERTY(int alertRange READ getAlertRange WRITE setAlertRange NOTIFY alertRangeChanged)
     Q_PROPERTY(QString creatingDate READ getCreatingDate NOTIFY creatingDateChanged)
@@ -26,7 +26,7 @@ public:
     QQmlListProperty<ProductsTableModel>    getTableModels();
     QStringList                             getShopList();
     int                                     getShopListSize();
-    int                                     amountCategories();
+    int                                     getAmountCategories();
     int                                     getAlertRange() { return alertRange;}
     void                                    setAlertRange(int range);
     QString                                 getCreatingDate() { return creatingDate;}

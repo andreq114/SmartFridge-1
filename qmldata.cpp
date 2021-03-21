@@ -62,7 +62,7 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
     QDate shiftedDate = currentDate.addDays(alertRange);
     groupModels.clear();
     endOfExpiryDateModel->clear();
-    categories = 0;
+    //categories = 0;
     auto foundEndofExpiry = false;
     for(QVector<QSharedPointer<Product>>::Iterator it =products->begin(); it != products->end(); it++)
     {
@@ -97,13 +97,13 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
             model->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             model->setCategory(product->getCat());
             groupModels.append(model);
-            categories++;
+            //categories++;
         }
     }
     if(foundEndofExpiry)
     {
         groupModels.append(endOfExpiryDateModel);
-        categories++;
+        //categories++;
     }
     for(auto var : groupModels){
         var->sortModel();
@@ -129,9 +129,9 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
     emit refreshDateChanged();
 }
 
-int QMLdata::amountCategories()
+int QMLdata::getAmountCategories()
 {
-    return categories;
+    return groupModels.count();
 }
 
 QStringList QMLdata::getShopList()
@@ -179,13 +179,13 @@ void QMLdata::refreshEndExpiryModel()
     if(!foundEndofExpiry and groupModels.contains(endOfExpiryDateModel))
     {
         groupModels.removeLast();
-        categories--;
+        //categories--;
     }
     else if(!groupModels.contains(endOfExpiryDateModel) and foundEndofExpiry)
     {
         endOfExpiryDateModel->sortModel();
         groupModels.append(endOfExpiryDateModel);
-        categories++;
+        //categories++;
     }
 
     emit amountCategoriesChanged();
