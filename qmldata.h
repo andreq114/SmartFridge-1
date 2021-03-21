@@ -49,7 +49,7 @@ signals:
 
 public slots:
     void                                    makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate);
-    void                                    fun(Qt::ApplicationState);
+    void                                    saveConfig(Qt::ApplicationState);
 
 private:
     int                                     categories;

@@ -200,7 +200,7 @@ void QMLdata::setAlertRange(int range)
 }
 
 
-void QMLdata::fun(Qt::ApplicationState state)
+void QMLdata::saveConfig(Qt::ApplicationState state)
 {
     if (state != Qt::ApplicationActive)
     {

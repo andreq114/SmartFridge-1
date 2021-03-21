@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     DataTransfer dataTransfer;
     QMLdata products(&dataTransfer);
     QObject::connect(&app, &QGuiApplication::applicationStateChanged,
-                     &products, &QMLdata::fun);
+                     &products, &QMLdata::saveConfig);
 
     QtNotification::declareQML();
     const QUrl url(QStringLiteral("qrc:/main.qml"));
