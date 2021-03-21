@@ -15,29 +15,23 @@ Page {
         id: parentRect
         anchors.fill: parent
         //color: "red"
-        gradient: Gradient{
-            GradientStop { position: 0.0; color: "#F5CA66" }
-            GradientStop { position: 0.33; color: "#FF8000" }
-            GradientStop { position: 1.0; color: "#FF3C26" }
-        }
+        gradient: Gradient {
+                GradientStop { position: 0.0; color: "#1E90FF" }
+                GradientStop { position: 0.5; color: "#0000CD" }
+                GradientStop { position: 1.0; color: "#00008B" }
+            }
 
 
         Column{
             anchors.fill: parent
 
             Rectangle{
-                width:  320
-                height: 170
+                width:  100
+                height: 100
                 color: "transparent"
                 anchors.horizontalCenter: parent.horizontalCenter
                 //gradient: parentRect.gradient
-                Image {
-                    id: napis
-                    height: 150
-                    width: parent.width
-                    anchors.centerIn: parent
-                    source: "qrc:/menu_icons/icons/smart_fridge_napis.png"
-                }
+
             }
             Flipable {
                 id: flipable
@@ -47,8 +41,8 @@ Page {
                 anchors.topMargin: 100
                 property bool flipped: false
 
-                front: Image { source: "qrc:/menu_icons/icons/ikona_smart_fridge.png";width:250;height:250; anchors.centerIn: parent }
-                back: Image { source: "qrc:/menu_icons/icons/logo_KI.png";width:220;height:220; anchors.centerIn: parent }
+                front: Image  { source: "qrc:/menu_icons/icons/logo_KI.png";width:140;height:140; anchors.centerIn: parent }
+                back: Image { source: "qrc:/menu_icons/icons/logo_KI.png";width:140;height:140; anchors.centerIn: parent }
 
                 transform: Rotation {
                     id: rotation
@@ -72,27 +66,42 @@ Page {
                 Component.onCompleted: flipable.flipped = !flipable.flipped
 
             }
+            Rectangle{
+                id: nameRect
+                width:  320
+                height: 170
+                color: "transparent"
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Column{
+                     anchors.fill: parent
+                    Text {
+                        height: parent.height/3
+                        width: parent.width
+                        color: "white"
+                        horizontalAlignment: Text.AlignHCenter
+                        style: Text.Raised
+                        font.bold: true
+                        font.pixelSize: 40
+                        text: "PWSZ Tarnów"
+                    }
+                    Text {
+                        height: parent.height/3
+                        width: parent.width
+                        color: "white"
+                        horizontalAlignment: Text.AlignHCenter
+                        style: Text.Raised
+                        font.bold: true
+                        font.pixelSize: 30
+                        text: "Katedra Informatyki"
+                    }
+                }
 
 
-
+            }
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -106,5 +115,3 @@ Timer {
     id: timer
 }
 }
-
-

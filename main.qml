@@ -9,9 +9,9 @@ ApplicationWindow {
     title: qsTr("Lodóweczka")
 
 
-//    IntroPage{
-//        id: intro
-//    }
+    IntroPage{
+        id: intro
+    }
 
 
     MainPage{
@@ -21,7 +21,7 @@ ApplicationWindow {
 
     StackView {
         id: mainStack
-  //      initialItem: intro
+        initialItem: intro
         anchors.fill: parent
 
 
