@@ -90,23 +90,19 @@ Page {
                 width: parent.width
                 height: 50
                 Row {
-                    //anchors.fill: parent
                     height: parent.height
-                    //anchors.verticalCenter: parent
                     ToolSeparator {
                         width: 10
                     }
                     Image {
                         id: settings_i
                         anchors.verticalCenter: parent.verticalCenter
-                        //anchors.left: parent
                         source: "qrc:/menu_icons/icons/adjust.png"
                     }
                     ToolSeparator {
                         width: 20
                     }
                     Text {
-                        //anchors.centerIn: parent
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 15
                         text: qsTr("<b>Settings</b>")

@@ -19,8 +19,8 @@ class QMLdata : public QObject
 public:
     explicit QMLdata(QObject *parent = nullptr);
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
-    ~QMLdata() override;
-    QList<ProductsTableModel *>             groupModels;
+
+    QList<QSharedPointer<ProductsTableModel>>groupModels;
     QStringList * shoplist;
 
     QQmlListProperty<ProductsTableModel>    getTableModels();
@@ -48,16 +48,16 @@ signals:
     void                                    refreshDateChanged();
 
 public slots:
-    void                                    makeGroups(QVector<Product *> *products, QString creatingDate);
+    void                                    makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate);
     void                                    fun(Qt::ApplicationState);
 
 private:
-    int                 categories;
-    DataTransfer*       data;
-    int                 alertRange;
-    QString             creatingDate;
-    QString             refreshDate;
-    ProductsTableModel* endOfExpiryDateModel;
+    int                                     categories;
+    DataTransfer*                           data;
+    int                                     alertRange;
+    QString                                 creatingDate;
+    QString                                 refreshDate;
+    QSharedPointer<ProductsTableModel>      endOfExpiryDateModel;
 };
 
 #endif // QMLDATA_H

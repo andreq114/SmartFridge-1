@@ -15,20 +15,21 @@ class DataTransfer : public QObject
 public:
     DataTransfer();
 
-    QVector<Product *>              *getProducts();
+    QVector<QSharedPointer<Product>>*getProducts();
     QStringList                     *getShopList();
     void                            refreshData();
 signals:
-    void dataReceived(QVector<Product *> *, QString );
+    void dataReceived(QVector<QSharedPointer<Product>> *, QString );
 private:
     QNetworkRequest                 request;
     QNetworkReply                   *reply;
     QNetworkAccessManager           *restclient;
-    QVector<Product *>              products;
+    QVector<QSharedPointer<Product>> products;
     QStringList                     shoplist;
     QString                         creatingDate;
 
     void parseReply(QVector<QString> &fields);
+    void clearRefProd();
 private slots:
     void replyFinished(QNetworkReply * reply);
 };

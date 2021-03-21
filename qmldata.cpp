@@ -30,9 +30,9 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     }
     this->shoplist = data->getShopList();
     this->data = data;
-    endOfExpiryDateModel  = new ProductsTableModel();
+    endOfExpiryDateModel  = QSharedPointer<ProductsTableModel>(new ProductsTableModel());
     endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
-    QObject::connect(data, SIGNAL(dataReceived(QVector<Product *> *, QString)), this, SLOT(makeGroups(QVector<Product *> *, QString)));
+    QObject::connect(data, SIGNAL(dataReceived(QVector<QSharedPointer<Product>> *, QString)), this, SLOT(makeGroups(QVector<QSharedPointer<Product>> *, QString)));
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -49,10 +49,10 @@ int QMLdata::count_group(QQmlListProperty<ProductsTableModel> *list)
 ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list, int index)
 {
     QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
-    return msgBoard->groupModels[index];
+    return msgBoard->groupModels[index].get();
 }
 
-void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
+void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
 {
     this->creatingDate = creatingDate;
     QDate currentDate = QDate::currentDate();
@@ -64,12 +64,12 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
     endOfExpiryDateModel->clear();
     categories = 0;
     auto foundEndofExpiry = false;
-    for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
+    for(QVector<QSharedPointer<Product>>::Iterator it =products->begin(); it != products->end(); it++)
     {
-        Product * product = *it;
+        QSharedPointer<Product> product = *it;
         auto itr = std::find_if(groupModels.begin()
                                 , groupModels.end()
-                                , [product](ProductsTableModel* var)
+                                , [product](QSharedPointer<ProductsTableModel> var)
         { return var->getCategory() == product->getCat(); }
                 );
 
@@ -92,7 +92,8 @@ void QMLdata::makeGroups(QVector<Product *> *products, QString creatingDate)
         }
         else
         {
-            ProductsTableModel * model = new ProductsTableModel();
+            QSharedPointer<ProductsTableModel> model =
+                    QSharedPointer<ProductsTableModel>(new ProductsTableModel(), &QObject::deleteLater);
             model->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             model->setCategory(product->getCat());
             groupModels.append(model);
@@ -151,14 +152,14 @@ void QMLdata::refreshData()
 void QMLdata::refreshEndExpiryModel()
 {
     endOfExpiryDateModel->clear();
-    QVector<Product *> *products = data->getProducts();
+    QVector<QSharedPointer<Product>> *products = data->getProducts();
     QDate currentDate = QDate::currentDate();
     QDate shiftedDate = currentDate.addDays(alertRange);
     auto foundEndofExpiry = false;
 
-    for(QVector<Product *>::Iterator it =products->begin(); it != products->end(); it++)
+    for(QVector<QSharedPointer<Product>>::Iterator it =products->begin(); it != products->end(); it++)
     {
-        Product * product = *it;
+        QSharedPointer<Product> product = *it;
         product->setYellowTerm(false);
         product->setRedTerm(false);
 
@@ -198,11 +199,6 @@ void QMLdata::setAlertRange(int range)
     emit alertRangeChanged();
 }
 
-QMLdata::~QMLdata()
-{
-    delete endOfExpiryDateModel;
-
-}
 
 void QMLdata::fun(Qt::ApplicationState state)
 {

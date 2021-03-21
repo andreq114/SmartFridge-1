@@ -68,30 +68,29 @@ void DataTransfer::parseReply(QVector<QString> &fields)
     category.removeAt(category.length() - 1);
     shoplist.removeAt(shoplist.length() - 1);
 
-
     products.clear();
     products.resize(names.size());
     this->shoplist.clear();
 
     for(int i = 0; i < names.size(); i++)
     {
-        products[i] = new Product(names.at(i),
-                                  company.at(i),
-                                  desc.at(i),
-                                  mass.at(i),
-                                  QDate::fromString(terms.at(i), "dd.MM.yyyy"),
-                                  static_cast<Product::Category>(category.at(i).toInt()),
-                                  nullptr);
+        products[i] =  QSharedPointer<Product>(new Product(names.at(i),
+                                                            company.at(i),
+                                                            desc.at(i),
+                                                            mass.at(i),
+                                                            QDate::fromString(terms.at(i), "dd.MM.yyyy"),
+                                                            static_cast<Product::Category>(category.at(i).toInt()),
+                                                            nullptr), &QObject::deleteLater);
     }
 
     for(int i = 0; i < shoplist.size(); i++)
     {
-        this->shoplist.append(*new QString(shoplist.at(i)));
+        this->shoplist.append(QString(shoplist.at(i)));
     }
 }
 
 
-QVector<Product *> * DataTransfer::getProducts(){
+QVector<QSharedPointer<Product>> * DataTransfer::getProducts(){
     return &products;
 }
 

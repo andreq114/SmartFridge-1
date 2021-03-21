@@ -7,6 +7,10 @@ Page{
 
     Text {
         anchors.centerIn: parent
+        wrapMode: Text.Wrap
+        width: parent.width
+        leftPadding: 10
+        rightPadding: 10
         text: "This application was created by Kamil Wielgosz and Andrzej Przybyło\n as a part of Smart Fridge system which will conquere the market \u2665 "
     }
 }
