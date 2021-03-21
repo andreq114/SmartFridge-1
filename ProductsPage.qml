@@ -46,14 +46,6 @@ Page {
                 }
             }
         }
-        //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-
-        //height: visible === false ? 0 : ListView.view.height
-        //fullList_Model.model: modelik
-
-
-        // focus: true
-
     }
 
     ListModel {

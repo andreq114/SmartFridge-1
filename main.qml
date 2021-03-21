@@ -6,7 +6,7 @@ ApplicationWindow {
     width: 450
     height: 1000
     visible: true
-    title: qsTr("Lodóweczka")
+    title: qsTr("Smart Fridge")
 
 
     IntroPage{
@@ -23,12 +23,5 @@ ApplicationWindow {
         id: mainStack
         initialItem: intro
         anchors.fill: parent
-
-
     }
-
-
-
-
-
 }

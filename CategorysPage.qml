@@ -41,7 +41,6 @@ Page {
                 clip: true
                 flickableDirection: Flickable.VerticalFlick
                 boundsBehavior: Flickable.DragAndOvershootBounds
-                //boundsBehavior: Flickable.OvershootBounds
 
                 property var refreshFlik;
                 property  var startYPosition;
@@ -49,13 +48,6 @@ Page {
                 property var yPosEnd;
                 property var yPosStart;
 
-                //        rebound: Transition {
-                //                NumberAnimation {
-                //                    properties: "x,y"
-                //                    duration: 1500
-                //                    easing.type: Easing.OutBounce
-                //                }
-                //            }
                 onFlickStarted: {
                     refreshFlik = atYBeginning
 
@@ -104,17 +96,11 @@ Page {
                     anchors.top: parent.top
                     columns: 3
                     spacing: categorysMainRect.width/20
-                    //flow: Grid.TopToBottom
                     leftPadding: categorysMainRect.width/20
                     rightPadding: categorysMainRect.width/20
                     topPadding: categorysMainRect.width/10
                     bottomPadding: categorysMainRect.width/20
-
-
                 }
-                //                    topPadding: 90
-                //                    leftPadding: 40
-                //                    rightPadding: 40
             }
 
         }
@@ -128,8 +114,6 @@ Page {
             id: updateText
             anchors.top: parent.top
             height: 20
-            //anchors.right: parent.right
-            //bottomPadding: 50
             width: parent.width
             leftPadding: 20
             text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
@@ -139,8 +123,6 @@ Page {
             id: refreshText
             anchors.bottom: parent.bottom
             height: 20
-            //anchors.right: parent.right
-            //bottomPadding: 50
             width: parent.width
             leftPadding: 20
             text: "Last refresh: " + ThingspeakData.refreshDate

@@ -183,17 +183,10 @@ Page{
                                 }
                                 Component.onDestruction: aVisible = false
                             }
-
                         }
                     }
                 }
             }
-
-
-
         }
-
     }
-
-
 }

@@ -66,14 +66,12 @@ Page {
                     Image {
                         id: shoplist
                         anchors.verticalCenter: parent.verticalCenter
-                        //anchors.left: parent
                         source: "qrc:/menu_icons/icons/shopping-cart.png"
                     }
                     ToolSeparator {
                         width: 20
                     }
                     Text {
-                        //anchors.centerIn: parent
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 15
                         text: qsTr("<b>Shopping List</b>")
@@ -109,7 +107,7 @@ Page {
                     }
                 }
                 onClicked: {
-                    stackView.push("settings.qml")
+                    stackView.push("Settings.qml")
                     set = stackView.get(1)
                     titleLabel.text = "Settings"
                     drawer.close()
@@ -120,23 +118,19 @@ Page {
                 width: parent.width
                 height: 50
                 Row {
-                    //anchors.fill: parent
                     height: parent.height
-                    //anchors.verticalCenter: parent
                     ToolSeparator {
                         width: 10
                     }
                     Image {
                         id: aboutUs_i
                         anchors.verticalCenter: parent.verticalCenter
-                        //anchors.left: parent
                         source: "qrc:/menu_icons/icons/adjust.png"
                     }
                     ToolSeparator {
                         width: 20
                     }
                     Text {
-                        //anchors.centerIn: parent
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 15
                         text: qsTr("<b>About us</b>")
@@ -151,22 +145,8 @@ Page {
         }
     }
 
-
-    /*footer : TabBar {
-        id: tabBar
-        currentIndex: swipeView.currentIndex
-
-        TabButton {
-            text: qsTr("Categorys")
-        }
-        TabButton {
-            text: qsTr("Products")
-        }
-    }*/
     SwipeView {
         id: swipeView
-
-        //currentIndex: tabBar.currentIndex
 
         CategorysPage {
             id: categoryPage
@@ -192,8 +172,6 @@ Page {
         "Frozen",
         "Fruits & Vegetables",
         "End of Expiry"];
-
-    property var amountCategories : 0;
 
     function refreshPages() {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
@@ -263,7 +241,6 @@ Page {
     function buttonClicked(btnid) {
         swipeView.setCurrentIndex(1)
         productPage.list.currentIndex = btnid
-        //ThingspeakData.test();
     }
 
     function createBtnCategory(path) {

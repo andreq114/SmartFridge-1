@@ -29,7 +29,6 @@ Page{
             Row {
 
                 height: 100
-                //anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width
                 Text {
                     id: expirylabel

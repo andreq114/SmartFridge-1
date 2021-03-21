@@ -13,60 +13,60 @@ Item {
         anchors.centerIn: parent
         opacity: 0.3
         radius: width*0.3
-}
+    }
 
-        Image {
-            id: image
-            width: (3*parent.width)/4
-            height: (3*parent.height)/4
-            z: 1
-            anchors.centerIn: parent
+    Image {
+        id: image
+        width: (3*parent.width)/4
+        height: (3*parent.height)/4
+        z: 1
+        anchors.centerIn: parent
 
-            source: parent.figure
+        source: parent.figure
 
-            MouseArea {
-                anchors.fill: parent
+        MouseArea {
+            anchors.fill: parent
 
-                function delay(delayTime, cb) {
-                    timer.interval = delayTime;
-                    timer.repeat = false;
-                    timer.triggered.connect(cb);
-                    timer.start();
+            function delay(delayTime, cb) {
+                timer.interval = delayTime;
+                timer.repeat = false;
+                timer.triggered.connect(cb);
+                timer.start();
+            }
+
+            onClicked: {
+                animation.start()
+                delay(500,function(){
+                    root.clicked(root.btnid)
+                })
+            }
+
+            Timer {
+                id: timer
+            }
+
+            SequentialAnimation {
+                id: animation
+
+                PropertyAnimation {
+                    target: image
+                    property: "opacity"
+
+                    from: 1
+                    to: 0.5
+                    duration: 250
                 }
 
-                onClicked: {
-                    animation.start()
-                    delay(500,function(){
-                        root.clicked(root.btnid)
-                    })
-                }
+                PropertyAnimation {
+                    target: image
+                    property: "opacity"
 
-                Timer {
-                    id: timer
-                }
-
-                SequentialAnimation {
-                    id: animation
-
-                    PropertyAnimation {
-                        target: image
-                        property: "opacity"
-
-                        from: 1
-                        to: 0.5
-                        duration: 250
-                    }
-
-                    PropertyAnimation {
-                        target: image
-                        property: "opacity"
-
-                        from: 0.5
-                        to: 1
-                        duration: 250
-                    }
+                    from: 0.5
+                    to: 1
+                    duration: 250
                 }
             }
         }
+    }
 
 }

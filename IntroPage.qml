@@ -14,13 +14,11 @@ Page {
     Rectangle{
         id: parentRect
         anchors.fill: parent
-        //color: "red"
         gradient: Gradient {
-                GradientStop { position: 0.0; color: "#1E90FF" }
-                GradientStop { position: 0.5; color: "#0000CD" }
-                GradientStop { position: 1.0; color: "#00008B" }
-            }
-
+            GradientStop { position: 0.0; color: "#1E90FF" }
+            GradientStop { position: 0.5; color: "#0000CD" }
+            GradientStop { position: 1.0; color: "#00008B" }
+        }
 
         Column{
             anchors.fill: parent
@@ -49,7 +47,7 @@ Page {
                     origin.x: flipable.width/2
                     origin.y: flipable.height/2
                     axis.x: 0; axis.y: 1; axis.z: 0     // set axis.y to 1 to rotate around y-axis
-                    angle: 0    // the default angle
+                    angle: 0                            // the default angle
                 }
 
                 states: State {
@@ -74,7 +72,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Column{
-                     anchors.fill: parent
+                    anchors.fill: parent
                     Text {
                         height: parent.height/3
                         width: parent.width
@@ -105,13 +103,13 @@ Page {
 
 
 
-function delay(delayTime, cb) {
-    timer.interval = delayTime;
-    timer.repeat = false;
-    timer.triggered.connect(cb);
-    timer.start();
-}
-Timer {
-    id: timer
-}
+    function delay(delayTime, cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
+    }
+    Timer {
+        id: timer
+    }
 }
