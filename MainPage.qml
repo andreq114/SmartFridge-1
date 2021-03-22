@@ -67,6 +67,8 @@ Page {
                         id: shoplist
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/shopping-cart.png"
+                        width: 32
+                        height: 32
                     }
                     ToolSeparator {
                         width: 20
@@ -96,6 +98,8 @@ Page {
                         id: settings_i
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/adjust.png"
+                        width: 32
+                        height: 32
                     }
                     ToolSeparator {
                         width: 20
@@ -125,7 +129,9 @@ Page {
                     Image {
                         id: aboutUs_i
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:/menu_icons/icons/adjust.png"
+                        source: "qrc:/menu_icons/icons/author.png"
+                        width: 32
+                        height: 32
                     }
                     ToolSeparator {
                         width: 20
