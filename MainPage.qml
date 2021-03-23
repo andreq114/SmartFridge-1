@@ -11,7 +11,7 @@ Page {
     anchors.fill: parent
     id: window
     property var set
-
+    property alias titleLabelek: titleLabel
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
         contentWidth: parent.width
@@ -28,8 +28,10 @@ Page {
                     if(stackView.currentItem === set)
                         ThingspeakData.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
+                        console.log("Index:")
+                        console.log(swipeView.currentIndex)
+                        titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
                         stackView.pop()
-                        titleLabel.text = swipeView.currentIndex == 0 ? "Categories" : "Products"
                     } else {
                         drawer.open()
                     }
@@ -40,7 +42,7 @@ Page {
 
             Label {
                 id: titleLabel
-                text: swipeView.currentIndex == 0 ? "Categories" : "Products"
+                text: swipeView.currentIndex === 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
                 font.pointSize: 15
@@ -54,6 +56,17 @@ Page {
         Material.theme: Material.Background
         Column {
             anchors.fill: parent
+
+            Label {
+                width: parent.width
+                height: 50
+                Text{
+                    anchors.centerIn: parent
+                    text: "<b><i>Menu</i></b>"
+                    font.pixelSize: 25
+
+                }
+            }
 
             ItemDelegate {
                 width: parent.width
@@ -153,6 +166,7 @@ Page {
 
     SwipeView {
         id: swipeView
+        onCurrentIndexChanged: currentIndex === 0 ? titleLabelek.text = "Categories" : titleLabelek.text = "Products"
 
         CategorysPage {
             id: categoryPage

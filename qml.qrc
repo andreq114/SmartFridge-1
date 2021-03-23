@@ -41,5 +41,6 @@
     </qresource>
     <qresource prefix="/background">
         <file>icons/background.jpg</file>
+        <file>icons/insideFridge.png</file>
     </qresource>
 </RCC>
