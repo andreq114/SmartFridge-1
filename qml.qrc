@@ -38,6 +38,7 @@
         <file>icons/smart_fridge_napis.png</file>
         <file>icons/return.png</file>
         <file>icons/author.png</file>
+        <file>icons/notification.png</file>
     </qresource>
     <qresource prefix="/background">
         <file>icons/background.jpg</file>

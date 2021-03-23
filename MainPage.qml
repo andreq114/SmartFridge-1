@@ -45,7 +45,7 @@ Page {
                 text: swipeView.currentIndex === 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
-                font.pointSize: 15
+                font.pointSize: 20
             }
         }
     }
@@ -62,10 +62,15 @@ Page {
                 height: 50
                 Text{
                     anchors.centerIn: parent
-                    text: "<b><i>Menu</i></b>"
+                    text: "<b>Menu</b>"
                     font.pixelSize: 25
 
                 }
+            }
+            Rectangle{
+                width: parent.width
+                height: 2
+                color: "black"
             }
 
             ItemDelegate {
@@ -110,7 +115,7 @@ Page {
                     Image {
                         id: settings_i
                         anchors.verticalCenter: parent.verticalCenter
-                        source: "qrc:/menu_icons/icons/adjust.png"
+                        source: "qrc:/menu_icons/icons/notification.png"
                         width: 32
                         height: 32
                     }
@@ -120,13 +125,13 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 15
-                        text: qsTr("<b>Settings</b>")
+                        text: qsTr("<b>Notification</b>")
                     }
                 }
                 onClicked: {
                     stackView.push("Settings.qml")
                     set = stackView.get(1)
-                    titleLabel.text = "Settings"
+                    titleLabel.text = "Notification"
                     drawer.close()
                 }
             }
@@ -152,12 +157,12 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         font.pointSize: 15
-                        text: qsTr("<b>About us</b>")
+                        text: qsTr("<b>About App</b>")
                     }
                 }
                 onClicked: {
                     stackView.push("AboutUs.qml")
-                    titleLabel.text = "About Us"
+                    titleLabel.text = "About App"
                     drawer.close()
                 }
             }

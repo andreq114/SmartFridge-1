@@ -66,6 +66,7 @@ Page{
                         anchors.verticalCenter:  parent.verticalCenter
                         font.family: "Helvetica"
                         font.pixelSize: 25
+                        font.bold: true
                         color: "black"
                     }
 
@@ -117,7 +118,7 @@ Page{
                                     onIsExpandedChanged: {
                                         if(isExpanded){
                                             visib = true;
-                                            color = "lightgray";
+                                            //color = "lightgray";
                                             ListView.view.expandedSection = section;
                                             for(var i=0; i<fullListModel.model.rowCount(); i++){
                                                 var product = fullListModel.model.data(fullListModel.model.index(i,2));
@@ -129,8 +130,8 @@ Page{
                                         }
                                         else{
                                             visib = false;
-                                            color = "white"
-                                            color = "transparent";
+                                            //color = "white"
+                                            //color = "transparent";
                                             for(i=0; i<fullListModel.model.rowCount(); i++){
                                                 product = fullListModel.model.data(fullListModel.model.index(i,2));
                                                 if(section === product)
