@@ -60,7 +60,7 @@ void QMLdata::changeShopList()
     emit shoplistSizeChanged();
 
     QString str("Shopping list has been changed, check it!");
-    showNotify(str, "Shopping list");
+    showNotify(str);
 }
 
 void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
@@ -196,13 +196,13 @@ void QMLdata::setAlertRange(int range)
     emit alertRangeChanged();
 }
 
-void QMLdata::showNotify(QString title, QString msg)
+void QMLdata::showNotify(QString title)
 {
     QtNotification notify;
     QMap<QString, QVariant> map;
 
     map.insert("caption", QVariant(title));
-    map.insert("title", QVariant(msg));
+    map.insert("title", QVariant("Smart Fridge"));
     map.insert("id", QVariant(0));
     notify.show(map);
 }

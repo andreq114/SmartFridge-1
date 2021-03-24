@@ -61,7 +61,7 @@ private:
     QString                                 refreshDate;
     QSharedPointer<ProductsTableModel>      endOfExpiryDateModel;
 
-    void                                    showNotify(QString title, QString msg);
+    void                                    showNotify(QString title);
 };
 
 #endif // QMLDATA_H

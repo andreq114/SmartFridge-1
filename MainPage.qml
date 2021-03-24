@@ -100,6 +100,7 @@ Page {
                     titleLabel.text = "Shopping List"
                     drawer.close()
                     swipeView.currentIndex = 0;
+                    productPage.list.currentIndex = 0
                 }
             }
 
@@ -133,6 +134,7 @@ Page {
                     titleLabel.text = "Notification"
                     drawer.close()
                     swipeView.currentIndex = 0;
+                    productPage.list.currentIndex = 0
                 }
             }
 
@@ -165,6 +167,7 @@ Page {
                     titleLabel.text = "About App"
                     drawer.close()
                     swipeView.currentIndex = 0;
+                    productPage.list.currentIndex = 0
                 }
             }
         }
