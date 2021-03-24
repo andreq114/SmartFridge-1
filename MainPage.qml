@@ -35,8 +35,6 @@ Page {
                     } else {
                         drawer.open()
                     }
-
-
                 }
             }
 
@@ -101,6 +99,7 @@ Page {
                     stackView.push("ShopList.qml")
                     titleLabel.text = "Shopping List"
                     drawer.close()
+                    swipeView.currentIndex = 0;
                 }
             }
 
@@ -133,6 +132,7 @@ Page {
                     set = stackView.get(1)
                     titleLabel.text = "Notification"
                     drawer.close()
+                    swipeView.currentIndex = 0;
                 }
             }
 
@@ -164,6 +164,7 @@ Page {
                     stackView.push("AboutUs.qml")
                     titleLabel.text = "About App"
                     drawer.close()
+                    swipeView.currentIndex = 0;
                 }
             }
         }
