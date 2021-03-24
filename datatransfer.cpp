@@ -2,7 +2,11 @@
 
 DataTransfer::DataTransfer()
 {
-    restclient = new QNetworkAccessManager();
+    restclient          = new QNetworkAccessManager();
+    requestThread       = new QThread();
+    timer               = new QTimer();
+    moveToThread(requestThread);
+
     QUrl myurl;
     myurl.setScheme("http");
     myurl.setHost("api.thingspeak.com");
@@ -11,9 +15,12 @@ DataTransfer::DataTransfer()
     request.setUrl(myurl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
+    connect(requestThread, &QThread::started, this, &DataTransfer::run);
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
+    connect(timer, &QTimer::timeout, this, &DataTransfer::refreshData, Qt::QueuedConnection);
 
-    reply = restclient->get(request);
+    timer->moveToThread(requestThread);
+    requestThread->start();
 //    QString field1 ("Chocolate$Mineral water$Chocolate$Chocolate$"),
 //            field2 ("Wedel$Oaza$Wedel$Wedel$"),
 //            field3 ("Strawberry$$Strawberry$Strawberry$"),
@@ -22,6 +29,23 @@ DataTransfer::DataTransfer()
 //            field6 ("4$4$4$4$"),
 //            field7 ("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
 //    parseReply(field1, field2, field3, field4, field5, field6, field7);
+}
+
+DataTransfer::~DataTransfer()
+{
+    if(restclient)
+        delete restclient;
+    if(requestThread)
+        delete requestThread;
+    if(timer)
+        delete timer;
+}
+
+void DataTransfer::run()
+{
+    this->refreshData();
+
+    timer->start(30000);    // 30sek
 }
 
 void DataTransfer::replyFinished(QNetworkReply * reply){
