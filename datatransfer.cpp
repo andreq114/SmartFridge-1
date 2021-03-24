@@ -65,7 +65,7 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
         fields[3] = jsob["field4"].toString();
         fields[4] = jsob["field5"].toString();
         fields[5] = jsob["field6"].toString();
-        fields[6] = jsob["field7"].toString();
+        fields[6] = jsob["field7"].toString() + jsob["field8"].toString();
         thingspeakUpdateDate = jsob["created_at"].toString();
     }
     reply->deleteLater();
