@@ -32,6 +32,7 @@ Page {
                         console.log(swipeView.currentIndex)
                         titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
                         stackView.pop()
+
                     } else {
                         drawer.open()
                     }
@@ -98,6 +99,7 @@ Page {
                 onClicked: {
                     stackView.push("ShopList.qml")
                     titleLabel.text = "Shopping List"
+
                     drawer.close()
                     swipeView.currentIndex = 0;
                     productPage.list.currentIndex = 0
@@ -166,6 +168,7 @@ Page {
                     stackView.push("AboutUs.qml")
                     titleLabel.text = "About App"
                     drawer.close()
+
                     swipeView.currentIndex = 0;
                     productPage.list.currentIndex = 0
                 }
@@ -190,6 +193,38 @@ Page {
         id: stackView
         initialItem: swipeView
         anchors.fill: parent
+        pushEnter: Transition {
+               PropertyAnimation {
+                   property: "opacity"
+                   from: 0
+                   to:1
+                   duration: 500
+               }
+           }
+           pushExit: Transition {
+               PropertyAnimation {
+                   property: "opacity"
+                   from: 1
+                   to:0
+                   duration: 500
+               }
+           }
+           popEnter: Transition {
+               PropertyAnimation {
+                   property: "opacity"
+                   from: 0
+                   to:1
+                   duration: 500
+               }
+           }
+           popExit: Transition {
+               PropertyAnimation {
+                   property: "opacity"
+                   from: 1
+                   to:0
+                   duration: 500
+               }
+           }
     }
     property var names : ["Dairy",
         "Drinks",
