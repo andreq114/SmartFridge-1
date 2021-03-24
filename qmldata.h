@@ -21,7 +21,7 @@ public:
     explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
 
     QList<QSharedPointer<ProductsTableModel>>groupModels;
-    QStringList * shoplist;
+    QStringList shoplist;
 
     QQmlListProperty<ProductsTableModel>    getTableModels();
     QStringList                             getShopList();
@@ -38,6 +38,9 @@ public:
     static int                              count_group(QQmlListProperty<ProductsTableModel> *list);
     static ProductsTableModel*              at_group(QQmlListProperty<ProductsTableModel> *list, int index);
 
+public slots:
+    void                                    saveConfig(Qt::ApplicationState);
+
 signals:
     void                                    groupProductsChanged();
     void                                    amountCategoriesChanged();
@@ -47,17 +50,18 @@ signals:
     void                                    creatingDateChanged();
     void                                    refreshDateChanged();
 
-public slots:
+private slots:
     void                                    makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate);
-    void                                    saveConfig(Qt::ApplicationState);
+    void                                    changeShopList();
 
 private:
-    int                                     categories;
     DataTransfer*                           data;
-    int                                     alertRange;
+    int32_t                                 alertRange;
     QString                                 creatingDate;
     QString                                 refreshDate;
     QSharedPointer<ProductsTableModel>      endOfExpiryDateModel;
+
+    void                                    showNotify(QString title, QString msg);
 };
 
 #endif // QMLDATA_H

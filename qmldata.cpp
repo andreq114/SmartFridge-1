@@ -33,6 +33,7 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     endOfExpiryDateModel  = QSharedPointer<ProductsTableModel>(new ProductsTableModel());
     endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
     QObject::connect(data, SIGNAL(dataReceived(QVector<QSharedPointer<Product>> *, QString)), this, SLOT(makeGroups(QVector<QSharedPointer<Product>> *, QString)));
+    QObject::connect(data, SIGNAL(shopListChanged()), this, SLOT(changeShopList()));
 }
 
 QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
@@ -52,17 +53,31 @@ ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list
     return msgBoard->groupModels[index].get();
 }
 
+void QMLdata::changeShopList()
+{
+    this->shoplist = data->getShopList();
+    emit shoplistChanged();
+    emit shoplistSizeChanged();
+
+    QString str("Shopping list has been changed, check it!");
+    showNotify(str, "Shopping list");
+}
+
 void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
 {
+    QDateTime date = QDateTime::currentDateTime();
+    auto date_format = date.toString("dd.MM.yyyy hh:mm");
+    this->refreshDate = date_format;
+    if(products == nullptr)
+    {
+        emit refreshDateChanged();
+        return;
+    }
     this->creatingDate = creatingDate;
     QDate currentDate = QDate::currentDate();
-    QDateTime date = QDateTime::currentDateTime();
-    auto a = date.toString("dd.MM.yyyy hh:mm");
-    this->refreshDate = a;
     QDate shiftedDate = currentDate.addDays(alertRange);
     groupModels.clear();
     endOfExpiryDateModel->clear();
-    //categories = 0;
     auto foundEndofExpiry = false;
     for(QVector<QSharedPointer<Product>>::Iterator it =products->begin(); it != products->end(); it++)
     {
@@ -97,34 +112,18 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
             model->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
             model->setCategory(product->getCat());
             groupModels.append(model);
-            //categories++;
         }
     }
     if(foundEndofExpiry)
     {
         groupModels.append(endOfExpiryDateModel);
-        //categories++;
     }
     for(auto var : groupModels){
         var->sortModel();
     }
 
-    if(endOfExpiryDateModel->rowCount() > 0)
-    {
-        QtNotification notify;
-        QMap<QString, QVariant> map;
-        QString var(QString::number(endOfExpiryDateModel->rowCount()));
-        QString str("Ending products: " + var + ", check it!");
-        map.insert("caption", QVariant(str));
-        map.insert("title", QVariant("Expiriation"));
-        map.insert("id", QVariant(0));
-        notify.show(map);
-    }
-
     emit amountCategoriesChanged();
     emit groupProductsChanged();
-    emit shoplistChanged();
-    emit shoplistSizeChanged();
     emit creatingDateChanged();
     emit refreshDateChanged();
 }
@@ -136,12 +135,12 @@ int QMLdata::getAmountCategories()
 
 QStringList QMLdata::getShopList()
 {
-    return *shoplist;
+    return shoplist;
 }
 
 int QMLdata::getShopListSize()
 {
-    return shoplist->size();
+    return shoplist.size();
 }
 
 void QMLdata::refreshData()
@@ -179,13 +178,11 @@ void QMLdata::refreshEndExpiryModel()
     if(!foundEndofExpiry and groupModels.contains(endOfExpiryDateModel))
     {
         groupModels.removeLast();
-        //categories--;
     }
     else if(!groupModels.contains(endOfExpiryDateModel) and foundEndofExpiry)
     {
         endOfExpiryDateModel->sortModel();
         groupModels.append(endOfExpiryDateModel);
-        //categories++;
     }
 
     emit amountCategoriesChanged();
@@ -199,7 +196,16 @@ void QMLdata::setAlertRange(int range)
     emit alertRangeChanged();
 }
 
+void QMLdata::showNotify(QString title, QString msg)
+{
+    QtNotification notify;
+    QMap<QString, QVariant> map;
 
+    map.insert("caption", QVariant(title));
+    map.insert("title", QVariant(msg));
+    map.insert("id", QVariant(0));
+    notify.show(map);
+}
 void QMLdata::saveConfig(Qt::ApplicationState state)
 {
     if (state != Qt::ApplicationActive)

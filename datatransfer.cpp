@@ -45,14 +45,15 @@ void DataTransfer::run()
 {
     this->refreshData();
 
-    timer->start(30000);    // 30sek
+    timer->start(20000);    // 30sek
 }
 
 void DataTransfer::replyFinished(QNetworkReply * reply){
 
     QJsonDocument jsdoc;
     QJsonArray jsarr;
-    QVector<QString> fields(8);
+    QVector<QString> fields(7);
+    QString thingspeakUpdateDate;
     jsdoc = QJsonDocument::fromJson(reply->readAll());
     QJsonObject jsobj = jsdoc.object();
     jsarr = jsobj["feeds"].toArray();
@@ -65,9 +66,18 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
         fields[4] = jsob["field5"].toString();
         fields[5] = jsob["field6"].toString();
         fields[6] = jsob["field7"].toString();
-        fields[7] = jsob["created_at"].toString();
+        thingspeakUpdateDate = jsob["created_at"].toString();
     }
     reply->deleteLater();
+
+    if(thingspeakUpdateDate == creatingDate)
+    {
+        emit dataReceived(nullptr, nullptr);
+        return;
+    }
+    else
+        creatingDate = thingspeakUpdateDate;
+
     parseReply(fields);
 
     emit dataReceived(&products, creatingDate);
@@ -82,7 +92,6 @@ void DataTransfer::parseReply(QVector<QString> &fields)
     auto terms = fields[4].split("$");
     auto category = fields[5].split("$");
     auto shoplist = fields[6].split("$");
-    creatingDate = fields[7];
 
     names.removeAt(names.length() - 1);
     company.removeAt(company.length() - 1);
@@ -94,7 +103,6 @@ void DataTransfer::parseReply(QVector<QString> &fields)
 
     products.clear();
     products.resize(names.size());
-    this->shoplist.clear();
 
     for(int i = 0; i < names.size(); i++)
     {
@@ -107,19 +115,19 @@ void DataTransfer::parseReply(QVector<QString> &fields)
                                                             nullptr), &QObject::deleteLater);
     }
 
-    for(int i = 0; i < shoplist.size(); i++)
+    if(this->shoplist != shoplist)
     {
-        this->shoplist.append(QString(shoplist.at(i)));
+        this->shoplist = shoplist;
+        emit shopListChanged();
     }
 }
-
 
 QVector<QSharedPointer<Product>> * DataTransfer::getProducts(){
     return &products;
 }
 
-QStringList * DataTransfer::getShopList(){
-    return &shoplist;
+QStringList DataTransfer::getShopList(){
+    return shoplist;
 }
 
 void  DataTransfer::refreshData()

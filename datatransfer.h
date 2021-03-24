@@ -19,11 +19,12 @@ public:
     ~DataTransfer() override;
 
     QVector<QSharedPointer<Product>>*getProducts();
-    QStringList                     *getShopList();
+    QStringList                     getShopList();
 public slots:
     void                            refreshData();
 signals:
     void dataReceived(QVector<QSharedPointer<Product>> *, QString );
+    void shopListChanged();
 private:
     QNetworkRequest                 request;
     QNetworkReply                   *reply = nullptr;
@@ -31,6 +32,7 @@ private:
     QVector<QSharedPointer<Product>> products;
     QStringList                     shoplist;
     QString                         creatingDate;
+    QString                         lastCreatingDate;
     QThread                         *requestThread = nullptr;
     QTimer                          *timer = nullptr;
 
