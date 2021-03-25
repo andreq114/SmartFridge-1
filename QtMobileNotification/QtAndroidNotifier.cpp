@@ -1,7 +1,10 @@
 #include "QtAndroidNotifier.h"
 
 #include <QVariant>
-#include <QtAndroid>
+#if defined (Q_OS_ANDROID)
+    #include <QtAndroid>
+#endif
+
 
 //------------------------------------------------------------------------------
 
@@ -12,6 +15,8 @@ bool QtAndroidNotifier::show(const QVariant &notificationParameters)
     QString title   = parameters.value("title", "").toString();
     int id          = parameters.value("id", 0).toInt();
 
+#if defined (Q_OS_ANDROID)
+
     QAndroidJniObject jni_caption = QAndroidJniObject::fromString(caption);
     QAndroidJniObject jni_title   = QAndroidJniObject::fromString(title);
 
@@ -21,6 +26,7 @@ bool QtAndroidNotifier::show(const QVariant &notificationParameters)
                                               jni_title.object<jstring>(),
                                               jni_caption.object<jstring>(),
                                               static_cast<jint>(id));
+    #endif
     return true;
 }
 

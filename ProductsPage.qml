@@ -16,6 +16,7 @@ Page {
         highlightRangeMode: ListView.StrictlyEnforceRange
         highlightMoveDuration : 1000
         highlightMoveVelocity: -1
+        cacheBuffer: 4000
         clip: true
         anchors {
             top: parent.top

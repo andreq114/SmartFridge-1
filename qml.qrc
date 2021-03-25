@@ -27,6 +27,7 @@
         <file>icons/glass_kopia.png</file>
         <file>icons/hourglass.png</file>
         <file>icons/ikona_smart_fridge.ico</file>
+        <file>icons/KI_LOGO.jpg</file>
     </qresource>
     <qresource prefix="/menu_icons">
         <file>icons/adjust.png</file>

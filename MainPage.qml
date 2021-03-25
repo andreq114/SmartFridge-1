@@ -56,13 +56,16 @@ Page {
         Column {
             anchors.fill: parent
 
-            Label {
+            Rectangle {
                 width: parent.width
                 height: 50
+                color:"#3C3C3C"
                 Text{
                     anchors.centerIn: parent
+                    wrapMode: Text.Wrap
                     text: "<b>Menu</b>"
                     font.pixelSize: 25
+                    color: "white"
 
                 }
             }
@@ -77,6 +80,7 @@ Page {
                 height: 50
                 Row {
                     height: parent.height
+                    width: parent.width
                     ToolSeparator {
                         width: 10
                     }
@@ -92,7 +96,8 @@ Page {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: 15
+                        wrapMode: Text.Wrap
+                        font.pointSize: 14
                         text: qsTr("<b>Shopping List</b>")
                     }
                 }
@@ -111,6 +116,7 @@ Page {
                 height: 50
                 Row {
                     height: parent.height
+                    width: parent.width
                     ToolSeparator {
                         width: 10
                     }
@@ -126,7 +132,8 @@ Page {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: 15
+                        font.pointSize: 14
+                        wrapMode: Text.Wrap
                         text: qsTr("<b>Notification</b>")
                     }
                 }
@@ -145,6 +152,7 @@ Page {
                 height: 50
                 Row {
                     height: parent.height
+                    width: parent.width
                     ToolSeparator {
                         width: 10
                     }
@@ -160,7 +168,8 @@ Page {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: 15
+                        wrapMode: Text.Wrap
+                        font.pointSize: 14
                         text: qsTr("<b>About App</b>")
                     }
                 }

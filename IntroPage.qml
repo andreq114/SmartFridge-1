@@ -11,36 +11,39 @@ Page {
         mainStack.push(mainPagek)
     }
     )
+    // KOlor katedy #006080
     Rectangle{
         id: parentRect
         anchors.fill: parent
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#1E90FF" }
-            GradientStop { position: 0.5; color: "#0000CD" }
-            GradientStop { position: 1.0; color: "#00008B" }
-        }
+        color: "#006080"
+//        gradient: Gradient {
+//            GradientStop { position: 0.0; color: "#1E90FF" }
+//            GradientStop { position: 0.5; color: "#0000CD" }
+//            GradientStop { position: 1.0; color: "#00008B" }
+//        }
 
-        Column{
-            anchors.fill: parent
+//        Column{
+//            anchors.fill: parent
 
-            Rectangle{
-                width:  100
-                height: 100
-                color: "transparent"
-                anchors.horizontalCenter: parent.horizontalCenter
-                //gradient: parentRect.gradient
+//            Rectangle{
+//                width:  100
+//                height: 100
+//                color: "transparent"
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                //gradient: parentRect.gradient
 
-            }
+//            }
             Flipable {
                 id: flipable
                 width: 250
                 height: 250
-                anchors.horizontalCenter: parent.horizontalCenter
+                //anchors.horizontalCenter: parent.horizontalCenter
+                anchors.centerIn: parent
                 anchors.topMargin: 100
                 property bool flipped: false
 
-                front: Image  { source: "qrc:/menu_icons/icons/logo_KI.png";width:140;height:140; anchors.centerIn: parent }
-                back: Image { source: "qrc:/menu_icons/icons/logo_KI.png";width:140;height:140; anchors.centerIn: parent }
+                front: Image  { source: "qrc:/icons/icons/KI_LOGO.jpg";width:140;height:140; anchors.centerIn: parent }
+                back: Image { source: "qrc:/icons/icons/KI_LOGO.jpg";width:140;height:140; anchors.centerIn: parent }
 
                 transform: Rotation {
                     id: rotation
@@ -64,41 +67,41 @@ Page {
                 Component.onCompleted: flipable.flipped = !flipable.flipped
 
             }
-            Rectangle{
-                id: nameRect
-                width:  320
-                height: 170
-                color: "transparent"
-                anchors.horizontalCenter: parent.horizontalCenter
+//            Rectangle{
+//                id: nameRect
+//                width:  320
+//                height: 170
+//                color: "transparent"
+//                anchors.horizontalCenter: parent.horizontalCenter
 
-                Column{
-                    anchors.fill: parent
-                    Text {
-                        height: parent.height/3
-                        width: parent.width
-                        color: "white"
-                        horizontalAlignment: Text.AlignHCenter
-                        style: Text.Raised
-                        font.bold: true
-                        font.pixelSize: 40
-                        text: "PWSZ Tarnów"
-                    }
-                    Text {
-                        height: parent.height/3
-                        width: parent.width
-                        color: "white"
-                        horizontalAlignment: Text.AlignHCenter
-                        style: Text.Raised
-                        font.bold: true
-                        font.pixelSize: 30
-                        text: "Katedra Informatyki"
-                    }
-                }
+////                Column{
+////                    anchors.fill: parent
+////                    Text {
+////                        height: parent.height/3
+////                        width: parent.width
+////                        color: "white"
+////                        horizontalAlignment: Text.AlignHCenter
+////                        style: Text.Raised
+////                        font.bold: true
+////                        font.pixelSize: 40
+////                        text: "PWSZ Tarnów"
+////                    }
+////                    Text {
+////                        height: parent.height/3
+////                        width: parent.width
+////                        color: "white"
+////                        horizontalAlignment: Text.AlignHCenter
+////                        style: Text.Raised
+////                        font.bold: true
+////                        font.pixelSize: 30
+////                        text: "Katedra Informatyki"
+////                    }
+////                }
 
 
-            }
+//            }
 
-        }
+      //  }
     }
 
 

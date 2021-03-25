@@ -20,6 +20,13 @@ Page{
                 width: root.width - 50
                 height: 60
                 color: "transparent"
+
+                Rectangle{
+                    width: parent.width
+                    anchors.bottom: parent.bottom
+                    height: 1
+                    color: "black"
+                }
                 Text {
                     anchors.centerIn: parent
                     font.pointSize: 15
@@ -27,13 +34,11 @@ Page{
                     text: modelData
                     wrapMode: Text.Wrap
                     width: parent.width
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
 
-                    }
                 }
+
+
+
             }
         }
     }

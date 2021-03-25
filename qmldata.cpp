@@ -2,6 +2,7 @@
 #include "product.h"
 #include "datatransfer.h"
 #include <QStandardPaths>
+#include <QFile>
 #include "QtNotification.h"
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
@@ -11,7 +12,7 @@ QMLdata::QMLdata(QObject *parent) : QObject(parent)
 
 QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
 {
-    QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
+    QFile file(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + ".ini");
     if(file.open(QIODevice::ReadOnly))
     {
         QByteArray arr;
@@ -210,7 +211,7 @@ void QMLdata::saveConfig(Qt::ApplicationState state)
 {
     if (state != Qt::ApplicationActive)
     {
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + ".ini");
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + ".ini");
         if(file.open(QIODevice::WriteOnly))
         {
             QString alertAlias = "AlertRange=";
