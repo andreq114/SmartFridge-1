@@ -16,9 +16,10 @@ Page{
             model: ThingspeakData.shoplist
             delegate:
                 Rectangle {
+                id: shopListRect
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: root.width - 50
-                height: 60
+                height: width/6
                 color: "transparent"
 
                 Rectangle{
@@ -29,7 +30,7 @@ Page{
                 }
                 Text {
                     anchors.centerIn: parent
-                    font.pointSize: 15
+                    font.pointSize: shopListRect.width/30
                     font.bold: true
                     text: modelData
                     wrapMode: Text.Wrap

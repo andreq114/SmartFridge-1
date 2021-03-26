@@ -26,7 +26,7 @@ Page{
                 width: parent.width-40
                 height: width
                 topPadding: 30
-
+                font.pixelSize: parent.width/20
                 text: "This application is a part of Smart Fridge system created for thesis. We can check here products which we have already in fridge or read shopping list created in second part of system including control system."
             }
         }

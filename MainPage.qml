@@ -12,15 +12,19 @@ Page {
     id: window
     property var set
     property alias titleLabelek: titleLabel
+
     header: ToolBar {
-        contentHeight: toolButton.implicitHeight
-        contentWidth: parent.width
+        //contentHeight: toolButton.implicitHeight
+        contentHeight: window.height/11
+        contentWidth: window.width
+
         Material.background: "#3C3C3C"
         RowLayout {
             anchors.fill: parent
             ToolButton {
                 id: toolButton
-
+                height: (parent.height*2)/3
+                width: height
                 icon.color: "transparent"
                 icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
@@ -44,7 +48,7 @@ Page {
                 text: swipeView.currentIndex === 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
-                font.pointSize: 20
+                font.pixelSize: (window.height)/20
             }
         }
     }
@@ -53,18 +57,20 @@ Page {
         width: window.width * 0.5
         height: window.height
         Material.theme: Material.Background
+
         Column {
             anchors.fill: parent
 
             Rectangle {
                 width: parent.width
-                height: 50
+                height: width/4
                 color:"#3C3C3C"
                 Text{
                     anchors.centerIn: parent
                     wrapMode: Text.Wrap
-                    text: "<b>Menu</b>"
-                    font.pixelSize: 25
+                    text: "Menu"
+                    font.pixelSize: parent.height/2
+                    font.bold: true
                     color: "white"
 
                 }
@@ -77,7 +83,7 @@ Page {
 
             ItemDelegate {
                 width: parent.width
-                height: 50
+                height: parent.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -88,8 +94,9 @@ Page {
                         id: shoplist
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/shopping-cart.png"
-                        width: 32
-                        height: 32
+                        height: parent.height*2/3
+                        width: height
+
                     }
                     ToolSeparator {
                         width: 20
@@ -97,7 +104,7 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         wrapMode: Text.Wrap
-                        font.pointSize: 14
+                        font.pointSize: parent.height/4
                         text: qsTr("<b>Shopping List</b>")
                     }
                 }
@@ -113,7 +120,7 @@ Page {
 
             ItemDelegate {
                 width: parent.width
-                height: 50
+                height: parent.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -124,17 +131,18 @@ Page {
                         id: settings_i
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/notification.png"
-                        width: 32
-                        height: 32
+                        height: parent.height*2/3
+                        width: height
                     }
                     ToolSeparator {
                         width: 20
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: 14
+                        font.pointSize: parent.height/4
                         wrapMode: Text.Wrap
-                        text: qsTr("<b>Notification</b>")
+                        font.bold: true
+                        text: qsTr("Notification")
                     }
                 }
                 onClicked: {
@@ -149,7 +157,7 @@ Page {
 
             ItemDelegate {
                 width: parent.width
-                height: 50
+                height: parent.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -160,8 +168,8 @@ Page {
                         id: aboutUs_i
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/author.png"
-                        width: 32
-                        height: 32
+                        height: parent.height*2/3
+                        width: height
                     }
                     ToolSeparator {
                         width: 20
@@ -169,8 +177,9 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         wrapMode: Text.Wrap
-                        font.pointSize: 14
-                        text: qsTr("<b>About App</b>")
+                        font.pointSize: parent.height/4
+                        font.bold: true
+                        text: qsTr("About App")
                     }
                 }
                 onClicked: {
@@ -202,6 +211,8 @@ Page {
         id: stackView
         initialItem: swipeView
         anchors.fill: parent
+
+
         pushEnter: Transition {
                PropertyAnimation {
                    property: "opacity"
@@ -337,4 +348,13 @@ Page {
         target: ThingspeakData
         onGroupProductsChanged: refreshPages();
     }
+//    function delay_2(delayTime, cb) {
+//        timerek.interval = delayTime;
+//        timerek.repeat = false;
+//        timerek.triggered.connect(cb);
+//        timerek.start();
+//    }
+//    Timer {
+//        id: timerek
+//    }
 }

@@ -56,6 +56,8 @@ Page {
                         refreshIcon.visible = true
                         refreshIconAnimation.start()
                         ThingspeakData.refreshData();
+                        ThingspeakData.refreshEndExpiryModel()
+
                     }
                 }
 
@@ -100,6 +102,18 @@ Page {
                     rightPadding: categorysMainRect.width/20
                     topPadding: categorysMainRect.width/10
                     bottomPadding: categorysMainRect.width/20
+
+                    onWidthChanged: {
+                        //ThingspeakData.refreshEndExpiryModel()
+                        delay_2(5,function(){
+                            console.log("FUNKCYTJKAAAAA")
+                            ThingspeakData.refreshEndExpiryModel()
+                        }
+                            )
+
+                        //ThingspeakData.refreshEndExpiryModel()
+                    }
+
                 }
             }
 
@@ -113,8 +127,9 @@ Page {
         Text {
             id: updateText
             anchors.top: parent.top
-            height: 20
+            //height: 20
             width: parent.width
+            bottomPadding: 10
             leftPadding: 20
             text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
             font.pointSize: 12
@@ -122,12 +137,22 @@ Page {
         Text {
             id: refreshText
             anchors.bottom: parent.bottom
-            height: 20
+            //height: 20
             width: parent.width
             leftPadding: 20
             text: "Last refresh: " + ThingspeakData.refreshDate
             font.pointSize: 12
         }
+    }
+
+    function delay_2(delayTime_2, cb_2) {
+        timer_2.interval = delayTime_2;
+        timer_2.repeat = false;
+        timer_2.triggered.connect(cb_2);
+        timer_2.start();
+    }
+    Timer {
+        id: timer_2
     }
 
 }

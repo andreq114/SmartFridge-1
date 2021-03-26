@@ -11,7 +11,7 @@ Page {
         mainStack.push(mainPagek)
     }
     )
-    // KOlor katedy #006080
+    // KOlor katedry #006080
     Rectangle{
         id: parentRect
         anchors.fill: parent
@@ -42,8 +42,8 @@ Page {
                 anchors.topMargin: 100
                 property bool flipped: false
 
-                front: Image  { source: "qrc:/icons/icons/KI_LOGO.jpg";width:140;height:140; anchors.centerIn: parent }
-                back: Image { source: "qrc:/icons/icons/KI_LOGO.jpg";width:140;height:140; anchors.centerIn: parent }
+                front: Image  { source: "qrc:/icons/icons/KI_LOGO.jpg";width:parentRect.width/4;height:width; anchors.centerIn: parent }
+                back: Image { source: "qrc:/icons/icons/KI_LOGO.jpg";width:parentRect.width/4;height:width; anchors.centerIn: parent }
 
                 transform: Rotation {
                     id: rotation
@@ -67,6 +67,18 @@ Page {
                 Component.onCompleted: flipable.flipped = !flipable.flipped
 
             }
+
+            Text{
+                id: titleText
+                anchors.bottom: parent.bottom
+                anchors.horizontalCenter: parent.horizontalCenter
+                bottomPadding: 15
+                text: "PWSZ Tarnów"
+                color: "white"
+                font.pixelSize: parent.width/25
+            }
+
+
 //            Rectangle{
 //                id: nameRect
 //                width:  320
