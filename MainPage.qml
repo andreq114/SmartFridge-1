@@ -14,6 +14,7 @@ Page {
     property alias titleLabelek: titleLabel
 
     header: ToolBar {
+        id: mainToolBar
         //contentHeight: toolButton.implicitHeight
         contentHeight: window.height/11
         contentWidth: window.width
@@ -23,10 +24,10 @@ Page {
             anchors.fill: parent
             ToolButton {
                 id: toolButton
-                height: (parent.height*2)/3
+                height: (parent.height*3)/4
                 width: height
                 icon.color: "transparent"
-                icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return.png" : "qrc:/menu_icons/icons/menu.png"
+                icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return_arrow.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
                     if(stackView.currentItem === set)
@@ -48,7 +49,7 @@ Page {
                 text: swipeView.currentIndex === 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
-                font.pixelSize: (window.height)/20
+                font.pixelSize: 20
             }
         }
     }
@@ -57,33 +58,38 @@ Page {
         width: window.width * 0.5
         height: window.height
         Material.theme: Material.Background
-
-        Column {
+        Flickable{
+            id: drawerFlickable
             anchors.fill: parent
-
+            contentWidth: drawerColumn.width
+            contentHeight: drawerColumn.height
+            boundsBehavior: Flickable.StopAtBounds
+            clip: true
+        Column {
+            id: drawerColumn
             Rectangle {
-                width: parent.width
+                width: drawerFlickable.width
                 height: width/4
                 color:"#3C3C3C"
                 Text{
                     anchors.centerIn: parent
                     wrapMode: Text.Wrap
                     text: "Menu"
-                    font.pixelSize: parent.height/2
+                    font.pixelSize: drawerFlickable.width/10
                     font.bold: true
                     color: "white"
 
                 }
             }
             Rectangle{
-                width: parent.width
+                width: drawerFlickable.width
                 height: 2
                 color: "black"
             }
 
             ItemDelegate {
-                width: parent.width
-                height: parent.width/3
+                width: drawerFlickable.width
+                height: drawerFlickable.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -104,7 +110,7 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         wrapMode: Text.Wrap
-                        font.pointSize: parent.height/4
+                        font.pixelSize: parent.width/12
                         text: qsTr("<b>Shopping List</b>")
                     }
                 }
@@ -119,8 +125,8 @@ Page {
             }
 
             ItemDelegate {
-                width: parent.width
-                height: parent.width/3
+                width: drawerFlickable.width
+                height: drawerFlickable.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -139,7 +145,7 @@ Page {
                     }
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        font.pointSize: parent.height/4
+                        font.pixelSize: parent.width/12
                         wrapMode: Text.Wrap
                         font.bold: true
                         text: qsTr("Notification")
@@ -156,8 +162,8 @@ Page {
             }
 
             ItemDelegate {
-                width: parent.width
-                height: parent.width/3
+                width: drawerFlickable.width
+                height: drawerFlickable.width/3
                 Row {
                     height: parent.height
                     width: parent.width
@@ -177,7 +183,7 @@ Page {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         wrapMode: Text.Wrap
-                        font.pointSize: parent.height/4
+                        font.pixelSize: parent.width/12
                         font.bold: true
                         text: qsTr("About App")
                     }
@@ -192,6 +198,7 @@ Page {
                 }
             }
         }
+    }
     }
 
     SwipeView {

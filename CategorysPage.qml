@@ -106,7 +106,6 @@ Page {
                     onWidthChanged: {
                         //ThingspeakData.refreshEndExpiryModel()
                         delay_2(5,function(){
-                            console.log("FUNKCYTJKAAAAA")
                             ThingspeakData.refreshEndExpiryModel()
                         }
                             )
@@ -121,7 +120,7 @@ Page {
     }
     Rectangle{
         width: parent.width
-        height: 40
+        height: 20
         color: "transparent"
         anchors.bottom: parent.bottom
         Text {
@@ -129,20 +128,20 @@ Page {
             anchors.top: parent.top
             //height: 20
             width: parent.width
-            bottomPadding: 10
             leftPadding: 20
             text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
             font.pointSize: 12
         }
-        Text {
-            id: refreshText
-            anchors.bottom: parent.bottom
-            //height: 20
-            width: parent.width
-            leftPadding: 20
-            text: "Last refresh: " + ThingspeakData.refreshDate
-            font.pointSize: 12
-        }
+//        Text {
+//            id: refreshText
+//            anchors.bottom: parent.bottom
+//            //height: 20
+//            width: parent.width
+//            leftPadding: 20
+//            bottomPadding: 5
+//            text: "Last refresh: " + ThingspeakData.refreshDate
+//            font.pointSize: 12
+//        }
     }
 
     function delay_2(delayTime_2, cb_2) {

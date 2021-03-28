@@ -65,7 +65,7 @@ Page{
                         id: nazwa
                         anchors.verticalCenter:  parent.verticalCenter
                         font.family: "Helvetica"
-                        font.pixelSize: 25
+                        font.pixelSize: 35
                         font.bold: true
                         color: "black"
                     }

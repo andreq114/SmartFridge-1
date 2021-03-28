@@ -3,8 +3,8 @@ import QtQuick.Controls 2.5
 
 ApplicationWindow {
     id: window
-    width: 450
-    height: 700
+    width: 1000
+    height: 200
     visible: true
     title: qsTr("Smart Fridge")
 
