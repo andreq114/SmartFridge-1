@@ -46,7 +46,7 @@ QVariant ProductsTableModel::data(const QModelIndex &index, int role) const
     return variant;
 }
 
-bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, int role) {
+bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, int) {
     items[i.row()].aVisible = value.toBool();
     emit dataChanged(index(i.row(),2), index(i.row(),2));
     return true;

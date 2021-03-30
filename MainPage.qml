@@ -27,14 +27,12 @@ Page {
                 height: (parent.height*3)/4
                 width: height
                 icon.color: "transparent"
-                icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return_arrow.png" : "qrc:/menu_icons/icons/menu.png"
+                icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return-arrow.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
-                    if(stackView.currentItem === set)
-                        ThingspeakData.refreshEndExpiryModel()
+                    //if(stackView.currentItem === set)
+                    //    ThingspeakData.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
-                        console.log("Index:")
-                        console.log(swipeView.currentIndex)
                         titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
                         stackView.pop()
 

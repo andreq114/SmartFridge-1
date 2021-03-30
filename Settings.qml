@@ -54,6 +54,7 @@ Page{
                         value: ThingspeakData.alertRange
                         onValueModified: {
                             ThingspeakData.alertRange = value
+                            ThingspeakData.refreshEndExpiryModel()
                         }
                     }
 

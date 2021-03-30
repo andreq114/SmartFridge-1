@@ -42,8 +42,8 @@ public slots:
     void                                    saveConfig(Qt::ApplicationState);
 
 signals:
-    void                                    groupProductsChanged();
     void                                    amountCategoriesChanged();
+    void                                    groupProductsChanged();
     void                                    shoplistChanged();
     void                                    shoplistSizeChanged();
     void                                    alertRangeChanged();

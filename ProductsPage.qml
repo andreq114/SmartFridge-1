@@ -38,10 +38,16 @@ Page {
 
 
             function createTableProducts(category) {
+                if(category == null)
+                    return;
                 for(var i = 0; i < ThingspeakData.amountCategories ; i++)
                 {
+                    console.log("FOR" + ThingspeakData.amountCategories );
+                    console.log("///" + ThingspeakData.groupModels[i].category);
+                    console.log("//////" + category);
                     if(category === ThingspeakData.groupModels[i].category)
                     {
+                        console.log("//////" + ThingspeakData.groupModels[i].category + "wloz");
                         return ThingspeakData.groupModels[i];
                     }
                 }
