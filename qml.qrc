@@ -40,8 +40,7 @@
         <file>icons/return.png</file>
         <file>icons/author.png</file>
         <file>icons/notification.png</file>
-        <file>icons/return_arrow.jpg</file>
-        <file>icons/return_arrow.png</file>
+        <file>icons/return-arrow.png</file>
     </qresource>
     <qresource prefix="/background">
         <file>icons/background.jpg</file>
