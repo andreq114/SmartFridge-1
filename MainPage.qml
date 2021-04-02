@@ -30,8 +30,8 @@ Page {
                 icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return-arrow.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
-                    //if(stackView.currentItem === set)
-                    //    ThingspeakData.refreshEndExpiryModel()
+                    if(stackView.currentItem === set)
+                        ThingspeakData.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
                         titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
                         stackView.pop()
@@ -264,10 +264,19 @@ Page {
 
     property var amountCategories : 0
 
+    ListModel {
+        id: kek
+    }
+
     function refreshPages() {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
         amountCategories = 0;
         categoryPage.grid.children = "";
+        console.log("Cout:" + productPage.listModel.count);
+//        for(var n = productPage.listModel.count - 1; n >= 0; n--)
+//        {
+//            productPage.listModel.remove(n);
+//        }
         productPage.listModel.clear();
         for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
             var category = ThingspeakData.groupModels[i].category;
@@ -292,7 +301,6 @@ Page {
                 createBtnCategory("qrc:/icons/icons/sauces.png");
                 productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sauces.png" , name: names[3], category: category});
                 amountCategories++;
-
                 break;
             case Product.Sweets :
                 createBtnCategory("qrc:/icons/icons/sweets.png");
@@ -327,7 +335,9 @@ Page {
             default :
                 console.log("Unknown a category");
             }
+            console.log("Cout po:" + productPage.listModel.count);
         }
+        productPage.list.forceLayout();
     }
 
     function buttonClicked(btnid) {
@@ -347,7 +357,7 @@ Page {
         }
     }
 
-    Component.onCompleted: refreshPages()
+//  Component.onCompleted: refreshPages()
 
     Connections {
         target: ThingspeakData

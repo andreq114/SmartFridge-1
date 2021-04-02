@@ -52,6 +52,11 @@ bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, in
     return true;
 }
 
+void ProductsTableModel::clear()
+{
+    items.clear();
+    emit endResetModel();
+}
 QHash<int,QByteArray> ProductsTableModel::roleNames() const
 {
     QHash<int,QByteArray> roles;

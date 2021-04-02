@@ -106,16 +106,14 @@ Page {
                     onWidthChanged: {
                         //ThingspeakData.refreshEndExpiryModel()
                         delay_2(5,function(){
-                            ThingspeakData.refreshEndExpiryModel()
+                            //ThingspeakData.refreshEndExpiryModel()
                         }
                             )
 
                         //ThingspeakData.refreshEndExpiryModel()
                     }
-
                 }
             }
-
         }
     }
     Rectangle{

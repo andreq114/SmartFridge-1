@@ -68,16 +68,6 @@ Page {
 
             }
 
-            Text{
-                id: titleText
-                anchors.bottom: parent.bottom
-                anchors.horizontalCenter: parent.horizontalCenter
-                bottomPadding: 15
-                text: "PWSZ Tarnów"
-                color: "white"
-                font.pixelSize: parent.width/25
-            }
-
 
 //            Rectangle{
 //                id: nameRect

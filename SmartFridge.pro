@@ -12,7 +12,6 @@ CONFIG += c++11
 
 SOURCES += \
         datatransfer.cpp \
-        groupproducts.cpp \
         main.cpp \
         product.cpp \
         productstablemodel.cpp \
@@ -38,7 +37,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     datatransfer.h \
-    groupproducts.h \
     product.h \
     productstablemodel.h \
     qmldata.h

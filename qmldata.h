@@ -2,7 +2,7 @@
 #define QMLDATA_H
 
 #include <QObject>
-#include "groupproducts.h"
+#include "datatransfer.h"
 #include "productstablemodel.h"
 #include <QQmlListProperty>
 
@@ -34,6 +34,7 @@ public:
 
     Q_INVOKABLE void                        refreshData();
     Q_INVOKABLE void                        refreshEndExpiryModel();
+    Q_INVOKABLE void                        refresh();
 
     static int                              count_group(QQmlListProperty<ProductsTableModel> *list);
     static ProductsTableModel*              at_group(QQmlListProperty<ProductsTableModel> *list, int index);

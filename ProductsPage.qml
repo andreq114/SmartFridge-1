@@ -14,7 +14,7 @@ Page {
         id: list
         snapMode: ListView.SnapOneItem
         highlightRangeMode: ListView.StrictlyEnforceRange
-        highlightMoveDuration : 1000
+        highlightMoveDuration : 20000
         highlightMoveVelocity: -1
         cacheBuffer: 4000
         clip: true
@@ -24,41 +24,58 @@ Page {
             left: parent.left
             right: parent.right
         }
+        model: ListModel {
+            id: categoryModel
+        }
 
-        model: categoryModel
-
-        delegate:
-
-            OneCategoryProducts {
+        delegate: OneCategoryProducts {
             icon_source: iconSourc
             icon_tekst: name
             width:  ListView.view.width
             height: ListView.view.height
-            fullList_Model.model: createTableProducts(category)
-
+//            fullList_Model.model:
+//                {
+//                    console.log("Delegata: " + category);
+//                    console.log(list.model.count);
+//                    createTableProducts(category)
+//                }
 
             function createTableProducts(category) {
+                console.log("FUN");
                 if(category == null)
                     return;
+
+                //console.log("FOR" + ThingspeakData.amountCategories );
                 for(var i = 0; i < ThingspeakData.amountCategories ; i++)
                 {
-                    console.log("FOR" + ThingspeakData.amountCategories );
-                    console.log("///" + ThingspeakData.groupModels[i].category);
-                    console.log("//////" + category);
+                    //console.log(i);
+                    //console.log("///" + ThingspeakData.groupModels[i].category);
+                    //console.log("//////" + category);
                     if(category === ThingspeakData.groupModels[i].category)
                     {
-                        console.log("//////" + ThingspeakData.groupModels[i].category + "wloz");
+                        //console.log("//////" + ThingspeakData.groupModels[i].category + "wloz");
                         return ThingspeakData.groupModels[i];
                     }
                 }
             }
-        }
-    }
 
-    ListModel {
-        id: categoryModel
+            Component.onCompleted: {
+                console.log("Delegata zrobiony " + category);
+                fullList_Model.model = createTableProducts(category)
+                //{
+                    //console.log("Delegata: " + category);
+                    //console.log(list.model.count);
+
+                //}
+            }
+            Component.onDestruction: {
+                console.log("Delegata niszczony " + category);
+            }
+        }
+
     }
 }
+
 
 
 

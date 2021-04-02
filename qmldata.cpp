@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QFile>
 #include "QtNotification.h"
+#include <QQmlEngine>
 
 QMLdata::QMLdata(QObject *parent) : QObject(parent)
 {
@@ -45,13 +46,15 @@ QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
 int QMLdata::count_group(QQmlListProperty<ProductsTableModel> *list)
 {
     QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
-    return msgBoard->groupModels.size();
+    return msgBoard->groupModels.count();
 }
 
 ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list, int index)
 {
     QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
-    return msgBoard->groupModels[index].get();
+    auto item = msgBoard->groupModels[index].get();
+    QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
+    return item;
 }
 
 void QMLdata::changeShopList()
@@ -62,6 +65,11 @@ void QMLdata::changeShopList()
 
     QString str("Shopping list has been changed, check it!");
     showNotify(str);
+}
+
+void QMLdata::refresh()
+{
+    makeGroups(data->getProducts(), creatingDate);
 }
 
 void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)

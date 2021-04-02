@@ -22,7 +22,7 @@ public:
     Q_INVOKABLE  int       rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Product::Category      getCategory() const {return category;}
     void                   setCategory(Product::Category cat) {category = cat;}
-    void                   clear() {items.clear();}
+    void                   clear();
     void                   sortModel();
 
     struct oneProduct{

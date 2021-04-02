@@ -179,7 +179,7 @@ Page{
                                     delegate: contactDelegate
                                     boundsBehavior: Flickable.StopAtBounds
                                     clip: true
-                                    cacheBuffer: 4000
+                                    cacheBuffer: 20000
 
                                     property string expandedSection: ""
 
@@ -230,6 +230,9 @@ Page{
                                             Component.onDestruction: aVisible = false
                                         }
 
+                                    }
+                                    Component.onCompleted: {
+                                        fullListModel.currentIndex = -1;
                                     }
                                 }
                             }

@@ -45,7 +45,7 @@ void DataTransfer::run()
 {
     this->refreshData();
 
-    timer->start(20000);    // 30sek
+    timer->start(20000);    // 20sek
 }
 
 void DataTransfer::replyFinished(QNetworkReply * reply){

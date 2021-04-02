@@ -3,7 +3,6 @@
 #include "datatransfer.h"
 #include <QAbstractTableModel>
 #include <QQmlContext>
-#include "groupproducts.h"
 #include "qmldata.h"
 #include "productstablemodel.h"
 
