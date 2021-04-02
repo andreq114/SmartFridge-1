@@ -33,12 +33,12 @@ Page {
             icon_tekst: name
             width:  ListView.view.width
             height: ListView.view.height
-//            fullList_Model.model:
-//                {
-//                    console.log("Delegata: " + category);
-//                    console.log(list.model.count);
-//                    createTableProducts(category)
-//                }
+            fullList_Model.model:
+                {
+                    console.log("Delegata: " + category);
+                    console.log(list.model.count);
+                    createTableProducts(category)
+                }
 
             function createTableProducts(category) {
                 console.log("FUN");
@@ -61,7 +61,7 @@ Page {
 
             Component.onCompleted: {
                 console.log("Delegata zrobiony " + category);
-                fullList_Model.model = createTableProducts(category)
+                //fullList_Model.model = createTableProducts(category)
                 //{
                     //console.log("Delegata: " + category);
                     //console.log(list.model.count);
