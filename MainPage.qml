@@ -272,11 +272,6 @@ Page {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
         amountCategories = 0;
         categoryPage.grid.children = "";
-        console.log("Cout:" + productPage.listModel.count);
-//        for(var n = productPage.listModel.count - 1; n >= 0; n--)
-//        {
-//            productPage.listModel.remove(n);
-//        }
         productPage.listModel.clear();
         for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
             var category = ThingspeakData.groupModels[i].category;
@@ -335,9 +330,7 @@ Page {
             default :
                 console.log("Unknown a category");
             }
-            console.log("Cout po:" + productPage.listModel.count);
         }
-        productPage.list.forceLayout();
     }
 
     function buttonClicked(btnid) {

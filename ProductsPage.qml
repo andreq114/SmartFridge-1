@@ -33,43 +33,20 @@ Page {
             icon_tekst: name
             width:  ListView.view.width
             height: ListView.view.height
-            fullList_Model.model:
-                {
-                    console.log("Delegata: " + category);
-                    console.log(list.model.count);
-                    createTableProducts(category)
-                }
+            fullList_Model.model: createTableProducts(category)
+
 
             function createTableProducts(category) {
                 console.log("FUN");
                 if(category == null)
                     return;
-
-                //console.log("FOR" + ThingspeakData.amountCategories );
                 for(var i = 0; i < ThingspeakData.amountCategories ; i++)
                 {
-                    //console.log(i);
-                    //console.log("///" + ThingspeakData.groupModels[i].category);
-                    //console.log("//////" + category);
                     if(category === ThingspeakData.groupModels[i].category)
                     {
-                        //console.log("//////" + ThingspeakData.groupModels[i].category + "wloz");
                         return ThingspeakData.groupModels[i];
                     }
                 }
-            }
-
-            Component.onCompleted: {
-                console.log("Delegata zrobiony " + category);
-                //fullList_Model.model = createTableProducts(category)
-                //{
-                    //console.log("Delegata: " + category);
-                    //console.log(list.model.count);
-
-                //}
-            }
-            Component.onDestruction: {
-                console.log("Delegata niszczony " + category);
             }
         }
 
