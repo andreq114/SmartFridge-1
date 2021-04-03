@@ -33,6 +33,15 @@ Page {
 
             color: "transparent"
 
+            Text{
+                text: "Fridge is empty!"
+                color: "white"
+                font.bold: true
+                font.pixelSize: parent.width/15
+                anchors.centerIn: parent
+                visible: amountCategories === 0 ? true : false
+            }
+
             Flickable {
                 id: flick
                 anchors.fill: parent
@@ -106,7 +115,8 @@ Page {
                     onWidthChanged: {
                         //ThingspeakData.refreshEndExpiryModel()
                         delay_2(5,function(){
-                            //ThingspeakData.refreshEndExpiryModel()
+                            ThingspeakData.refreshEndExpiryModel()
+                            //refreshPages()
                         }
                             )
 
@@ -116,19 +126,21 @@ Page {
             }
         }
     }
-    Rectangle{
-        width: parent.width
-        height: 20
-        color: "transparent"
-        anchors.bottom: parent.bottom
+//    Rectangle{
+//        width: parent.width
+//        height: 20
+//        color: "transparent"
+//        anchors.bottom: parent.bottom
         Text {
             id: updateText
-            anchors.top: parent.top
+            //anchors.top: parent.top
+            anchors.bottom: parent.bottom
             //height: 20
-            width: parent.width
-            leftPadding: 20
+            //width: parent.width
+            leftPadding: 10
+            bottomPadding: 10
             text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
-            font.pointSize: 12
+            font.pixelSize: parent.width/25
         }
 //        Text {
 //            id: refreshText
@@ -140,7 +152,7 @@ Page {
 //            text: "Last refresh: " + ThingspeakData.refreshDate
 //            font.pointSize: 12
 //        }
-    }
+    //}
 
     function delay_2(delayTime_2, cb_2) {
         timer_2.interval = delayTime_2;

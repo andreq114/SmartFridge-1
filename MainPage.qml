@@ -15,8 +15,8 @@ Page {
 
     header: ToolBar {
         id: mainToolBar
-        //contentHeight: toolButton.implicitHeight
-        contentHeight: window.height/11
+        contentHeight: toolButton.implicitHeight
+        //contentHeight: window.height/11
         contentWidth: window.width
 
         Material.background: "#3C3C3C"
@@ -24,8 +24,9 @@ Page {
             anchors.fill: parent
             ToolButton {
                 id: toolButton
-                height: (parent.height*3)/4
-                width: height
+
+                implicitHeight: (parent.height*3)/4
+                implicitWidth: implicitHeight
                 icon.color: "transparent"
                 icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return-arrow.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
@@ -47,7 +48,7 @@ Page {
                 text: swipeView.currentIndex === 0 ? "Categories" : "Products"
                 elide: Label.ElideRight
                 anchors.centerIn: parent
-                font.pixelSize: 20
+                font.pixelSize: 25
             }
         }
     }
@@ -270,6 +271,17 @@ Page {
 
     function refreshPages() {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
+        if (ThingspeakData.amountCategories === 0){
+            console.log("Funkcja blokujaca")
+            console.log("Amount categories = "+ ThingspeakData.amountCategories)
+            swipeView.currentIndex = 0;
+            //swipeView.itemAt(1).visible = false;
+            swipeView.interactive = false
+        }else{
+            console.log("Funkcja odblokowujaca")
+            swipeView.interactive = true
+
+        }
         amountCategories = 0;
         categoryPage.grid.children = "";
         productPage.listModel.clear();
@@ -350,19 +362,20 @@ Page {
         }
     }
 
-//  Component.onCompleted: refreshPages()
+    //  Component.onCompleted: refreshPages()
 
     Connections {
         target: ThingspeakData
         onGroupProductsChanged: refreshPages();
+
     }
-//    function delay_2(delayTime, cb) {
-//        timerek.interval = delayTime;
-//        timerek.repeat = false;
-//        timerek.triggered.connect(cb);
-//        timerek.start();
-//    }
-//    Timer {
-//        id: timerek
-//    }
+    function delay_2(delayTime, cb) {
+        timerek.interval = delayTime;
+        timerek.repeat = false;
+        timerek.triggered.connect(cb);
+        timerek.start();
+    }
+    Timer {
+        id: timerek
+    }
 }

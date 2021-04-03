@@ -14,7 +14,7 @@ Page {
         id: list
         snapMode: ListView.SnapOneItem
         highlightRangeMode: ListView.StrictlyEnforceRange
-        highlightMoveDuration : 20000
+        highlightMoveDuration : 500
         highlightMoveVelocity: -1
         cacheBuffer: 4000
         clip: true
