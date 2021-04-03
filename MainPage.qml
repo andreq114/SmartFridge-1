@@ -13,6 +13,19 @@ Page {
     property var set
     property alias titleLabelek: titleLabel
 
+    property var names : ["Dairy",
+        "Drinks",
+        "Alcohols",
+        "Sauces",
+        "Sweets",
+        "Fishes",
+        "Meat",
+        "Frozen",
+        "Fruits & Vegetables",
+        "End of Expiry"];
+
+    property var amountCategories : 0
+
     header: ToolBar {
         id: mainToolBar
         contentHeight: toolButton.implicitHeight
@@ -203,6 +216,8 @@ Page {
     SwipeView {
         id: swipeView
         onCurrentIndexChanged: currentIndex === 0 ? titleLabelek.text = "Categories" : titleLabelek.text = "Products"
+        currentIndex: amountCategories === 0 ? 0 : currentIndex
+        interactive: amountCategories === 0 ? false : true
 
         CategorysPage {
             id: categoryPage
@@ -252,36 +267,17 @@ Page {
                }
            }
     }
-    property var names : ["Dairy",
-        "Drinks",
-        "Alcohols",
-        "Sauces",
-        "Sweets",
-        "Fishes",
-        "Meat",
-        "Frozen",
-        "Fruits & Vegetables",
-        "End of Expiry"];
 
-    property var amountCategories : 0
-
-    ListModel {
-        id: kek
-    }
 
     function refreshPages() {
         console.log("Found: " + ThingspeakData.amountCategories + " categories");
-        if (ThingspeakData.amountCategories === 0){
-            console.log("Funkcja blokujaca")
-            console.log("Amount categories = "+ ThingspeakData.amountCategories)
-            swipeView.currentIndex = 0;
-            //swipeView.itemAt(1).visible = false;
-            swipeView.interactive = false
-        }else{
-            console.log("Funkcja odblokowujaca")
-            swipeView.interactive = true
+//        if (amountCategories === 0){
+//            swipeView.currentIndex = 0;
+//            swipeView.interactive = false
+//        }else{
+//            swipeView.interactive = true
 
-        }
+//        }
         amountCategories = 0;
         categoryPage.grid.children = "";
         productPage.listModel.clear();
