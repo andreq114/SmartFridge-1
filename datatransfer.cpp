@@ -50,6 +50,10 @@ void DataTransfer::run()
 
 void DataTransfer::replyFinished(QNetworkReply * reply){
 
+    if(reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
     QJsonDocument jsdoc;
     QJsonArray jsarr;
     QVector<QString> fields(7);
