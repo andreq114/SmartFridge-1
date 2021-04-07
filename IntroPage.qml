@@ -5,105 +5,53 @@ import QtQml 2.12
 import QtGraphicalEffects 1.0
 
 Page {
-    id: myPage
+    id: root
     anchors.fill: parent
     Component.onCompleted: delay(4000,function(){
-        mainStack.push(mainPagek)
+        mainStack.push(mainPage)
     }
     )
-    // KOlor katedry #006080
     Rectangle{
         id: parentRect
         anchors.fill: parent
         color: "#006080"
-//        gradient: Gradient {
-//            GradientStop { position: 0.0; color: "#1E90FF" }
-//            GradientStop { position: 0.5; color: "#0000CD" }
-//            GradientStop { position: 1.0; color: "#00008B" }
-//        }
+        Flipable {
+            id: flipable
+            width: 250
+            height: 250
+            anchors.centerIn: parent
+            anchors.topMargin: 100
+            property bool flipped: false
 
-//        Column{
-//            anchors.fill: parent
+            front: Image  { source: "qrc:/icons/icons/KI_LOGO.jpg";
+                            width:parentRect.width/4;
+                            height:width;
+                            anchors.centerIn: parent }
+            back: Image { source: "qrc:/icons/icons/KI_LOGO.jpg";
+                          width:parentRect.width/4;
+                          height:width;
+                          anchors.centerIn: parent }
 
-//            Rectangle{
-//                width:  100
-//                height: 100
-//                color: "transparent"
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                //gradient: parentRect.gradient
-
-//            }
-            Flipable {
-                id: flipable
-                width: 250
-                height: 250
-                //anchors.horizontalCenter: parent.horizontalCenter
-                anchors.centerIn: parent
-                anchors.topMargin: 100
-                property bool flipped: false
-
-                front: Image  { source: "qrc:/icons/icons/KI_LOGO.jpg";width:parentRect.width/4;height:width; anchors.centerIn: parent }
-                back: Image { source: "qrc:/icons/icons/KI_LOGO.jpg";width:parentRect.width/4;height:width; anchors.centerIn: parent }
-
-                transform: Rotation {
-                    id: rotation
-                    origin.x: flipable.width/2
-                    origin.y: flipable.height/2
-                    axis.x: 0; axis.y: 1; axis.z: 0     // set axis.y to 1 to rotate around y-axis
-                    angle: 0                            // the default angle
-                }
-
-                states: State {
-                    name: "back"
-                    PropertyChanges { target: rotation; angle: 360 }
-                    when: flipable.flipped
-                }
-
-                transitions: Transition {
-                    NumberAnimation { target: rotation; property: "angle"; duration: 4000; loops: Animation.Infinite}
-                }
-
-
-                Component.onCompleted: flipable.flipped = !flipable.flipped
-
+            transform: Rotation {
+                id: rotation
+                origin.x: flipable.width/2
+                origin.y: flipable.height/2
+                axis.x: 0; axis.y: 1; axis.z: 0     // set axis.y to 1 to rotate around y-axis
+                angle: 0                            // the default angle
             }
 
+            states: State {
+                name: "back"
+                PropertyChanges { target: rotation; angle: 360 }
+                when: flipable.flipped
+            }
 
-//            Rectangle{
-//                id: nameRect
-//                width:  320
-//                height: 170
-//                color: "transparent"
-//                anchors.horizontalCenter: parent.horizontalCenter
+            transitions: Transition {
+                NumberAnimation { target: rotation; property: "angle"; duration: 4000; loops: Animation.Infinite}
+            }
 
-////                Column{
-////                    anchors.fill: parent
-////                    Text {
-////                        height: parent.height/3
-////                        width: parent.width
-////                        color: "white"
-////                        horizontalAlignment: Text.AlignHCenter
-////                        style: Text.Raised
-////                        font.bold: true
-////                        font.pixelSize: 40
-////                        text: "PWSZ Tarnów"
-////                    }
-////                    Text {
-////                        height: parent.height/3
-////                        width: parent.width
-////                        color: "white"
-////                        horizontalAlignment: Text.AlignHCenter
-////                        style: Text.Raised
-////                        font.bold: true
-////                        font.pixelSize: 30
-////                        text: "Katedra Informatyki"
-////                    }
-////                }
-
-
-//            }
-
-      //  }
+            Component.onCompleted: flipable.flipped = !flipable.flipped
+        }
     }
 
 

@@ -1,5 +1,5 @@
-#ifndef DATATRANSFER_H
-#define DATATRANSFER_H
+#ifndef THINKSPEAKNETMANAGER_H
+#define THINKSPEAKNETMANAGER_H
 
 #include <QObject>
 #include <QNetworkAccessManager>
@@ -9,14 +9,14 @@
 #include <QNetworkReply>
 #include <QThread>
 #include <QTimer>
-#include "product.h"
+#include "Product.h"
 
-class DataTransfer : public QObject
+class ThingspeakNetManager : public QObject
 {
     Q_OBJECT
 public:
-    DataTransfer();
-    ~DataTransfer() override;
+    ThingspeakNetManager();
+    ~ThingspeakNetManager() override;
 
     QVector<QSharedPointer<Product>>*getProducts();
     QStringList                     getShopList();
@@ -45,4 +45,4 @@ private slots:
 };
 
 
-#endif // DATATRANSFER_H
+#endif // THINKSPEAKNETMANAGER_H

@@ -1,6 +1,6 @@
-#include "datatransfer.h"
+#include "ThinkspeakNetManager.h"
 
-DataTransfer::DataTransfer()
+ThingspeakNetManager::ThingspeakNetManager()
 {
     restclient          = new QNetworkAccessManager();
     requestThread       = new QThread();
@@ -15,23 +15,15 @@ DataTransfer::DataTransfer()
     request.setUrl(myurl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    connect(requestThread, &QThread::started, this, &DataTransfer::run);
+    connect(requestThread, &QThread::started, this, &ThingspeakNetManager::run);
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
-    connect(timer, &QTimer::timeout, this, &DataTransfer::refreshData, Qt::QueuedConnection);
+    connect(timer, &QTimer::timeout, this, &ThingspeakNetManager::refreshData, Qt::QueuedConnection);
 
     timer->moveToThread(requestThread);
     requestThread->start();
-//    QString field1 ("Chocolate$Mineral water$Chocolate$Chocolate$"),
-//            field2 ("Wedel$Oaza$Wedel$Wedel$"),
-//            field3 ("Strawberry$$Strawberry$Strawberry$"),
-//            field4 ("100 g$1.5l$100 g$100 g$"),
-//            field5 ("20.02.2021$27.02.2021$05.03.2021$22.02.2021$"),
-//            field6 ("4$4$4$4$"),
-//            field7 ("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
-//    parseReply(field1, field2, field3, field4, field5, field6, field7);
 }
 
-DataTransfer::~DataTransfer()
+ThingspeakNetManager::~ThingspeakNetManager()
 {
     if(restclient)
         delete restclient;
@@ -41,14 +33,13 @@ DataTransfer::~DataTransfer()
         delete timer;
 }
 
-void DataTransfer::run()
+void ThingspeakNetManager::run()
 {
     this->refreshData();
-
     timer->start(20000);    // 20sek
 }
 
-void DataTransfer::replyFinished(QNetworkReply * reply){
+void ThingspeakNetManager::replyFinished(QNetworkReply * reply){
 
     if(reply->error() != QNetworkReply::NoError)
     {
@@ -87,7 +78,7 @@ void DataTransfer::replyFinished(QNetworkReply * reply){
     emit dataReceived(&products, creatingDate);
 }
 
-void DataTransfer::parseReply(QVector<QString> &fields)
+void ThingspeakNetManager::parseReply(QVector<QString> &fields)
 {
     auto names = fields[0].split("$");
     auto company = fields[1].split("$");
@@ -126,26 +117,15 @@ void DataTransfer::parseReply(QVector<QString> &fields)
     }
 }
 
-QVector<QSharedPointer<Product>> * DataTransfer::getProducts(){
+QVector<QSharedPointer<Product>> * ThingspeakNetManager::getProducts(){
     return &products;
 }
 
-QStringList DataTransfer::getShopList(){
+QStringList ThingspeakNetManager::getShopList(){
     return shoplist;
 }
 
-void  DataTransfer::refreshData()
+void  ThingspeakNetManager::refreshData()
 {
     reply = restclient->get(request);
-//    QVector<QString> fields(8);
-//    fields[0] = QString("Cukierasy$Pepsi$");
-//            fields[1] = QString("Wedel$Kola$");
-//            fields[2] = QString("Rozne$$");
-//            fields[3] = QString("100 g$1.5l$");
-//            fields[4] = QString("22.03.2021$22.12.2022$");
-//            fields[5] = QString("4$3$");
-//            fields[6] = QString("Masło Margaryna 400g$Kurczak pierś filet 300g$Śmietana wyborowa 2l$");
-//            fields[7] = QString("17.03.2021 00:00");
-//    parseReply(fields);
-//    emit dataReceived(&products, creatingDate);
 }

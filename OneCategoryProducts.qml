@@ -18,10 +18,6 @@ Page{
         id: root
         anchors.fill: parent
 
-        //        gradient: Gradient{
-        //            GradientStop { position: 0.0; color: "#F5CA66" }
-        //            GradientStop { position: 1.0; color: "#FF8000" }
-        //        }
         color: "transparent"
 
         Image {
@@ -40,11 +36,8 @@ Page{
                 start: Qt.point(0, 0)
                 end: Qt.point(parent.width, parent.height)
                 gradient: Gradient {
-                    //                        GradientStop { position: 0.0; color: "#FF8C00" }
                     GradientStop { position: 0.0; color: "#FF8C00" }
                     GradientStop { position: 1.0; color: "transparent" }
-
-
                 }
             }
             Column{
@@ -72,17 +65,9 @@ Page{
 
 
                 }
-                //                Rectangle{
-                //                    width: parent.width
-                //                    height: 2
-                //                    color: "#ffa500"
-                //                }
-
 
                 Rectangle {
                     width: parent.width; height: parent.height-30-myIcon.height-2
-                    //anchors.fill: parent
-                    //gradient: root.gradient
                     color: "transparent"
                     ScrollView{
                         anchors.fill: parent
@@ -120,7 +105,6 @@ Page{
                                         onIsExpandedChanged: {
                                             if(isExpanded){
                                                 visib = true;
-                                                //color = "lightgray";
                                                 ListView.view.expandedSection = section;
                                                 for(var i=0; i<fullListModel.model.rowCount(); i++){
                                                     var product = fullListModel.model.data(fullListModel.model.index(i,2));
@@ -132,8 +116,6 @@ Page{
                                             }
                                             else{
                                                 visib = false;
-                                                //color = "white"
-                                                //color = "transparent";
                                                 for(i=0; i<fullListModel.model.rowCount(); i++){
                                                     product = fullListModel.model.data(fullListModel.model.index(i,2));
                                                     if(section === product)
@@ -165,7 +147,6 @@ Page{
                                             id: lineRect
                                             width: parent.width; height: 1
                                             anchors.top: parent.top
-                                            //color: "#ff8c00"
                                             color: "black"
                                         }
                                     }
@@ -186,9 +167,6 @@ Page{
                                     section.property: "description"
                                     section.criteria: ViewSection.FullString
                                     section.delegate: sectionHeader
-
-
-
 
                                     Component {
                                         id: contactDelegate
@@ -223,7 +201,6 @@ Page{
                                             MouseArea {
                                                 anchors.fill: parent
                                                 onClicked: {
-
                                                     fullListModel.currentIndex = index;
                                                 }
                                             }

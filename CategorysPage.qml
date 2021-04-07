@@ -64,8 +64,8 @@ Page {
                     {
                         refreshIcon.visible = true
                         refreshIconAnimation.start()
-                        ThingspeakData.refreshData();
-                        ThingspeakData.refreshEndExpiryModel()
+                        ManagerQML.refreshData();
+                        ManagerQML.refreshEndExpiryModel()
 
                     }
                 }
@@ -96,7 +96,6 @@ Page {
                             duration: 500
                             onFinished: refreshIcon.visible = false
                         }
-
                     }
                 }
 
@@ -113,46 +112,24 @@ Page {
                     bottomPadding: categorysMainRect.width/20
 
                     onWidthChanged: {
-                        //ThingspeakData.refreshEndExpiryModel()
                         delay_2(5,function(){
-                            ThingspeakData.refreshEndExpiryModel()
+                            ManagerQML.refreshEndExpiryModel()
                             //refreshPages()
                         }
-                            )
-
-                        //ThingspeakData.refreshEndExpiryModel()
+                        )
                     }
                 }
             }
         }
     }
-//    Rectangle{
-//        width: parent.width
-//        height: 20
-//        color: "transparent"
-//        anchors.bottom: parent.bottom
-        Text {
-            id: updateText
-            //anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            //height: 20
-            //width: parent.width
-            leftPadding: 10
-            bottomPadding: 10
-            text: "Last server update: " + Qt.formatDateTime(new Date(ThingspeakData.creatingDate), "dd.MM.yyyy hh:mm")
-            font.pixelSize: parent.width/25
-        }
-//        Text {
-//            id: refreshText
-//            anchors.bottom: parent.bottom
-//            //height: 20
-//            width: parent.width
-//            leftPadding: 20
-//            bottomPadding: 5
-//            text: "Last refresh: " + ThingspeakData.refreshDate
-//            font.pointSize: 12
-//        }
-    //}
+    Text {
+        id: updateText
+        anchors.bottom: parent.bottom
+        leftPadding: 10
+        bottomPadding: 10
+        text: "Last server update: " + Qt.formatDateTime(new Date(ManagerQML.creatingDate), "dd.MM.yyyy hh:mm")
+        font.pixelSize: parent.width/25
+    }
 
     function delay_2(delayTime_2, cb_2) {
         timer_2.interval = delayTime_2;

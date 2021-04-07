@@ -11,25 +11,12 @@ Page {
     anchors.fill: parent
     id: window
     property var set
-    property alias titleLabelek: titleLabel
-
-    property var names : ["Dairy",
-        "Drinks",
-        "Alcohols",
-        "Sauces",
-        "Sweets",
-        "Fishes",
-        "Meat",
-        "Frozen",
-        "Fruits & Vegetables",
-        "End of Expiry"];
-
-    property var amountCategories : 0
+    property alias titleLabel: titleLabel
+    property alias categoryPage: categoryPage
 
     header: ToolBar {
         id: mainToolBar
         contentHeight: toolButton.implicitHeight
-        //contentHeight: window.height/11
         contentWidth: window.width
 
         Material.background: "#3C3C3C"
@@ -45,7 +32,7 @@ Page {
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
                     if(stackView.currentItem === set)
-                        ThingspeakData.refreshEndExpiryModel()
+                        ManagerQML.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
                         titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
                         stackView.pop()
@@ -183,7 +170,7 @@ Page {
                         width: 10
                     }
                     Image {
-                        id: aboutUs_i
+                        id: aboutApp
                         anchors.verticalCenter: parent.verticalCenter
                         source: "qrc:/menu_icons/icons/author.png"
                         height: parent.height*2/3
@@ -201,7 +188,7 @@ Page {
                     }
                 }
                 onClicked: {
-                    stackView.push("AboutUs.qml")
+                    stackView.push("AboutApp.qml")
                     titleLabel.text = "About App"
                     drawer.close()
 
@@ -215,7 +202,7 @@ Page {
 
     SwipeView {
         id: swipeView
-        onCurrentIndexChanged: currentIndex === 0 ? titleLabelek.text = "Categories" : titleLabelek.text = "Products"
+        onCurrentIndexChanged: currentIndex === 0 ? titleLabel.text = "Categories" : titleLabel.text = "Products"
         currentIndex: amountCategories === 0 ? 0 : currentIndex
         interactive: amountCategories === 0 ? false : true
 
@@ -268,103 +255,6 @@ Page {
            }
     }
 
-
-    function refreshPages() {
-        console.log("Found: " + ThingspeakData.amountCategories + " categories");
-//        if (amountCategories === 0){
-//            swipeView.currentIndex = 0;
-//            swipeView.interactive = false
-//        }else{
-//            swipeView.interactive = true
-
-//        }
-        amountCategories = 0;
-        categoryPage.grid.children = "";
-        productPage.listModel.clear();
-        for(var i=0 ; i<ThingspeakData.amountCategories ; i++){
-            var category = ThingspeakData.groupModels[i].category;
-            console.log(category);
-            switch(category) {
-            case Product.Dairy :
-                createBtnCategory("qrc:/icons/icons/dairy-products.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/dairy-products.png" , name: names[0], category: category});
-                amountCategories++;
-                break;
-            case Product.Drinks :
-                createBtnCategory("qrc:/icons/icons/soft-drink.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/soft-drink.png" , name: names[1], category: category});
-                amountCategories++;
-                break;
-            case Product.Alcohols :
-                createBtnCategory("qrc:/icons/icons/glass.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/glass.png" , name: names[2], category: category});
-                amountCategories++;
-                break;
-            case Product.Sauces :
-                createBtnCategory("qrc:/icons/icons/sauces.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sauces.png" , name: names[3], category: category});
-                amountCategories++;
-                break;
-            case Product.Sweets :
-                createBtnCategory("qrc:/icons/icons/sweets.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/sweets.png" , name: names[4], category: category});
-                amountCategories++;
-                break;
-            case Product.Fishes :
-                createBtnCategory("qrc:/icons/icons/fish.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/fish.png" , name: names[5], category: category});
-                amountCategories++;
-                break;
-            case Product.Meat :
-                createBtnCategory("qrc:/icons/icons/meat.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/meat.png" , name: names[6], category: category});
-                amountCategories++;
-                break;
-            case Product.Frozen :
-                createBtnCategory("qrc:/icons/icons/frozen-goods.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/frozen-goods.png" , name: names[7], category: category});
-                amountCategories++;
-                break;
-            case Product.Plants :
-                createBtnCategory("qrc:/icons/icons/healthy-food.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/healthy-food.png" , name: names[8], category: category});
-                amountCategories++;
-                break;
-            case Product.EndOfExpiry :
-                createBtnCategory("qrc:/icons/icons/hourglass.png");
-                productPage.listModel.append({indeks: amountCategories,  iconSourc: "qrc:/icons/icons/hourglass.png" , name: names[9], category: category});
-                amountCategories++;
-                break;
-            default :
-                console.log("Unknown a category");
-            }
-        }
-    }
-
-    function buttonClicked(btnid) {
-        swipeView.setCurrentIndex(1)
-        productPage.list.currentIndex = btnid
-    }
-
-    function createBtnCategory(path) {
-        var component = Qt.createComponent("CategoryBtn.qml");
-        if (component.status === Component.Ready) {
-            var button = component.createObject(categoryPage.grid,
-                                                {figure:  path
-                                                    , width: (categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3
-                                                    , height: (categoryPage.grid.width-categoryPage.grid.leftPadding-categoryPage.grid.rightPadding-2*categoryPage.grid.spacing)/3
-                                                    , btnid: amountCategories});
-            button.clicked.connect(buttonClicked)
-        }
-    }
-
-    //  Component.onCompleted: refreshPages()
-
-    Connections {
-        target: ThingspeakData
-        onGroupProductsChanged: refreshPages();
-
-    }
     function delay_2(delayTime, cb) {
         timerek.interval = delayTime;
         timerek.repeat = false;

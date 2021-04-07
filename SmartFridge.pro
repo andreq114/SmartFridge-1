@@ -11,11 +11,11 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        datatransfer.cpp \
-        main.cpp \
-        product.cpp \
-        productstablemodel.cpp \
-        qmldata.cpp
+        ManagerQML.cpp \
+        Product.cpp \
+        ProductsTableModel.cpp \
+        ThinkspeakNetManager.cpp \
+        main.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,10 +36,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    datatransfer.h \
-    product.h \
-    productstablemodel.h \
-    qmldata.h
+    ManagerQML.h \
+    Product.h \
+    ProductsTableModel.h \
+    ThinkspeakNetManager.h
 
 DISTFILES +=
 

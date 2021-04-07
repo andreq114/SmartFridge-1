@@ -5,7 +5,7 @@
         <file>ProductsPage.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Settings.qml</file>
-        <file>AboutUs.qml</file>
+        <file>AboutApp.qml</file>
         <file>CategoryBtn.qml</file>
         <file>OneCategoryProducts.qml</file>
         <file>ShopList.qml</file>

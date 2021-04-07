@@ -1,15 +1,15 @@
-#include "productstablemodel.h"
+#include "ProductsTableModel.h"
 #include <QDebug>
 
 ProductsTableModel::ProductsTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
+
 }
 
 int ProductsTableModel::rowCount(const QModelIndex &parent) const
 {
     (void) parent;
     return items.size();
-
 }
 
 
@@ -17,7 +17,6 @@ int ProductsTableModel::columnCount(const QModelIndex &parent) const
 {
     (void) parent;
     return roleNames().size();
-
 }
 
 
@@ -52,7 +51,7 @@ bool ProductsTableModel::setData(const QModelIndex &i, const QVariant &value, in
     return true;
 }
 
-void ProductsTableModel::clear()
+void ProductsTableModel::clearModel()
 {
     items.clear();
     emit endResetModel();
@@ -74,7 +73,7 @@ void ProductsTableModel::addProduct(QString descr, QDate date, bool *redTerm, bo
 }
 
 void ProductsTableModel::sortModel(){
-    std::sort(items.begin(), items.end(), [](oneProduct a, oneProduct b) {
+    std::sort(items.begin(), items.end(), [](TableProduct a, TableProduct b) {
             if (a.description < b.description) return true;
              if (a.description > b.description) return false;
              if (a.exp_date < b.exp_date) return true;

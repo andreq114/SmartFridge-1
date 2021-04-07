@@ -9,8 +9,6 @@ Page{
             GradientStop { position: 1.0; color: "#FF8000" }
         }
 
-
-
         Rectangle{
             id: mainRect
             width: (parent.width*3)/4
@@ -48,16 +46,13 @@ Page{
                         width: settingsFlickable.width
                         font.pixelSize: settingsFlickable/9
 
-                        //anchors.right: parent.right
                         from: 0
                         to: 14
-                        value: ThingspeakData.alertRange
+                        value: ManagerQML.alertRange
                         onValueModified: {
-                            ThingspeakData.alertRange = value
-                            //ThingspeakData.refresh()
+                            ManagerQML.alertRange = value
                         }
                     }
-
                 }
             }
         }

@@ -40,16 +40,15 @@ Page {
                 console.log("FUN");
                 if(category == null)
                     return;
-                for(var i = 0; i < ThingspeakData.amountCategories ; i++)
+                for(var i = 0; i < ManagerQML.amountCategories ; i++)
                 {
-                    if(category === ThingspeakData.groupModels[i].category)
+                    if(category === ManagerQML.groupModels[i].category)
                     {
-                        return ThingspeakData.groupModels[i];
+                        return ManagerQML.groupModels[i];
                     }
                 }
             }
         }
-
     }
 }
 

@@ -22,10 +22,10 @@ public:
     Q_INVOKABLE  int       rowCount(const QModelIndex &parent = QModelIndex()) const override;
     Product::Category      getCategory() const {return category;}
     void                   setCategory(Product::Category cat) {category = cat;}
-    void                   clear();
+    void                   clearModel();
     void                   sortModel();
 
-    struct oneProduct{
+    struct TableProduct{
         QString description;
         QDateTime exp_date;
         bool aVisible;
@@ -43,9 +43,8 @@ protected:
     Q_INVOKABLE QHash<int,QByteArray>   roleNames() const override;
     Q_INVOKABLE bool                    setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
-
 private:
-    QList<oneProduct>       items;
+    QList<TableProduct>     items;
     Product::Category       category;
 };
 

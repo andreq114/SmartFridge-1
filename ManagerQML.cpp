@@ -1,17 +1,17 @@
-#include "qmldata.h"
+#include "ManagerQML.h"
 #include "product.h"
-#include "datatransfer.h"
+#include "ThinkspeakNetManager.h"
 #include <QStandardPaths>
 #include <QFile>
 #include "QtNotification.h"
 #include <QQmlEngine>
 
-QMLdata::QMLdata(QObject *parent) : QObject(parent)
+ManagerQML::ManagerQML(QObject *parent) : QObject(parent)
 {
     alertRange = 7;
 }
 
-QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
+ManagerQML::ManagerQML(ThingspeakNetManager *data, QObject *parent) : QObject(parent)
 {
     QFile file(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + ".ini");
     if(file.open(QIODevice::ReadOnly))
@@ -38,26 +38,26 @@ QMLdata::QMLdata(DataTransfer *data, QObject *parent) : QObject(parent)
     QObject::connect(data, SIGNAL(shopListChanged()), this, SLOT(changeShopList()));
 }
 
-QQmlListProperty<ProductsTableModel> QMLdata::getTableModels()
+QQmlListProperty<ProductsTableModel> ManagerQML::getTableModels()
 {
-    return QQmlListProperty<ProductsTableModel>(this, nullptr, &QMLdata::count_group, &QMLdata::at_group);
+    return QQmlListProperty<ProductsTableModel>(this, nullptr, &ManagerQML::count_group, &ManagerQML::at_group);
 }
 
-int QMLdata::count_group(QQmlListProperty<ProductsTableModel> *list)
+int ManagerQML::count_group(QQmlListProperty<ProductsTableModel> *list)
 {
-    QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
+    ManagerQML *msgBoard = qobject_cast<ManagerQML *>(list->object);
     return msgBoard->groupModels.count();
 }
 
-ProductsTableModel* QMLdata::at_group(QQmlListProperty<ProductsTableModel> *list, int index)
+ProductsTableModel* ManagerQML::at_group(QQmlListProperty<ProductsTableModel> *list, int index)
 {
-    QMLdata *msgBoard = qobject_cast<QMLdata *>(list->object);
+    ManagerQML *msgBoard = qobject_cast<ManagerQML *>(list->object);
     auto item = msgBoard->groupModels[index].get();
     QQmlEngine::setObjectOwnership(item, QQmlEngine::CppOwnership);
     return item;
 }
 
-void QMLdata::changeShopList()
+void ManagerQML::changeShopList()
 {
     this->shoplist = data->getShopList();
     emit shoplistChanged();
@@ -67,12 +67,12 @@ void QMLdata::changeShopList()
     showNotify(str);
 }
 
-void QMLdata::refresh()
+void ManagerQML::refresh()
 {
     makeGroups(data->getProducts(), creatingDate);
 }
 
-void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
+void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
 {
     QDateTime date = QDateTime::currentDateTime();
     auto date_format = date.toString("dd.MM.yyyy hh:mm");
@@ -86,7 +86,7 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
     QDate currentDate = QDate::currentDate();
     QDate shiftedDate = currentDate.addDays(alertRange);
     groupModels.clear();
-    endOfExpiryDateModel->clear();
+    endOfExpiryDateModel->clearModel();
     auto foundEndofExpiry = false;
     for(QVector<QSharedPointer<Product>>::Iterator it =products->begin(); it != products->end(); it++)
     {
@@ -137,29 +137,29 @@ void QMLdata::makeGroups(QVector<QSharedPointer<Product>> *products, QString cre
     emit refreshDateChanged();
 }
 
-int QMLdata::getAmountCategories()
+int ManagerQML::getAmountCategories()
 {
     return groupModels.count();
 }
 
-QStringList QMLdata::getShopList()
+QStringList ManagerQML::getShopList()
 {
     return shoplist;
 }
 
-int QMLdata::getShopListSize()
+int ManagerQML::getShopListSize()
 {
     return shoplist.size();
 }
 
-void QMLdata::refreshData()
+void ManagerQML::refreshData()
 {
     data->refreshData();
 }
 
-void QMLdata::refreshEndExpiryModel()
+void ManagerQML::refreshEndExpiryModel()
 {
-    endOfExpiryDateModel->clear();
+    endOfExpiryDateModel->clearModel();
     QVector<QSharedPointer<Product>> *products = data->getProducts();
     QDate currentDate = QDate::currentDate();
     QDate shiftedDate = currentDate.addDays(alertRange);
@@ -199,13 +199,13 @@ void QMLdata::refreshEndExpiryModel()
 
 }
 
-void QMLdata::setAlertRange(int range)
+void ManagerQML::setAlertRange(int range)
 {
     alertRange = range;
     emit alertRangeChanged();
 }
 
-void QMLdata::showNotify(QString title)
+void ManagerQML::showNotify(QString title)
 {
     QtNotification notify;
     QMap<QString, QVariant> map;
@@ -215,7 +215,7 @@ void QMLdata::showNotify(QString title)
     map.insert("id", QVariant(0));
     notify.show(map);
 }
-void QMLdata::saveConfig(Qt::ApplicationState state)
+void ManagerQML::saveConfig(Qt::ApplicationState state)
 {
     if (state != Qt::ApplicationActive)
     {

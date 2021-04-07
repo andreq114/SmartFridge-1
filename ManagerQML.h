@@ -1,12 +1,12 @@
-#ifndef QMLDATA_H
-#define QMLDATA_H
+#ifndef MANAGERQML_H
+#define MANAGERQML_H
 
 #include <QObject>
-#include "datatransfer.h"
-#include "productstablemodel.h"
+#include "ThinkspeakNetManager.h"
+#include "ProductsTableModel.h"
 #include <QQmlListProperty>
 
-class QMLdata : public QObject
+class ManagerQML : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<ProductsTableModel> groupModels READ getTableModels NOTIFY groupProductsChanged)
@@ -17,8 +17,8 @@ class QMLdata : public QObject
     Q_PROPERTY(QString refreshDate READ getRefreshDate NOTIFY refreshDateChanged)
 
 public:
-    explicit QMLdata(QObject *parent = nullptr);
-    explicit QMLdata(DataTransfer *data,  QObject *parent = nullptr);
+    explicit ManagerQML(QObject *parent = nullptr);
+    explicit ManagerQML(ThingspeakNetManager *data,  QObject *parent = nullptr);
 
     QList<QSharedPointer<ProductsTableModel>>groupModels;
     QStringList shoplist;
@@ -56,7 +56,7 @@ private slots:
     void                                    changeShopList();
 
 private:
-    DataTransfer*                           data;
+    ThingspeakNetManager*                           data;
     int32_t                                 alertRange;
     QString                                 creatingDate;
     QString                                 refreshDate;
@@ -65,4 +65,4 @@ private:
     void                                    showNotify(QString title);
 };
 
-#endif // QMLDATA_H
+#endif // MANAGERQML_H

@@ -1,10 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "datatransfer.h"
+#include "ThinkspeakNetManager.h"
 #include <QAbstractTableModel>
 #include <QQmlContext>
-#include "qmldata.h"
-#include "productstablemodel.h"
+#include "ManagerQML.h"
+#include "ProductsTableModel.h"
 
 
 int main(int argc, char *argv[])
@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
     qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
-    qmlRegisterType<QMLdata>("com.mycompany.qmldata", 1, 0, "Qmldata");
+    qmlRegisterType<ManagerQML>("com.mycompany.qmldata", 1, 0, "Qmldata");
 
     QQmlApplicationEngine engine;
-    DataTransfer dataTransfer;
-    QMLdata products(&dataTransfer);
+    ThingspeakNetManager dataTransfer;
+    ManagerQML products(&dataTransfer);
     QObject::connect(&app, &QGuiApplication::applicationStateChanged,
-                     &products, &QMLdata::saveConfig);
+                     &products, &ManagerQML::saveConfig);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -30,9 +30,8 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    engine.rootContext()->setContextProperty("ThingspeakData", &products);
+    engine.rootContext()->setContextProperty("ManagerQML", &products);
     engine.load(url);
-
 
     return app.exec();
 }
