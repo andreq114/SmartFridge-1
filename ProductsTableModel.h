@@ -8,7 +8,7 @@
 #include <QByteArray>
 #include <QList>
 #include <qqml.h>
-#include "product.h"
+#include "Product.h"
 
 
 

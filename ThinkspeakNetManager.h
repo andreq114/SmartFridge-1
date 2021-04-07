@@ -9,7 +9,7 @@
 #include <QNetworkReply>
 #include <QThread>
 #include <QTimer>
-#include "product.h"
+#include "Product.h"
 
 class ThingspeakNetManager : public QObject
 {
