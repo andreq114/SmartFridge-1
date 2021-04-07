@@ -9,7 +9,7 @@
 #include <QNetworkReply>
 #include <QThread>
 #include <QTimer>
-#include "Product.h"
+#include "product.h"
 
 class ThingspeakNetManager : public QObject
 {
@@ -27,7 +27,6 @@ signals:
     void shopListChanged();
 private:
     QNetworkRequest                 request;
-    QNetworkReply                   *reply = nullptr;
     QNetworkAccessManager           *restclient = nullptr;
     QVector<QSharedPointer<Product>> products;
     QStringList                     shoplist;

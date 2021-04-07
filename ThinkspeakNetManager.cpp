@@ -127,5 +127,5 @@ QStringList ThingspeakNetManager::getShopList(){
 
 void  ThingspeakNetManager::refreshData()
 {
-    reply = restclient->get(request);
+    restclient->get(request);
 }
