@@ -26,7 +26,7 @@ Page{
                     width: aboutUsFlickable.width/2
                     height: width
                     anchors.horizontalCenter: parent.horizontalCenter
-                    source: "qrc:/menu_icons/icons/logo_KI.png"
+                    source: "qrc:/icons/icons/KI_LOGO.jpg"
                 }
 
                 Text {
