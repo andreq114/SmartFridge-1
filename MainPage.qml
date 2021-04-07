@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.0
 
-import com.mycompany.product 1.0
+
 import com.mycompany.qmldata 1.0
 import com.mycompany.productsTableModel 1.0
 
@@ -13,6 +13,8 @@ Page {
     property var set
     property alias titleLabel: titleLabel
     property alias categoryPage: categoryPage
+    property alias productPage: productPage
+    property alias swipeView: swipeView
 
     header: ToolBar {
         id: mainToolBar
@@ -118,8 +120,8 @@ Page {
                     titleLabel.text = "Shopping List"
 
                     drawer.close()
-                    swipeView.currentIndex = 0;
-                    productPage.list.currentIndex = 0
+                    //swipeView.currentIndex = 0;
+                    //productPage.list.currentIndex = 0
                 }
             }
 
@@ -155,8 +157,8 @@ Page {
                     set = stackView.get(1)
                     titleLabel.text = "Notification"
                     drawer.close()
-                    swipeView.currentIndex = 0;
-                    productPage.list.currentIndex = 0
+                    //swipeView.currentIndex = 0;
+                    //productPage.list.currentIndex = 0
                 }
             }
 
@@ -192,8 +194,8 @@ Page {
                     titleLabel.text = "About App"
                     drawer.close()
 
-                    swipeView.currentIndex = 0;
-                    productPage.list.currentIndex = 0
+                    //swipeView.currentIndex = 0;
+                    //productPage.list.currentIndex = 0
                 }
             }
         }

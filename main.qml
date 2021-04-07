@@ -1,10 +1,11 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import com.mycompany.product 1.0
 
 ApplicationWindow {
     id: window
-    width: 1000
-    height: 200
+    width: 500
+    height: 700
     visible: true
     title: qsTr("Smart Fridge")
 
@@ -16,6 +17,7 @@ ApplicationWindow {
 
     MainPage{
         id: mainPage
+
     }
 
 
@@ -58,8 +60,9 @@ ApplicationWindow {
     function refreshPages() {
         console.log("Found: " + ManagerQML.amountCategories + " categories");
         amountCategories = 0;
-        categoryPage.grid.children = "";
+        mainPage.categoryPage.grid.children = "";
         var mainPageListRef = mainPage.productPage.listModel;
+
         mainPageListRef.clear();
         for(var i=0 ; i<ManagerQML.amountCategories ; i++){
             var category = ManagerQML.groupModels[i].category;
@@ -122,8 +125,8 @@ ApplicationWindow {
     }
 
     function buttonClicked(btnid) {
-        swipeView.setCurrentIndex(1)
-        productPage.list.currentIndex = btnid
+        mainPage.swipeView.setCurrentIndex(1)
+        mainPage.productPage.list.currentIndex = btnid
     }
 
     function createBtnCategory(path) {
@@ -132,8 +135,8 @@ ApplicationWindow {
             var catPage = mainPage.categoryPage.grid
             var button = component.createObject(catPage,
                                                 {figure:  path
-                                                    , width: (catPage.width-categoryPage.grid.leftPadding - catPage.rightPadding - 2*catPage.spacing)/3
-                                                    , height: (catPage.width-categoryPage.grid.leftPadding - catPage.rightPadding - 2*catPage.spacing)/3
+                                                    , width: (catPage.width-catPage.leftPadding - catPage.rightPadding - 2*catPage.spacing)/3
+                                                    , height: (catPage.width-catPage.leftPadding - catPage.rightPadding - 2*catPage.spacing)/3
                                                     , btnid: amountCategories});
             button.clicked.connect(buttonClicked)
         }
