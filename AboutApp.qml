@@ -34,10 +34,20 @@ Page{
                     wrapMode: Text.Wrap
                     horizontalAlignment: Text.AlignJustify
                     width: aboutAppFlickable.width
-                    height: width
                     topPadding: 30
                     font.pixelSize: aboutAppFlickable.width/20
                     text: "This application is a part of Smart Fridge system created for thesis. We can check here products which we have already in fridge or read shopping list created in second part of system including control system."
+                }
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    wrapMode: Text.Wrap
+                    horizontalAlignment: Text.AlignJustify
+                    width: aboutAppFlickable.width
+                    topPadding: 60
+                    onLinkActivated: Qt.openUrlExternally(link)
+                    font.pixelSize: aboutAppFlickable.width/20
+                    text: '<div><center><b>Icons made by:</b></center><br>Vitaly Gorbachev<br>Freepik<br>Google<br>Kirill Kazachek<br>Pixelmeetup<br>monkik<br>iconixar<br>dmitri13<br>from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>.</div>'
+
                 }
             }
 
