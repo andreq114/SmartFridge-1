@@ -1,5 +1,5 @@
 #include "ManagerQML.h"
-#include "product.h"
+#include "Product.h"
 #include "ThinkspeakNetManager.h"
 #include <QStandardPaths>
 #include <QFile>
