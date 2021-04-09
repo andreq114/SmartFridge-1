@@ -1,10 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-//import com.ProductsTable 0.1
 import QtQuick.Controls 2.5
-//import QtQuick.Controls 1.4 as C1
 import Qt.labs.qmlmodels 1.0
 import QtGraphicalEffects 1.0
+
 Page{
 
     property alias icon_source: myIcon.source

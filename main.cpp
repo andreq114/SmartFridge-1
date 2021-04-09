@@ -13,15 +13,15 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<Product>("com.mycompany.product", 1, 0, "Product");
-    qmlRegisterType<ProductsTableModel>("com.mycompany.productsTableModel", 1, 0, "ProductsTableModel");
-    qmlRegisterType<ManagerQML>("com.mycompany.qmldata", 1, 0, "Qmldata");
+    qmlRegisterType<Product>("CppTypes.Product", 1, 0, "Product");
+    qmlRegisterType<ProductsTableModel>("CppTypes.ProductsTableModel", 1, 0, "ProductsTableModel");
+    qmlRegisterType<ManagerQML>("CppTypes.Qmldata", 1, 0, "ManagerQML");
 
     QQmlApplicationEngine engine;
     ThingspeakNetManager dataTransfer;
-    ManagerQML products(&dataTransfer);
+    ManagerQML qmlManager(&dataTransfer);
     QObject::connect(&app, &QGuiApplication::applicationStateChanged,
-                     &products, &ManagerQML::saveConfig);
+                     &qmlManager, &ManagerQML::saveConfig);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    engine.rootContext()->setContextProperty("ManagerQML", &products);
+    engine.rootContext()->setContextProperty("ManagerQML", &qmlManager);
     engine.load(url);
 
     return app.exec();

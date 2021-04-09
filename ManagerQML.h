@@ -56,7 +56,7 @@ private slots:
     void                                    changeShopList();
 
 private:
-    ThingspeakNetManager*                           data;
+    ThingspeakNetManager*                   data;
     int32_t                                 alertRange;
     QString                                 creatingDate;
     QString                                 refreshDate;

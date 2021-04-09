@@ -3,9 +3,9 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.0
 
-
-import com.mycompany.qmldata 1.0
-import com.mycompany.productsTableModel 1.0
+import CppTypes.ProductsTableModel 1.0
+import CppTypes.Qmldata 1.0
+import CppTypes.Product 1.0
 
 Page {
     anchors.fill: parent

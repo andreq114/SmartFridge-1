@@ -1,8 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import com.mycompany.product 1.0
-import com.mycompany.qmldata 1.0
-import com.mycompany.productsTableModel 1.0
+
+import CppTypes.ProductsTableModel 1.0
+import CppTypes.Qmldata 1.0
 
 Page {
 
