@@ -63,8 +63,8 @@ ApplicationWindow {
         amountCategories = 0;
         mainPage.categoryPage.grid.children = "";
         var mainPageListRef = mainPage.productPage.listModel;
-
         mainPageListRef.clear();
+
         for(var i=0 ; i<ManagerQML.amountCategories ; i++){
             var category = ManagerQML.groupModels[i].category;
             console.log(category);
@@ -146,6 +146,5 @@ ApplicationWindow {
     Connections {
         target: ManagerQML
         onGroupProductsChanged: refreshPages();
-
     }
 }

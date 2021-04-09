@@ -50,16 +50,16 @@ Page {
                 flickableDirection: Flickable.VerticalFlick
                 boundsBehavior: Flickable.DragAndOvershootBounds
 
-                property var refreshFlik;
+                property var refreshFlick;
                 property  var startYPosition;
 
                 property var yPosEnd;
                 property var yPosStart;
 
                 onFlickStarted: {
-                    refreshFlik = atYBeginning
+                    refreshFlick = atYBeginning
 
-                    if (refreshFlik === true && verticalOvershoot < -100)
+                    if (refreshFlick === true && verticalOvershoot < -100)
                     {
                         refreshIcon.visible = true
                         refreshIconAnimation.start()

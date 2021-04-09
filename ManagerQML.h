@@ -49,7 +49,6 @@ signals:
     void                                    shoplistSizeChanged();
     void                                    alertRangeChanged();
     void                                    creatingDateChanged();
-    void                                    refreshDateChanged();
 
 private slots:
     void                                    makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate);

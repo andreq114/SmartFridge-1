@@ -1,14 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>CategorysPage.qml</file>
-        <file>ProductsPage.qml</file>
+        <file>CategoryIconsPage.qml</file>
+        <file>CategoriesPage.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Settings.qml</file>
         <file>AboutApp.qml</file>
         <file>CategoryBtn.qml</file>
         <file>OneCategoryProducts.qml</file>
-        <file>ShopList.qml</file>
+        <file>ShoppingList.qml</file>
         <file>MainPage.qml</file>
         <file>IntroPage.qml</file>
     </qresource>

@@ -76,7 +76,6 @@ void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString 
 {
     if(products == nullptr)
     {
-        emit refreshDateChanged();
         return;
     }
     this->creatingDate = creatingDate;
@@ -131,7 +130,6 @@ void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString 
     emit amountCategoriesChanged();
     emit groupProductsChanged();
     emit creatingDateChanged();
-    emit refreshDateChanged();
 }
 
 int ManagerQML::getAmountCategories()

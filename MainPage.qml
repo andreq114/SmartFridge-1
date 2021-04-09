@@ -10,7 +10,7 @@ import CppTypes.Product 1.0
 Page {
     anchors.fill: parent
     id: window
-    property var set
+    property var settings
     property alias titleLabel: titleLabel
     property alias categoryPage: categoryPage
     property alias productPage: productPage
@@ -33,7 +33,7 @@ Page {
                 icon.source: stackView.depth > 1 ? "qrc:/menu_icons/icons/return-arrow.png" : "qrc:/menu_icons/icons/menu.png"
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
-                    if(stackView.currentItem === set)
+                    if(stackView.currentItem === settings)
                         ManagerQML.refreshEndExpiryModel()
                     if (stackView.depth > 1) {
                         titleLabel.text = swipeView.currentIndex === 0 ? "Categories" : "Products"
@@ -154,7 +154,7 @@ Page {
                 }
                 onClicked: {
                     stackView.push("Settings.qml")
-                    set = stackView.get(1)
+                    settings = stackView.get(1)
                     titleLabel.text = "Notification"
                     drawer.close()
                     //swipeView.currentIndex = 0;
@@ -193,9 +193,6 @@ Page {
                     stackView.push("AboutApp.qml")
                     titleLabel.text = "About App"
                     drawer.close()
-
-                    //swipeView.currentIndex = 0;
-                    //productPage.list.currentIndex = 0
                 }
             }
         }
