@@ -74,9 +74,6 @@ void ManagerQML::refresh()
 
 void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
 {
-    QDateTime date = QDateTime::currentDateTime();
-    auto date_format = date.toString("dd.MM.yyyy hh:mm");
-    this->refreshDate = date_format;
     if(products == nullptr)
     {
         emit refreshDateChanged();

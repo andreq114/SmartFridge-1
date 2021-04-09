@@ -14,7 +14,6 @@ class ManagerQML : public QObject
     Q_PROPERTY(QStringList shoplist READ getShopList NOTIFY shoplistChanged)
     Q_PROPERTY(int alertRange READ getAlertRange WRITE setAlertRange NOTIFY alertRangeChanged)
     Q_PROPERTY(QString creatingDate READ getCreatingDate NOTIFY creatingDateChanged)
-    Q_PROPERTY(QString refreshDate READ getRefreshDate NOTIFY refreshDateChanged)
 
 public:
     explicit ManagerQML(QObject *parent = nullptr);
