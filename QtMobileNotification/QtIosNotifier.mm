@@ -65,6 +65,11 @@ QtIosNotifier::QtIosNotifier()
     }];
 }
 
+void QtIosNotifier::clear()
+{
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
 //------------------------------------------------------------------------------
 
 bool QtIosNotifier::show(const QVariant &notificationParameters)

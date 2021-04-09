@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE void                        refreshData();
     Q_INVOKABLE void                        refreshEndExpiryModel();
     Q_INVOKABLE void                        refresh();
+    Q_INVOKABLE void                        clearNotify();
 
     static int                              count_group(QQmlListProperty<ProductsTableModel> *list);
     static ProductsTableModel*              at_group(QQmlListProperty<ProductsTableModel> *list, int index);

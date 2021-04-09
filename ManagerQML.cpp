@@ -190,9 +190,9 @@ void ManagerQML::refreshEndExpiryModel()
     }
     else if(!groupModels.contains(endOfExpiryDateModel) and foundEndofExpiry)
     {
-        endOfExpiryDateModel->sortModel();
         groupModels.append(endOfExpiryDateModel);
     }
+    endOfExpiryDateModel->sortModel();
 
     emit amountCategoriesChanged();
     emit groupProductsChanged();
@@ -214,6 +214,12 @@ void ManagerQML::showNotify(QString title)
     map.insert("title", QVariant("Smart Fridge"));
     map.insert("id", QVariant(0));
     notify.show(map);
+}
+
+void ManagerQML::clearNotify()
+{
+    QtNotification notify;
+    notify.clear();
 }
 void ManagerQML::saveConfig(Qt::ApplicationState state)
 {

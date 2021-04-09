@@ -1,6 +1,5 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-//import QtQuick.Controls.Styles 1.0
 import Qt.labs.qmlmodels 1.0
 import QtGraphicalEffects 1.0
 
@@ -65,8 +64,6 @@ Page {
                         refreshIcon.visible = true
                         refreshIconAnimation.start()
                         ManagerQML.refreshData();
-                        ManagerQML.refreshEndExpiryModel()
-
                     }
                 }
 
@@ -114,7 +111,6 @@ Page {
                     onWidthChanged: {
                         delay_2(5,function(){
                             ManagerQML.refreshEndExpiryModel()
-                            //refreshPages()
                         }
                         )
                     }

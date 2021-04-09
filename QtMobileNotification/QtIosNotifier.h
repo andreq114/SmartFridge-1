@@ -11,6 +11,7 @@ public:
 
 public:
     bool show(const QVariant &notificationParameters);
+    void clear();
 
 private:
     void                *m_Delegate;

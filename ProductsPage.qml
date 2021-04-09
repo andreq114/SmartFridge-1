@@ -37,7 +37,6 @@ Page {
 
 
             function createTableProducts(category) {
-                console.log("FUN");
                 if(category == null)
                     return;
                 for(var i = 0; i < ManagerQML.amountCategories ; i++)

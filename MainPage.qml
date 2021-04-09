@@ -118,7 +118,7 @@ Page {
                 onClicked: {
                     stackView.push("ShopList.qml")
                     titleLabel.text = "Shopping List"
-
+                    ManagerQML.clearNotify();
                     drawer.close()
                     //swipeView.currentIndex = 0;
                     //productPage.list.currentIndex = 0

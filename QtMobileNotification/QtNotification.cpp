@@ -28,6 +28,12 @@ bool QtNotification::show(const QVariant &notificationParameters)
             : _Notifier->show(notificationParameters);
 }
 
+void QtNotification::clear()
+{
+    if(_Notifier != nullptr)
+           _Notifier->clear();
+}
+
 //------------------------------------------------------------------------------
 
 void QtNotification::declareQML()
