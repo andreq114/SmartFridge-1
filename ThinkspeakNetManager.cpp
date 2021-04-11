@@ -113,7 +113,7 @@ void ThingspeakNetManager::parseReply(QVector<QString> &fields)
     if(this->shoplist != shoplist)
     {
         this->shoplist = shoplist;
-        emit shopListChanged();
+        emit shoppingListChanged();
     }
 }
 
@@ -121,7 +121,7 @@ QVector<QSharedPointer<Product>> * ThingspeakNetManager::getProducts(){
     return &products;
 }
 
-QStringList ThingspeakNetManager::getShopList(){
+QStringList ThingspeakNetManager::getShoppingList(){
     return shoplist;
 }
 

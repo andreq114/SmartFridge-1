@@ -30,7 +30,7 @@ bool QtAndroidNotifier::show(const QVariant &notificationParameters)
     return true;
 }
 
-void QtAbstractNotifier::clear()
+void QtAndroidNotifier::clear()
 {
 
 }

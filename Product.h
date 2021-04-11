@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QDate>
+#include "Category.h"
 
 class Product : public QObject
 {
@@ -10,18 +11,7 @@ class Product : public QObject
     Q_PROPERTY(QString term READ getTerm NOTIFY termChanged)
     Q_PROPERTY(QString name READ getFullName NOTIFY nameChanged)
 public:
-    enum Category{
-        Dairy,
-        Drinks,
-        Alcohols,
-        Sauces,
-        Sweets,
-        Fishes,
-        Meat,
-        Frozen,
-        Plants,
-        EndOfExpiry
-    };
+
     Q_FLAG(Category)
     explicit Product(QObject *parent = nullptr);
     explicit Product(QString     name,
@@ -36,7 +26,7 @@ public:
     QString     getTerm() const {return term.toString();}
     QDate       getDate() const {return term;}
     QString     getFullName() const {return name + ' ' + company + ' ' + desc + ' ' + mass;}
-    Category    getCat() const {return category;}
+    Category    getCategory() const {return category;}
     bool*       getRedTerm() {return &redTerm;}
     void        setRedTerm(bool val) {redTerm = val;}
     bool*       getYellowTerm() {return &yellowTerm;}

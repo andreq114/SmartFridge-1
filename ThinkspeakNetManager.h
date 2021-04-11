@@ -19,12 +19,12 @@ public:
     ~ThingspeakNetManager() override;
 
     QVector<QSharedPointer<Product>>*getProducts();
-    QStringList                     getShopList();
+    QStringList                     getShoppingList();
 public slots:
     void                            refreshData();
 signals:
     void dataReceived(QVector<QSharedPointer<Product>> *, QString );
-    void shopListChanged();
+    void shoppingListChanged();
 private:
     QNetworkRequest                 request;
     QNetworkAccessManager           *restclient = nullptr;

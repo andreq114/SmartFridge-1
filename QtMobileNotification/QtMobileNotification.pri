@@ -7,6 +7,7 @@ HEADERS += \
     $$PWD/QtNotifierFactory.h
 
 SOURCES += \
+    $$PWD/QtIosNotifier.mm \
     $$PWD/QtNotification.cpp \    
     $$PWD/QtNotifierFactory.cpp
 

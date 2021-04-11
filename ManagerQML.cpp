@@ -30,12 +30,12 @@ ManagerQML::ManagerQML(ThingspeakNetManager *data, QObject *parent) : QObject(pa
     }else{
         alertRange = 7;
     }
-    this->shoplist = data->getShopList();
+    this->shoppinglist = data->getShoppingList();
     this->data = data;
     endOfExpiryDateModel  = QSharedPointer<ProductsTableModel>(new ProductsTableModel());
     endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
     QObject::connect(data, SIGNAL(dataReceived(QVector<QSharedPointer<Product>> *, QString)), this, SLOT(makeGroups(QVector<QSharedPointer<Product>> *, QString)));
-    QObject::connect(data, SIGNAL(shopListChanged()), this, SLOT(changeShopList()));
+    QObject::connect(data, SIGNAL(shoppingListChanged()), this, SLOT(changeShopList()));
 }
 
 QQmlListProperty<ProductsTableModel> ManagerQML::getTableModels()
@@ -59,17 +59,12 @@ ProductsTableModel* ManagerQML::at_group(QQmlListProperty<ProductsTableModel> *l
 
 void ManagerQML::changeShopList()
 {
-    this->shoplist = data->getShopList();
+    this->shoppinglist = data->getShoppingList();
     emit shoplistChanged();
     emit shoplistSizeChanged();
 
     QString str("Shopping list has been changed, check it!");
     showNotify(str);
-}
-
-void ManagerQML::refresh()
-{
-    makeGroups(data->getProducts(), creatingDate);
 }
 
 void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate)
@@ -90,7 +85,7 @@ void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString 
         auto itr = std::find_if(groupModels.begin()
                                 , groupModels.end()
                                 , [product](QSharedPointer<ProductsTableModel> var)
-        { return var->getCategory() == product->getCat(); }
+        { return var->getCategory() == product->getCategory(); }
                 );
 
         if(QDate(product->getDate()) < currentDate)
@@ -115,7 +110,7 @@ void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString 
             QSharedPointer<ProductsTableModel> model =
                     QSharedPointer<ProductsTableModel>(new ProductsTableModel(), &QObject::deleteLater);
             model->addProduct(product->getFullName(), product->getDate(), product->getRedTerm(), product->getYellowTerm());
-            model->setCategory(product->getCat());
+            model->setCategory(product->getCategory());
             groupModels.append(model);
         }
     }
@@ -139,13 +134,13 @@ int ManagerQML::getAmountCategories()
 
 QStringList ManagerQML::getShopList()
 {
-    return shoplist;
+    return shoppinglist;
 }
 
-int ManagerQML::getShopListSize()
-{
-    return shoplist.size();
-}
+//int ManagerQML::getShopListSize()
+//{
+//    return shoppinglist.size();
+//}
 
 void ManagerQML::refreshData()
 {
