@@ -12,7 +12,7 @@ Page{
         ListView {
             id: list
             anchors.fill: parent
-            model: ManagerQML.shoplist
+            model: ManagerQML.shoppinglist
             delegate:
                 Rectangle {
                 id: shopListRect

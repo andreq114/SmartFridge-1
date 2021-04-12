@@ -33,7 +33,7 @@ ManagerQML::ManagerQML(ThingspeakNetManager *data, QObject *parent) : QObject(pa
     this->shoppinglist = data->getShoppingList();
     this->data = data;
     endOfExpiryDateModel  = QSharedPointer<ProductsTableModel>(new ProductsTableModel());
-    endOfExpiryDateModel->setCategory(Product::EndOfExpiry);
+    endOfExpiryDateModel->setCategory(Product::Category::EndOfExpiry);
     QObject::connect(data, SIGNAL(dataReceived(QVector<QSharedPointer<Product>> *, QString)), this, SLOT(makeGroups(QVector<QSharedPointer<Product>> *, QString)));
     QObject::connect(data, SIGNAL(shoppingListChanged()), this, SLOT(changeShopList()));
 }

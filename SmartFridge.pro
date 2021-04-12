@@ -36,11 +36,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Category.h \
     ManagerQML.h \
     Product.h \
     ProductsTableModel.h \
-    TableProduct.h \
     ThinkspeakNetManager.h
 
 DISTFILES +=

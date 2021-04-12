@@ -21,7 +21,6 @@ public:
 
     QQmlListProperty<ProductsTableModel>    getTableModels();
     QStringList                             getShopList();
-    //int                                     getShopListSize();
     int                                     getAmountCategories();
     int                                     getAlertRange() { return alertRange;}
     void                                    setAlertRange(int range);

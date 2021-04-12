@@ -116,7 +116,7 @@ Page {
                     }
                 }
                 onClicked: {
-                    stackView.push("ShopList.qml")
+                    stackView.push("ShoppingList.qml")
                     titleLabel.text = "Shopping List"
                     ManagerQML.clearNotify();
                     drawer.close()
@@ -205,11 +205,11 @@ Page {
         currentIndex: amountCategories === 0 ? 0 : currentIndex
         interactive: amountCategories === 0 ? false : true
 
-        CategorysPage {
+        CategoryIconsPage {
             id: categoryPage
         }
 
-        ProductsPage {
+        CategoriesPage {
             id: productPage
         }
     }

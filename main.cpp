@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Product>("CppTypes.Product", 1, 0, "Product");
     qmlRegisterType<ProductsTableModel>("CppTypes.ProductsTableModel", 1, 0, "ProductsTableModel");
-    qmlRegisterType<ManagerQML>("CppTypes.Qmldata", 1, 0, "ManagerQML");
+    qmlRegisterType<ManagerQML>("CppTypes.Qmldata", 1, 0, "ManagerQml");
 
     QQmlApplicationEngine engine;
     ThingspeakNetManager dataTransfer;

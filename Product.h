@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QDate>
-#include "Category.h"
 
 class Product : public QObject
 {
@@ -11,7 +10,18 @@ class Product : public QObject
     Q_PROPERTY(QString term READ getTerm NOTIFY termChanged)
     Q_PROPERTY(QString name READ getFullName NOTIFY nameChanged)
 public:
-
+    enum Category{
+        Dairy,
+        Drinks,
+        Alcohols,
+        Sauces,
+        Sweets,
+        Fishes,
+        Meat,
+        Frozen,
+        Plants,
+        EndOfExpiry
+    };
     Q_FLAG(Category)
     explicit Product(QObject *parent = nullptr);
     explicit Product(QString     name,

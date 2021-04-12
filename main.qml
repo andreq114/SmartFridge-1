@@ -10,7 +10,6 @@ ApplicationWindow {
     visible: true
     title: qsTr("Smart Fridge")
 
-
     IntroPage{
         id: intro
     }
@@ -20,7 +19,6 @@ ApplicationWindow {
         id: mainPage
 
     }
-
 
     StackView {
         id: mainStack

@@ -3,6 +3,8 @@ import QtQuick.Controls 2.5
 
 import CppTypes.ProductsTableModel 1.0
 import CppTypes.Qmldata 1.0
+import CppTypes.Product 1.0
+
 
 Page {
 
@@ -37,8 +39,11 @@ Page {
 
 
             function createTableProducts(category) {
+
                 if(category == null)
                     return;
+
+                console.log(ManagerQML.amountCategories);
                 for(var i = 0; i < ManagerQML.amountCategories ; i++)
                 {
                     if(category === ManagerQML.groupModels[i].category)

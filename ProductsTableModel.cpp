@@ -70,6 +70,7 @@ QHash<int,QByteArray> ProductsTableModel::roleNames() const
 
 void ProductsTableModel::addProduct(QString descr, QDate date, bool *redTerm, bool *yellowTerm) {
     items.append({descr,QDateTime(date), false, redTerm, yellowTerm});
+    //emit rowsInserted(QModelIndex(), items.size(), items.size());
 }
 
 void ProductsTableModel::sortModel(){
