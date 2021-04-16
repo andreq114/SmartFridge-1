@@ -15,9 +15,9 @@ ThingspeakNetManager::ThingspeakNetManager()
     request.setUrl(myurl);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
-    connect(requestThread, &QThread::started, this, &ThingspeakNetManager::run);
+    connect(requestThread, SIGNAL(started()), this, SLOT(run()));
     connect(restclient, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply *)));
-    connect(timer, &QTimer::timeout, this, &ThingspeakNetManager::refreshData, Qt::QueuedConnection);
+    connect(timer, SIGNAL(timeout()), this, SLOT(refreshData()), Qt::QueuedConnection);
 
     timer->moveToThread(requestThread);
     requestThread->start();
