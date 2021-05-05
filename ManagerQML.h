@@ -13,7 +13,7 @@ class ManagerQML : public QObject
     Q_PROPERTY(int amountCategories READ getAmountCategories NOTIFY amountCategoriesChanged)
     Q_PROPERTY(QStringList shoppinglist READ getShopList NOTIFY shoplistChanged)
     Q_PROPERTY(int alertRange READ getAlertRange WRITE setAlertRange NOTIFY alertRangeChanged)
-    Q_PROPERTY(QString creatingDate READ getCreatingDate NOTIFY creatingDateChanged)
+    Q_PROPERTY(QString createdDate READ getCreatingDate NOTIFY createdDateChanged)
 
 public:
     explicit ManagerQML(QObject *parent = nullptr);
@@ -42,7 +42,7 @@ signals:
     void                                    shoplistChanged();
     void                                    shoplistSizeChanged();
     void                                    alertRangeChanged();
-    void                                    creatingDateChanged();
+    void                                    createdDateChanged();
 
 private slots:
     void                                    makeGroups(QVector<QSharedPointer<Product>> *products, QString creatingDate);

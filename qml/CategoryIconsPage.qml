@@ -123,7 +123,7 @@ Page {
         anchors.bottom: parent.bottom
         leftPadding: 10
         bottomPadding: 10
-        text: "Last server update: " + Qt.formatDateTime(new Date(ManagerQML.creatingDate), "dd.MM.yyyy hh:mm")
+        text: "Last server update: " + Qt.formatDateTime(new Date(ManagerQML.createdDate), "dd.MM.yyyy hh:mm")
         font.pixelSize: parent.width/25
     }
 

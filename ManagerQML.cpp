@@ -124,7 +124,7 @@ void ManagerQML::makeGroups(QVector<QSharedPointer<Product>> *products, QString 
 
     emit amountCategoriesChanged();
     emit groupProductsChanged();
-    emit creatingDateChanged();
+    emit createdDateChanged();
 }
 
 int ManagerQML::getAmountCategories()

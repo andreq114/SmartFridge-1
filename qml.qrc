@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>CategoryIconsPage.qml</file>
-        <file>CategoriesPage.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/CategoryIconsPage.qml</file>
+        <file>qml/CategoriesPage.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>Settings.qml</file>
-        <file>AboutApp.qml</file>
-        <file>CategoryBtn.qml</file>
-        <file>OneCategoryProducts.qml</file>
-        <file>ShoppingList.qml</file>
-        <file>MainPage.qml</file>
-        <file>IntroPage.qml</file>
+        <file>qml/Settings.qml</file>
+        <file>qml/AboutApp.qml</file>
+        <file>qml/CategoryBtn.qml</file>
+        <file>qml/OneCategoryProducts.qml</file>
+        <file>qml/ShoppingList.qml</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/IntroPage.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/dairy-products.png</file>
