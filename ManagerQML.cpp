@@ -137,11 +137,6 @@ QStringList ManagerQML::getShopList()
     return shoppinglist;
 }
 
-//int ManagerQML::getShopListSize()
-//{
-//    return shoppinglist.size();
-//}
-
 void ManagerQML::refreshData()
 {
     data->refreshData();
