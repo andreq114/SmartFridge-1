@@ -51,7 +51,7 @@ ApplicationWindow {
         "Meat",
         "Frozen",
         "Fruits & Vegetables",
-        "End of Expiry"];
+        "Near Expire Date"];
 
     property var amountCategories : 0
 
