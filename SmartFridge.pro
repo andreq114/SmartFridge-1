@@ -12,13 +12,13 @@ CONFIG += testcase
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+
 SOURCES += \
-        ManagerQML.cpp \
-        Product.cpp \
-        ProductsTableModel.cpp \
-        ThinkspeakNetManager.cpp \
-        main.cpp \
-        tests\test_producttablemodel.cpp
+        src/ManagerQML.cpp \
+        src/Product.cpp \
+        src/ProductsTableModel.cpp \
+        src/ThinkspeakNetManager.cpp \
+        src/main.cpp
 
 RESOURCES += qml.qrc
 
@@ -39,11 +39,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    ManagerQML.h \
-    Product.h \
-    ProductsTableModel.h \
-    ThinkspeakNetManager.h \
-    tests\test_producttablemodel.h
+    src/ManagerQML.h \
+    src/Product.h \
+    src/ProductsTableModel.h \
+    src/ThinkspeakNetManager.h
 
 DISTFILES +=
 
