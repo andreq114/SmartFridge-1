@@ -3,21 +3,23 @@ package ru.notifications.javalib;
 // Qt
 import org.qtproject.qt5.android.QtNative;
 
-// android
-import android.content.Intent;
-import android.content.Context;
 import android.app.PendingIntent;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.NotificationChannel;
+import android.content.Intent;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 
-// java
 import java.lang.String;
 
 import org.qtproject.example.R;
 
 class QtAndroidNotifications {
 
-    public static void show(String title, String caption, int id) {
+    public static void show(String title, String messageBody, int id) {
         Context context = QtNative.activity();
         NotificationManager notificationManager = getManager();
         Notification.Builder builder =
@@ -25,7 +27,7 @@ class QtAndroidNotifications {
                 //.setColor(0x008000)
                 .setSmallIcon(R.drawable.icon)
                 .setContentTitle(title)
-                .setContentText(caption)
+                .setContentText(messageBody)
                 .setAutoCancel(true);
 
         String packageName = context.getApplicationContext().getPackageName();

@@ -25,6 +25,12 @@ public:
     void                   clearModel();
     void                   sortModel();
 
+    Q_INVOKABLE int                     columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    Q_INVOKABLE QVariant                data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Q_INVOKABLE QHash<int,QByteArray>   roleNames() const override;
+    Q_INVOKABLE bool                    setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+
+
     struct TableProduct{
         QString description;
         QDateTime exp_date;
@@ -36,12 +42,6 @@ public:
 signals :
     void                    categoryChanged();
 
-protected:
-
-    Q_INVOKABLE int                     columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    Q_INVOKABLE QVariant                data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    Q_INVOKABLE QHash<int,QByteArray>   roleNames() const override;
-    Q_INVOKABLE bool                    setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
 private:
     QList<TableProduct>                 items;
